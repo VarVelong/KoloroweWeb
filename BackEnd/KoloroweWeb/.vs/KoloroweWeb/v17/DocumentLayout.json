@@ -1,0 +1,57 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E267F496-93F3-4824-9227-943BF8D200A2}|KoloroweWeb.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb\\controllers\\pagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E267F496-93F3-4824-9227-943BF8D200A2}|KoloroweWeb.csproj|solutionrelative:controllers\\pagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{207280CC-1FB6-4DBE-9301-C6D26269DA5F}|..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb.data\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PageController.cs",
+              "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\Controllers\\PageController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PageController.cs",
+              "ToolTip": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\Controllers\\PageController.cs",
+              "RelativeToolTip": "Controllers\\PageController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-20T16:10:37.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\Class1.cs",
+              "RelativeDocumentMoniker": "..\\KoloroweWeb.Data\\Class1.cs",
+              "ToolTip": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\Class1.cs",
+              "RelativeToolTip": "..\\KoloroweWeb.Data\\Class1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-20T16:05:57.47Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
