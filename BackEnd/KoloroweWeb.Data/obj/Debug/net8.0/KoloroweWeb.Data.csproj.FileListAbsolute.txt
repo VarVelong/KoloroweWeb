@@ -1,0 +1,15 @@
+C:\Users\warwe\Documents\KoloroweWeb\BackEnd\KoloroweWeb.Data\bin\Debug\net8.0\KoloroweWeb.Data.deps.json
+C:\Users\warwe\Documents\KoloroweWeb\BackEnd\KoloroweWeb.Data\bin\Debug\net8.0\KoloroweWeb.Data.runtimeconfig.json
+C:\Users\warwe\Documents\KoloroweWeb\BackEnd\KoloroweWeb.Data\bin\Debug\net8.0\KoloroweWeb.Data.dll
+C:\Users\warwe\Documents\KoloroweWeb\BackEnd\KoloroweWeb.Data\bin\Debug\net8.0\KoloroweWeb.Data.pdb
+C:\Users\warwe\Documents\KoloroweWeb\BackEnd\KoloroweWeb.Data\obj\Debug\net8.0\KoloroweWeb.Data.csproj.AssemblyReference.cache
+C:\Users\warwe\Documents\KoloroweWeb\BackEnd\KoloroweWeb.Data\obj\Debug\net8.0\KoloroweWeb.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\warwe\Documents\KoloroweWeb\BackEnd\KoloroweWeb.Data\obj\Debug\net8.0\KoloroweWeb.Data.AssemblyInfoInputs.cache
+C:\Users\warwe\Documents\KoloroweWeb\BackEnd\KoloroweWeb.Data\obj\Debug\net8.0\KoloroweWeb.Data.AssemblyInfo.cs
+C:\Users\warwe\Documents\KoloroweWeb\BackEnd\KoloroweWeb.Data\obj\Debug\net8.0\KoloroweWeb.Data.csproj.CoreCompileInputs.cache
+C:\Users\warwe\Documents\KoloroweWeb\BackEnd\KoloroweWeb.Data\obj\Debug\net8.0\KoloroweWeb.Data.sourcelink.json
+C:\Users\warwe\Documents\KoloroweWeb\BackEnd\KoloroweWeb.Data\obj\Debug\net8.0\KoloroweWeb.Data.dll
+C:\Users\warwe\Documents\KoloroweWeb\BackEnd\KoloroweWeb.Data\obj\Debug\net8.0\refint\KoloroweWeb.Data.dll
+C:\Users\warwe\Documents\KoloroweWeb\BackEnd\KoloroweWeb.Data\obj\Debug\net8.0\KoloroweWeb.Data.pdb
+C:\Users\warwe\Documents\KoloroweWeb\BackEnd\KoloroweWeb.Data\obj\Debug\net8.0\KoloroweWeb.Data.genruntimeconfig.cache
+C:\Users\warwe\Documents\KoloroweWeb\BackEnd\KoloroweWeb.Data\obj\Debug\net8.0\ref\KoloroweWeb.Data.dll

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KoloroweWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f02eb9592128115829f14c3b42270d81de5c1e8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c8f76190bb54319b9a96383ef482863701cc2a97")]
 [assembly: System.Reflection.AssemblyProductAttribute("KoloroweWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KoloroweWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

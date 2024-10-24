@@ -3,11 +3,25 @@
   "WorkspaceRootPath": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E267F496-93F3-4824-9227-943BF8D200A2}|KoloroweWeb.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb\\controllers\\pagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E267F496-93F3-4824-9227-943BF8D200A2}|KoloroweWeb.csproj|solutionrelative:controllers\\pagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{207280CC-1FB6-4DBE-9301-C6D26269DA5F}|..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb.data\\entities\\kolorowewebcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{207280CC-1FB6-4DBE-9301-C6D26269DA5F}|..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb.data\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E267F496-93F3-4824-9227-943BF8D200A2}|KoloroweWeb.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E267F496-93F3-4824-9227-943BF8D200A2}|KoloroweWeb.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\Entities\\KolorowewebContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Entities\\KolorowewebContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{207280CC-1FB6-4DBE-9301-C6D26269DA5F}|..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb.data\\koloroweweb.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{207280CC-1FB6-4DBE-9301-C6D26269DA5F}|..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb.data\\koloroweweb.data.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E267F496-93F3-4824-9227-943BF8D200A2}|KoloroweWeb.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb\\controllers\\pagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E267F496-93F3-4824-9227-943BF8D200A2}|KoloroweWeb.csproj|solutionrelative:controllers\\pagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,11 +31,75 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-24T13:15:34.959Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "KolorowewebContext.cs",
+              "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\Entities\\KolorowewebContext.cs",
+              "RelativeDocumentMoniker": "..\\KoloroweWeb.Data\\Entities\\KolorowewebContext.cs",
+              "ToolTip": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\Entities\\KolorowewebContext.cs",
+              "RelativeToolTip": "..\\KoloroweWeb.Data\\Entities\\KolorowewebContext.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAIwAIAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T13:06:43.014Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "KolorowewebContext.cs",
+              "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\Entities\\KolorowewebContext.cs",
+              "RelativeDocumentMoniker": "Entities\\KolorowewebContext.cs",
+              "ToolTip": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\Entities\\KolorowewebContext.cs",
+              "RelativeToolTip": "Entities\\KolorowewebContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T12:56:07.388Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "KoloroweWeb.Data",
+              "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj",
+              "RelativeDocumentMoniker": "..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj",
+              "ToolTip": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj",
+              "RelativeToolTip": "..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-10-24T11:50:22.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "KoloroweWeb.Data",
+              "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj",
+              "RelativeDocumentMoniker": "..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj",
+              "ToolTip": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj",
+              "RelativeToolTip": "..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-10-24T11:50:28.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "PageController.cs",
               "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\Controllers\\PageController.cs",
               "RelativeDocumentMoniker": "Controllers\\PageController.cs",
@@ -30,19 +108,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-20T16:10:37.781Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\Class1.cs",
-              "RelativeDocumentMoniker": "..\\KoloroweWeb.Data\\Class1.cs",
-              "ToolTip": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\Class1.cs",
-              "RelativeToolTip": "..\\KoloroweWeb.Data\\Class1.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T16:05:57.47Z",
               "EditorCaption": ""
             },
             {
