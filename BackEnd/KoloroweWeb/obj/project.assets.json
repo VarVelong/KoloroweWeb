@@ -1776,6 +1776,21 @@
         "runtime": {
           "lib/net8.0/ZstdSharp.dll": {}
         }
+      },
+      "KoloroweWeb.Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "8.0.10",
+          "Microsoft.EntityFrameworkCore.SqlServer": "8.0.10",
+          "MySql.EntityFrameworkCore": "8.0.8"
+        },
+        "compile": {
+          "bin/placeholder/KoloroweWeb.Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/KoloroweWeb.Data.dll": {}
+        }
       }
     }
   },
@@ -5254,10 +5269,16 @@
         "zstdsharp.port.0.8.0.nupkg.sha512",
         "zstdsharp.port.nuspec"
       ]
+    },
+    "KoloroweWeb.Data/1.0.0": {
+      "type": "project",
+      "path": "../KoloroweWeb.Data/KoloroweWeb.Data.csproj",
+      "msbuildProject": "../KoloroweWeb.Data/KoloroweWeb.Data.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "KoloroweWeb.Data >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.10",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.10",
@@ -5266,7 +5287,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\warwe\\.nuget\\packages\\": {}
+    "C:\\Users\\warwe\\.nuget\\packages\\": {},
+    "C:\\Programy-Pliki\\Visual Studio - Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
@@ -5277,8 +5299,12 @@
       "packagesPath": "C:\\Users\\warwe\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Programy-Pliki\\Visual Studio - Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\warwe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5286,13 +5312,16 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj": {
+              "projectPath": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -5354,7 +5383,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

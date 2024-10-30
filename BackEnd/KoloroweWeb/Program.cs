@@ -1,8 +1,12 @@
 
+using Microsoft.EntityFrameworkCore;
+using MySql.EntityFrameworkCore.Extensions;
+
 namespace KoloroweWeb
 {
     public class Program
     {
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -29,8 +33,21 @@ namespace KoloroweWeb
 
 
             app.MapControllers();
-
             app.Run();
+
+
+
+            // Builder for DbContext
+            builder.Services.AddEntityFrameworkMySQL()
+            .AddDbContext<DbContext>(options =>
+            {
+                options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+
+
         }
     }
+
 }
+

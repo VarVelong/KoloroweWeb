@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KoloroweWeb.Data.Entities
 {
-    internal class UserPostDTO
+    public class UserPostDTO
     {
         public int Id { get; set; }
 
