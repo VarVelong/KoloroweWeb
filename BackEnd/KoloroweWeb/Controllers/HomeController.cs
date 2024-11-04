@@ -13,87 +13,87 @@ namespace KoloroweWeb.Controllers
     [Route("api/[controller]")]
     public class UserPostController : ControllerBase
     {
-        private readonly DbContext DBContext;
+        private readonly KolorowewebContext kolorowewebContext;
 
-        public UserPostController(DbContext DBContext)
+        public UserPostController(KolorowewebContext kolorowewebContext)
         {
-            this.DBContext = DBContext;
+            this.kolorowewebContext = kolorowewebContext;
         }
 
-    }
 
-    [HttpGet("GetPost")]
-    public async Task<ActionResult<List<UserPostDTO>>> Get()
-    {
-        var Post = await DbContext.Userpost.Select(
-            s => new UserPostDTO
-            {
-                Id = s.Id,
-                Date = s.Date,
-                Content = s.Content,
-                Image = s.Image,
-            }
-        ).ToListAsync();
 
-    //    if (Post.Count < 0)
-    //    {
-    //        return "NotFound"();
-    //    }
-    //    else
-    //    {
-    //        return Post;
-    //    }
-    }
-
-    [HttpGet("GetPostByDate")]
-    public async Task<ActionResult<UserPostDTO>> GetUserByDate(int Id)
-    {
-        Userpost Post = await DbContext.Userpost.Select(
+        [HttpGet("GetPost")]
+        public async Task<ActionResult<List<UserPostDTO>>> Get()
+        {
+            var post = await kolorowewebContext.Userposts.Select(
                 s => new UserPostDTO
                 {
                     Id = s.Id,
                     Date = s.Date,
                     Content = s.Content,
                     Image = s.Image,
-                })
-            .FirstOrDefaultAsync(s => s.Id == Id);
+                }
+            ).ToListAsync();
 
-        //if (Post == null)
-        //{
-        //    return "NotFound"();
-        //}
-        //else
-        //{
-        //    return Post;
-        //}
+            if (post.Count < 0)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return post;
+            }
+        }
 
-
-        [HttpPut("UpdatePost")]
-        async Task<HttpStatusCode> UpdatePost(UserPostDTO User)
+        [HttpGet("GetPostByDate")]
+        public async Task<ActionResult<UserPostDTO>> GetUserByDate(int Id)
         {
-            var entity = await DbContext.User.FirstOrDefaultAsync(s => s.Id == User.Id);
+            var post = await kolorowewebContext.Userposts.Select(
+                    s => new UserPostDTO
+                    {
+                        Id = s.Id,
+                        Date = s.Date,
+                        Content = s.Content,
+                        Image = s.Image,
+                    }).FirstOrDefaultAsync(s => s.Id == Id);
 
-            entity.Id = User.Id;
-            entity.Date = User.Date;
-            entity.Content = User.Content;
-            entity.Image = User.Image;
+            if (post == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return post;
+            }
 
-            await DbContext.SaveChangesAsync();
+
+            [HttpPut("UpdatePost")]
+            async Task<HttpStatusCode> UpdatePost(UserPostDTO User)
+            {
+                var entity = await kolorowewebContext.Userposts.FirstOrDefaultAsync(s => s.Id == User.Id);
+
+                entity.Id = User.Id;
+                entity.Date = User.Date;
+                entity.Content = User.Content;
+                entity.Image = User.Image;
+
+                await kolorowewebContext.SaveChangesAsync();
+                return HttpStatusCode.OK;
+            }
+        }
+
+        [HttpDelete("DeletePost/{Id}")]
+        public async Task<HttpStatusCode> DeletePost(int Id)
+        {
+            var entity = new Userpost()
+            {
+                Id = Id
+            };
+            kolorowewebContext.Userposts.Attach(entity);
+            kolorowewebContext.Userposts.Remove(entity);
+            await kolorowewebContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
-    }
-
-    [HttpDelete("DeletePost/{Id}")]
-    public async Task<HttpStatusCode> DeletePost(int Id)
-    {
-        var entity = new Post()
-        {
-            Id = Id
-        };
-        DbContext.User.Attach(entity);
-        DbContext.User.Remove(entity);
-        await DbContext.SaveChangesAsync();
-        return HttpStatusCode.OK;
     }
 
 }

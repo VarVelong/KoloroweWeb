@@ -1,6 +1,8 @@
 
+using KoloroweWeb.Entities;
 using Microsoft.EntityFrameworkCore;
 using MySql.EntityFrameworkCore.Extensions;
+using System.Configuration;
 
 namespace KoloroweWeb
 {
@@ -11,8 +13,13 @@ namespace KoloroweWeb
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            builder.Services.AddEntityFrameworkMySQL()
+                .AddDbContext<KolorowewebContext>(options =>
+                {
+                    options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection"));
+                });
 
+            // Add services to the container.
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -38,11 +45,10 @@ namespace KoloroweWeb
 
 
             // Builder for DbContext
-            builder.Services.AddEntityFrameworkMySQL()
-            .AddDbContext<DbContext>(options =>
-            {
-                options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection"));
-            });
+
+
+            //builder.Services.AddDbContext<KolorowewebContext>(options =>
+            //options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
 
