@@ -7,6 +7,11 @@
             <button id="a-button" @click="$router.push({ name: 'contact'})">Umów wizytę</button>
         </div>
 
+        <div>
+            <button @click="$router.push({ name: 'postcreation'})">Posty</button>
+            <button @click="$router.push({ name: 'authorization'})">Autoryzacja</button>
+        </div>
+
     </body>
 </template>
 

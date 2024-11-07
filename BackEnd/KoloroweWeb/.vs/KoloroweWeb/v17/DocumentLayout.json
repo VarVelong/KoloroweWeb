@@ -7,15 +7,17 @@
       "RelativeMoniker": "D:0:0:{E267F496-93F3-4824-9227-943BF8D200A2}|KoloroweWeb.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{207280CC-1FB6-4DBE-9301-C6D26269DA5F}|..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb.data\\entities\\kolorowewebcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E267F496-93F3-4824-9227-943BF8D200A2}|KoloroweWeb.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E267F496-93F3-4824-9227-943BF8D200A2}|KoloroweWeb.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E267F496-93F3-4824-9227-943BF8D200A2}|KoloroweWeb.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E267F496-93F3-4824-9227-943BF8D200A2}|KoloroweWeb.csproj|solutionrelative:weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{207280CC-1FB6-4DBE-9301-C6D26269DA5F}|..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb.data\\entities\\userpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{207280CC-1FB6-4DBE-9301-C6D26269DA5F}|..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb.data\\entities\\kolorowewebcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{207280CC-1FB6-4DBE-9301-C6D26269DA5F}|..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb.data\\entities\\userpostdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E267F496-93F3-4824-9227-943BF8D200A2}|KoloroweWeb.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb\\controllers\\pagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -24,12 +26,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{E267F496-93F3-4824-9227-943BF8D200A2}|KoloroweWeb.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{E267F496-93F3-4824-9227-943BF8D200A2}|KoloroweWeb.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{207280CC-1FB6-4DBE-9301-C6D26269DA5F}|..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb.data\\entities\\userpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{207280CC-1FB6-4DBE-9301-C6D26269DA5F}|..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb.data\\entities\\userpostdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{207280CC-1FB6-4DBE-9301-C6D26269DA5F}|..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj|c:\\users\\warwe\\documents\\koloroweweb\\backend\\koloroweweb.data\\koloroweweb.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
@@ -45,50 +41,31 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "WeatherForecast.cs",
-              "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\WeatherForecast.cs",
-              "RelativeDocumentMoniker": "WeatherForecast.cs",
-              "ToolTip": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\WeatherForecast.cs",
-              "RelativeToolTip": "WeatherForecast.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T12:24:00.068Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "Userpost.cs",
               "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\Entities\\Userpost.cs",
               "RelativeDocumentMoniker": "..\\KoloroweWeb.Data\\Entities\\Userpost.cs",
               "ToolTip": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\Entities\\Userpost.cs",
               "RelativeToolTip": "..\\KoloroweWeb.Data\\Entities\\Userpost.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAhAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T13:08:06.734Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-30T13:08:06.734Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAAwBAAAAAAAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAAAgwCQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-29T12:06:33.213Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-29T12:06:33.213Z"
             },
             {
               "$type": "Document",
@@ -98,14 +75,14 @@
               "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\Controllers\\HomeController.cs",
               "RelativeToolTip": "Controllers\\HomeController.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAiwBMAAAAQAAAA",
+              "ViewState": "AQIAADgAAAAAAAAAAAAjwEUAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-25T11:49:35.979Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "UserPostDTO.cs",
               "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\Entities\\UserPostDTO.cs",
               "RelativeDocumentMoniker": "..\\KoloroweWeb.Data\\Entities\\UserPostDTO.cs",
@@ -113,38 +90,35 @@
               "RelativeToolTip": "..\\KoloroweWeb.Data\\Entities\\UserPostDTO.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T11:24:04.136Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-25T11:24:04.136Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
               "ToolTip": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-10-24T13:15:34.959Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-24T13:15:34.959Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "KolorowewebContext.cs",
               "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\Entities\\KolorowewebContext.cs",
               "RelativeDocumentMoniker": "..\\KoloroweWeb.Data\\Entities\\KolorowewebContext.cs",
               "ToolTip": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\Entities\\KolorowewebContext.cs",
               "RelativeToolTip": "..\\KoloroweWeb.Data\\Entities\\KolorowewebContext.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAA5wA4AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T13:06:43.014Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-24T13:06:43.014Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "KoloroweWeb.Data.csproj",
               "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj",
               "RelativeDocumentMoniker": "..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj",
@@ -156,7 +130,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "KoloroweWeb.Data",
               "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj",
               "RelativeDocumentMoniker": "..\\KoloroweWeb.Data\\KoloroweWeb.Data.csproj",
@@ -167,16 +141,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "PageController.cs",
               "DocumentMoniker": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\Controllers\\PageController.cs",
               "RelativeDocumentMoniker": "Controllers\\PageController.cs",
               "ToolTip": "C:\\Users\\warwe\\Documents\\KoloroweWeb\\BackEnd\\KoloroweWeb\\Controllers\\PageController.cs",
               "RelativeToolTip": "Controllers\\PageController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAQwA4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T16:10:37.781Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-20T16:10:37.781Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }

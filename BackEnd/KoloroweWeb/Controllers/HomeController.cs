@@ -20,9 +20,7 @@ namespace KoloroweWeb.Controllers
             this.kolorowewebContext = kolorowewebContext;
         }
 
-
-
-        [HttpGet("GetPost")]
+        [HttpGet]
         public async Task<ActionResult<List<UserPostDTO>>> Get()
         {
             var post = await kolorowewebContext.Userposts.Select(
@@ -45,7 +43,7 @@ namespace KoloroweWeb.Controllers
             }
         }
 
-        [HttpGet("GetPostByDate")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<UserPostDTO>> GetUserByDate(int Id)
         {
             var post = await kolorowewebContext.Userposts.Select(
@@ -65,24 +63,48 @@ namespace KoloroweWeb.Controllers
             {
                 return post;
             }
+        }
 
+        [HttpPut("{id}")]
+        async Task<HttpStatusCode> UpdatePost(int id, UserPostDTO User)
+        {
+            var entity = await kolorowewebContext.Userposts.FirstOrDefaultAsync(s => s.Id == User.Id);
 
-            [HttpPut("UpdatePost")]
-            async Task<HttpStatusCode> UpdatePost(UserPostDTO User)
+            entity.Id = User.Id;
+            entity.Date = User.Date;
+            entity.Content = User.Content;
+            entity.Image = User.Image;
+
+            await kolorowewebContext.SaveChangesAsync();
+
+            if (id != User.Id)
             {
-                var entity = await kolorowewebContext.Userposts.FirstOrDefaultAsync(s => s.Id == User.Id);
-
-                entity.Id = User.Id;
-                entity.Date = User.Date;
-                entity.Content = User.Content;
-                entity.Image = User.Image;
-
-                await kolorowewebContext.SaveChangesAsync();
-                return HttpStatusCode.OK;
+                return HttpStatusCode.BadRequest;
+            }
+            else 
+            { 
+                return HttpStatusCode.OK; 
             }
         }
 
-        [HttpDelete("DeletePost/{Id}")]
+        [HttpPost]
+        public async Task<HttpStatusCode> InsertUser(UserPostDTO post)
+        {
+            var entity = new Userpost()
+            {
+                Id = post.Id,
+                Date = post.Date,
+                Content = post.Content,
+                Image = post.Image,
+            };
+
+            kolorowewebContext.Add(entity);
+            await kolorowewebContext.SaveChangesAsync();
+
+            return HttpStatusCode.Created;
+        }
+
+        [HttpDelete("{Id}")]
         public async Task<HttpStatusCode> DeletePost(int Id)
         {
             var entity = new Userpost()
@@ -95,5 +117,4 @@ namespace KoloroweWeb.Controllers
             return HttpStatusCode.OK;
         }
     }
-
 }

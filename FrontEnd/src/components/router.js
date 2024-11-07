@@ -4,6 +4,8 @@ import ContactPage from "../components/ContactPage.vue"
 import OfferPage from "../components/OfferPage.vue"
 import PersonnelPage from "../components/PersonnelPage.vue"
 import UpdatePage from "../components/UpdatePage.vue"
+import PostCreationPage from "../components/PostCreationPage.vue"
+import AuthorizationPage from "../components/AuthorizationPage.vue"
 
 export default
     [
@@ -41,5 +43,17 @@ export default
             path: '/contact',
             name: 'contact',
             component: ContactPage
+        },
+
+        {
+            path: '/authorization',
+            name: 'authorization',
+            component: AuthorizationPage
+        },
+
+        {
+            path: '/postcreation',
+            name: 'postcreation',
+            component: PostCreationPage
         }
     ]
