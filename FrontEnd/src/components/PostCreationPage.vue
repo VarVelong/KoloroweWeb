@@ -3,13 +3,13 @@
     
     <div class="post-container">
         <h2>Create New Post</h2>
-        <textarea class="text-box" placeholder="Write your post here..."></textarea>
+        <textarea v-model="post.content" class="text-box" placeholder="Write your post here..."></textarea>
         <div class="upload-section">
             <label for="file-upload" class="upload-icon">📷</label>
             <input type="file" id="file-upload" class="file-input" accept="image/*">
             <span>Select an image to upload</span>
         </div>
-        <button class="post-button">Post</button>
+        <button class="post-button" @click="savePost">Post</button>
     </div>
 
     </body>
@@ -94,12 +94,16 @@ body {
 </style>
 
 <script>
-import pageService from "../router/pageService";
+import PostService from "../router/PostService";
 
 export default{
     data(){
         return {
-
+            post: {
+                date:"",
+                content:"",
+                image:""
+            }
         }
     },
 
@@ -115,25 +119,31 @@ export default{
         },
 
         savePost() {
-            let 
+            PostService.createPost(this.post)
+            .then((post) => {
+                alert("post is added")
+            })
+            .catch((error) => {
+                alert(`error, potst not added ${error}`)
+            })
         }
     }
 }
 
-saveGame() {
-            //test this, test modal on save and load, change modal button, fix field
-            let saveGameData = this.getSaveGameData();
-            if (this.saves.length <= this.maxSaveNumber) {
-                MapService.createSave(saveGameData, SaveType.UserSave).then(save => {
+// saveGame() {
+//             //test this, test modal on save and load, change modal button, fix field
+//             let saveGameData = this.getSaveGameData();
+//             if (this.saves.length <= this.maxSaveNumber) {
+//                 MapService.createSave(saveGameData, SaveType.UserSave).then(save => {
 
-                    alert("Game Saved");
-                    this.fetchSaves();
-                });
-            }
-            else {
-                this.isSaving = true;
-                this.modal.saves = true;
-            }
-        },
+//                     alert("Game Saved");
+//                     this.fetchSaves();
+//                 });
+//             }
+//             else {
+//                 this.isSaving = true;
+//                 this.modal.saves = true;
+//             }
+//         },
 
 </script>

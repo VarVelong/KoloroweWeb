@@ -10,7 +10,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace KoloroweWeb.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("userpost")]
     public class UserPostController : ControllerBase
     {
         private readonly KolorowewebContext kolorowewebContext;
@@ -65,41 +65,41 @@ namespace KoloroweWeb.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        async Task<HttpStatusCode> UpdatePost(int id, UserPostDTO User)
+        //[HttpPut("{id}")]
+        //public async Task<HttpStatusCode> UpdatePost(int id, UserPostDTO post)
+        //{
+        //    var entity = await kolorowewebContext.Userposts.FirstOrDefaultAsync(s => s.Id == post.Id);
+
+        //    entity.Id = post.Id;
+        //    entity.Date = post.Date;
+        //    entity.Content = post.Content;
+        //    entity.Image = post.Image;
+
+        //    await kolorowewebContext.SaveChangesAsync();
+
+        //    if (id != post.Id)
+        //    {
+        //        return HttpStatusCode.BadRequest;
+        //    }
+        //    else 
+        //    { 
+        //        return HttpStatusCode.OK; 
+        //    }
+        //}
+
+        [HttpPost("post")]
+        public async Task<HttpStatusCode> InsertPost([FromBody]UserPostDTO post)
         {
-            var entity = await kolorowewebContext.Userposts.FirstOrDefaultAsync(s => s.Id == User.Id);
+            //var entity = new Userpost()
+            //{
+            //    Id = post.Id,
+            //    Date = post.Date,
+            //    Content = post.Content,
+            //    Image = post.Image,
+            //};
 
-            entity.Id = User.Id;
-            entity.Date = User.Date;
-            entity.Content = User.Content;
-            entity.Image = User.Image;
-
-            await kolorowewebContext.SaveChangesAsync();
-
-            if (id != User.Id)
-            {
-                return HttpStatusCode.BadRequest;
-            }
-            else 
-            { 
-                return HttpStatusCode.OK; 
-            }
-        }
-
-        [HttpPost]
-        public async Task<HttpStatusCode> InsertUser(UserPostDTO post)
-        {
-            var entity = new Userpost()
-            {
-                Id = post.Id,
-                Date = post.Date,
-                Content = post.Content,
-                Image = post.Image,
-            };
-
-            kolorowewebContext.Add(entity);
-            await kolorowewebContext.SaveChangesAsync();
+            //kolorowewebContext.Add(entity);
+            //await kolorowewebContext.SaveChangesAsync();
 
             return HttpStatusCode.Created;
         }
