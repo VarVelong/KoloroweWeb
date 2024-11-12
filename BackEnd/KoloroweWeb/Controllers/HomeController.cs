@@ -88,18 +88,18 @@ namespace KoloroweWeb.Controllers
         //}
 
         [HttpPost("post")]
-        public async Task<HttpStatusCode> InsertPost([FromBody]UserPostDTO post)
+        public async Task<HttpStatusCode> InsertPost(UserPostDTO post)
         {
-            //var entity = new Userpost()
-            //{
-            //    Id = post.Id,
-            //    Date = post.Date,
-            //    Content = post.Content,
-            //    Image = post.Image,
-            //};
+            var entity = new Userpost()
+            {
+                Id = post.Id,
+                Date = post.Date,
+                Content = post.Content,
+                Image = post.Image,
+            };
 
-            //kolorowewebContext.Add(entity);
-            //await kolorowewebContext.SaveChangesAsync();
+            kolorowewebContext.Add(entity);
+            await kolorowewebContext.SaveChangesAsync();
 
             return HttpStatusCode.Created;
         }

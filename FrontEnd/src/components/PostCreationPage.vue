@@ -94,13 +94,13 @@ body {
 </style>
 
 <script>
-import PostService from "../router/PostService";
+import PostService from "./PostService"
 
 export default{
     data(){
         return {
             post: {
-                date:"",
+                date:null,
                 content:"",
                 image:""
             }

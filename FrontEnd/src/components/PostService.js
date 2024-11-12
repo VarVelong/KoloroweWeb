@@ -15,7 +15,7 @@ export default {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({post: data})
+            body: JSON.stringify(data)
         })
         .then(response => {
             return response.json();
