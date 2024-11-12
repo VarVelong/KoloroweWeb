@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/IOPTNetwork/Primary/ION.App.sln
+/EZDental-s
+/IOPTNetwork/Primary/037-Treatment Rev & Auth - Dental (Homelink).docx
+/IOPTNetwork/Primary/037-Treatment Rev & Auth - Dental (Homelink).docx
+/IOPTNetwork/AzureFunctions
+/OIS Azure Functions/DocumentProcessor/ION.DocumentProcessor/bin
+/OIS Azure Functions/DocumentProcessor/ION.DocumentProcessor/obj
+/OIS Azure Functions
