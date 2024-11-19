@@ -6,6 +6,9 @@ import PersonnelPage from "../components/PersonnelPage.vue"
 import UpdatePage from "../components/UpdatePage.vue"
 import PostCreationPage from "../components/PostCreationPage.vue"
 import AuthorizationPage from "../components/AuthorizationPage.vue"
+import EditArticles from "../authorization/EditArticles.vue"
+import Login from "../authorization/Login.vue"
+import Register from "../authorization/Register.vue"
 
 export default
     [
@@ -55,5 +58,23 @@ export default
             path: '/postcreation',
             name: 'postcreation',
             component: PostCreationPage
+        },
+
+        {
+            path: '/editarticles',
+            name: 'editarticles',
+            component: EditArticles
+        },
+
+        {
+            path: '/login',
+            name: 'login',
+            component: Login
+        },
+
+        {
+            path: '/register',
+            name: 'register',
+            component: Register
         }
     ]

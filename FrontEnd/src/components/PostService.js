@@ -13,11 +13,13 @@ export default {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('user')}`
             },
             body: JSON.stringify(data)
         })
         .then(response => {
+            debugger;
             return response.json();
         });
     },
@@ -27,7 +29,8 @@ export default {
             method: "PATCH",
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('user')}`
             },
             body: JSON.stringify({date, content, image })
         })

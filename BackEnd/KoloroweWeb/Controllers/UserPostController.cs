@@ -1,5 +1,6 @@
 ﻿using KoloroweWeb.Data.Entities;
 using KoloroweWeb.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
@@ -10,7 +11,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace KoloroweWeb.Controllers
 {
     [ApiController]
-    [Route("userpost")]
+    [Route("[controller]")]
     public class UserPostController : ControllerBase
     {
         private readonly KolorowewebContext kolorowewebContext;
@@ -88,6 +89,7 @@ namespace KoloroweWeb.Controllers
         //}
 
         [HttpPost("post")]
+        [Authorize]
         public async Task<HttpStatusCode> InsertPost(UserPostDTO post)
         {
             var entity = new Userpost()

@@ -12,6 +12,12 @@
             <button @click="$router.push({ name: 'authorization'})">Autoryzacja</button>
         </div>
 
+        <div>
+            <button @click="$router.push({ name: 'login'})">Login</button>
+            <button @click="$router.push({ name: 'register'})">Register</button>
+            <button @click="$router.push({ name: 'editarticles'})">EditArticles</button>
+        </div>
+
     </body>
 </template>
 

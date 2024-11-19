@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using KoloroweWeb.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace KoloroweWeb.Entities;
@@ -16,6 +17,7 @@ public partial class KolorowewebContext : DbContext
     }
 
     public virtual DbSet<Userpost> Userposts { get; set; }
+    public virtual DbSet<Users> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseMySQL("server=localhost;port=3306;user=root;database=koloroweweb");
