@@ -36,7 +36,7 @@ export default {
         .then((token) => {
           debugger;
           if (token) {  // Ensure the token is present in the response data
-            localStorage.setItem('user', JSON.stringify(token));
+            localStorage.setItem('user', token);
             this.$router.push('/postcreation');
           }
           return token;
