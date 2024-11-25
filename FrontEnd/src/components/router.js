@@ -5,8 +5,6 @@ import OfferPage from "../components/OfferPage.vue"
 import PersonnelPage from "../components/PersonnelPage.vue"
 import UpdatePage from "../components/UpdatePage.vue"
 import PostCreationPage from "../components/PostCreationPage.vue"
-import AuthorizationPage from "../components/AuthorizationPage.vue"
-import EditArticles from "../authorization/EditArticles.vue"
 import Login from "../authorization/Login.vue"
 import Register from "../authorization/Register.vue"
 
@@ -49,21 +47,9 @@ export default
         },
 
         {
-            path: '/authorization',
-            name: 'authorization',
-            component: AuthorizationPage
-        },
-
-        {
             path: '/postcreation',
             name: 'postcreation',
             component: PostCreationPage
-        },
-
-        {
-            path: '/editarticles',
-            name: 'editarticles',
-            component: EditArticles
         },
 
         {

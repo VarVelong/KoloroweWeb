@@ -28,7 +28,7 @@ public partial class KolorowewebContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("userposts");
+            entity.ToTable("userpost");
 
             entity.Property(e => e.Id).HasColumnType("int(11)");
             entity.Property(e => e.Content).HasColumnType("text");

@@ -38,7 +38,12 @@ class AuthService {
 
 
   logout() {
-    localStorage.removeItem('user');
+    try {
+      localStorage.removeItem('user', token);
+      console.log('User has been logged out.');
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
   }
 
   register(user) {

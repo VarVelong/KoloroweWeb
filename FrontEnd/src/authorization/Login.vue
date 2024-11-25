@@ -29,22 +29,17 @@ export default {
   },
   methods: {
     async login() {
-      const response = await AuthService.login({
+      await AuthService.login({
         username: this.username,
         password: this.password
       })
         .then((token) => {
-          debugger;
-          if (token) {  // Ensure the token is present in the response data
+          if (token) {
             localStorage.setItem('user', token);
-            this.$router.push('/postcreation');
           }
-          return token;
-          debugger;
-          //this.$router.push('/postcreation'); // Redirect to edit articles page after login
+          this.$router.push('/postcreation');
         })
         .catch((e) => {
-          debugger;
           this.errorMessage = 'Invalid credentials. Please try again. ';
         });
     }

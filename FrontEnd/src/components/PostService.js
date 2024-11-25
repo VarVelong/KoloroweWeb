@@ -8,7 +8,6 @@ export default {
     },
 
     createPost(data) {
-        debugger;
         return fetch("https://localhost:7119/userpost/post", {
             method: "POST",
             headers: {
@@ -19,10 +18,15 @@ export default {
             body: JSON.stringify(data)
         })
         .then(response => {
-            debugger;
+            if (response.status === 401) {
+                throw new Error("Unauthorized: Please check your login credentials or token.");
+            } else if (!response.ok) {
+                throw new Error(`Error: ${response.statusText}`);
+            }
             return response.json();
         });
     },
+
 
     updateSave(date, content, image) {
         return fetch("https://localhost:7119/userpost", {
@@ -32,12 +36,11 @@ export default {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('user')}`
             },
-            body: JSON.stringify({date, content, image })
+            body: JSON.stringify({ date, content, image })
         })
             .then(response => {
                 return response.json();
             });
     }
-
-
 }
+
