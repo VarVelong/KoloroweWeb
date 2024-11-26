@@ -7,6 +7,7 @@ import UpdatePage from "../components/UpdatePage.vue"
 import PostCreationPage from "../components/PostCreationPage.vue"
 import Login from "../authorization/Login.vue"
 import Register from "../authorization/Register.vue"
+import UpdatesPage from "../components/UpdatesPage.vue"
 
 export default
     [
@@ -62,5 +63,11 @@ export default
             path: '/register',
             name: 'register',
             component: Register
+        },
+
+        {
+            path: '/updates',
+            name: 'updates',
+            component: UpdatesPage
         }
     ]
