@@ -1,12 +1,13 @@
 <template>
     <div id="app">
-      <h1>User Posts</h1>
-      <div v-if="loading">Loading posts...</div>
+      <h1>Aktualności</h1>
+      <div v-if="loading">Loading posts</div>
       <div v-if="error" class="error">{{ error }}</div>
       <ul v-if="posts.length">
         <li v-for="post in posts" :key="post.id">
           <h2>{{ post.content }}</h2>
           <p>{{ post.date }}</p>
+          <button @click="goToPost(post.id)">View Details</button>
         </li>
       </ul>
     </div>
@@ -16,37 +17,41 @@
   export default {
     data() {
       return {
-        posts: [], // Holds the posts from the database
-        loading: false, // Shows loading state
-        error: null, // Captures any errors
+        posts: [], 
+        loading: false, 
+        error: null, 
       };
     },
     methods: {
       async fetchPosts() {
-        this.loading = true; // Start loading
-        this.error = null; // Clear any previous errors
+        this.loading = true;
+        this.error = null; 
         try {
           const response = await fetch("https://localhost:7119/userpost");
           if (!response.ok) {
             throw new Error(`Error: ${response.statusText}`);
           }
           const data = await response.json();
-          this.posts = data; // Set the posts data
+          this.posts = data; 
         } catch (err) {
-          this.error = err.message; // Capture any errors
+          this.error = err.message; 
         } finally {
-          this.loading = false; // Stop loading
+          this.loading = false; 
         }
       },
+
+      goToPost(id) {
+      this.$router.push(`/post/${id}`); 
+    },
+
     },
     created() {
-      this.fetchPosts(); // Fetch posts when the component is created
+      this.fetchPosts();
     },
   };
   </script>
   
   <style>
-  /* Add some basic styling */
   #error {
     color: red;
   }

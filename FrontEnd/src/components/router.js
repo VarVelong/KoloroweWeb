@@ -8,6 +8,7 @@ import PostCreationPage from "../components/PostCreationPage.vue"
 import Login from "../authorization/Login.vue"
 import Register from "../authorization/Register.vue"
 import UpdatesPage from "../components/UpdatesPage.vue"
+import PostDetails from "../components/PostDetails.vue";
 
 export default
     [
@@ -69,5 +70,12 @@ export default
             path: '/updates',
             name: 'updates',
             component: UpdatesPage
+        },
+
+        {
+            path: '/post/:id',
+            name: 'postdetails',
+            component: PostDetails,
+            props: true
         }
     ]
