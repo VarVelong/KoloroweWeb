@@ -4,7 +4,7 @@
         <div v-if="loading">Loading post...</div>
         <div v-if="error" class="error">{{ error }}</div>
         <div v-if="post">
-            <h2>{{ post.content }}</h2>
+            <h2>{{ plainPostText }}</h2>
             <p>{{ post.date }}</p>
             <button @click="$router.push('/updates')">Back to Posts</button>
             <button @click="deletePost">Delete Post</button>
@@ -25,6 +25,14 @@ export default {
 
     mounted() {
         this.fetchPost()
+    },
+
+    computed: {
+        plainPostText() {
+            const div = document.createElement("div");
+            div.innerHTML = this.post.content;
+            return div.textContent || "";
+        },
     },
 
     methods: {

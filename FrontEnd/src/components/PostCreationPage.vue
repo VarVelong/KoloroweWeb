@@ -4,7 +4,12 @@
 
         <div class="post-container">
             <h2>Create New Post</h2>
-            <textarea v-model="post.content" class="text-box" placeholder="Write your post here..."></textarea>
+            <!-- <textarea v-model="post.content" class="text-box" placeholder="Write your post here..."></textarea> -->
+
+            <div>
+                <vue-editor v-model="post.content"></vue-editor>
+            </div>
+
             <div class="upload-section">
                 <label for="file-upload" class="upload-icon">📷</label>
                 <input type="file" id="file-upload" class="file-input" accept="image/*">
@@ -19,13 +24,54 @@
     </body>
 </template>
 
-<!-- <style scoped>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+<script>
+import PostService from "./PostService"
+import { VueEditor } from "vue3-editor";
+
+export default {
+    data() {
+        return {
+            post: {
+                date: new Date(),
+                content: "",
+                image: null
+            }
+        }
+    },
+
+    components: {
+        VueEditor
+    },
+
+    methods: {
+        async fetchPosts() {
+            await pageService.getPosts().then(posts => {
+                this.posts = posts;
+            })
+        },
+
+        savePost() {
+            PostService.createPost(this.post)
+                .then((post) => {
+                    alert("post is added")
+                })
+                .catch((error) => {
+                    alert(`error, potst not added ${error}`)
+                })
+        },
+
+        logout() {
+            try {
+                localStorage.removeItem('user');
+                console.log('User has been logged out.');
+            } catch (error) {
+                console.error('Error during logout:', error);
+            }
+        }
+    }
 }
-</style> -->
+
+</script>
 
 <style scoped>
 body {
@@ -39,7 +85,7 @@ body {
 }
 
 .post-container {
-    background: #fff;
+    background: #2e2b2b;
     padding: 20px;
     max-width: 500px;
     width: 100%;
@@ -96,67 +142,3 @@ body {
     background-color: #0056b3;
 }
 </style>
-
-<script>
-import PostService from "./PostService"
-
-export default {
-    data() {
-        return {
-            post: {
-                date: new Date(),
-                content: "",
-                image: ""
-            }
-        }
-    },
-
-    async mounted() {
-
-    },
-
-    methods: {
-        async fetchPosts() {
-            await pageService.getPosts().then(posts => {
-                this.posts = posts;
-            })
-        },
-
-        savePost() {
-            PostService.createPost(this.post)
-                .then((post) => {
-                    alert("post is added")
-                })
-                .catch((error) => {
-                    alert(`error, potst not added ${error}`)
-                })
-        },
-
-        logout() {
-            try {
-                localStorage.removeItem('user');
-                console.log('User has been logged out.');
-            } catch (error) {
-                console.error('Error during logout:', error);
-            }
-        }
-    }
-}
-
-// saveGame() {
-//             //test this, test modal on save and load, change modal button, fix field
-//             let saveGameData = this.getSaveGameData();
-//             if (this.saves.length <= this.maxSaveNumber) {
-//                 MapService.createSave(saveGameData, SaveType.UserSave).then(save => {
-
-//                     alert("Game Saved");
-//                     this.fetchSaves();
-//                 });
-//             }
-//             else {
-//                 this.isSaving = true;
-//                 this.modal.saves = true;
-//             }
-//         },
-
-</script>
