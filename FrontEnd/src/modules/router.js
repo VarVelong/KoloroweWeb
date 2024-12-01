@@ -3,12 +3,11 @@ import AboutPage from "../components/AboutPage.vue"
 import ContactPage from "../components/ContactPage.vue"
 import OfferPage from "../components/OfferPage.vue"
 import PersonnelPage from "../components/PersonnelPage.vue"
-import UpdatePage from "../components/UpdatePage.vue"
-import PostCreationPage from "../components/PostCreationPage.vue"
-import Login from "../authorization/Login.vue"
-import Register from "../authorization/Register.vue"
-import UpdatesPage from "../components/UpdatesPage.vue"
-import PostDetails from "../components/PostDetails.vue";
+import PostCreationPage from "./posts/Pages/PostCreationPage.vue"
+import Login from "./authorization/Pages/Login.vue"
+import Register from "./authorization/Pages/Register.vue"
+import PostListPage from "./posts/Pages/PostListPage.vue"
+import PostDetails from "./posts/Pages/PostDetails.vue";
 
 export default
     [
@@ -22,12 +21,6 @@ export default
             path: '/about',
             name: 'about',
             component: AboutPage
-        },
-
-        {
-            path: '/update',
-            name: 'update',
-            component: UpdatePage
         },
 
         {
@@ -67,9 +60,9 @@ export default
         },
 
         {
-            path: '/updates',
-            name: 'updates',
-            component: UpdatesPage
+            path: '/post-list',
+            name: 'post-list',
+            component: PostListPage
         },
 
         {

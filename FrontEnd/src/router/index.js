@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Router from '../components/router.js'
+import Router from '../modules/router.js'
 
 
 const routes = [].concat(Router);

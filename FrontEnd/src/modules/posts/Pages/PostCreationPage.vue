@@ -10,22 +10,27 @@
                 <vue-editor v-model="post.content"></vue-editor>
             </div>
 
-            <div class="upload-section">
+            <!-- <div class="upload-section">
                 <label for="file-upload" class="upload-icon">📷</label>
                 <input type="file" id="file-upload" class="file-input" accept="image/*">
                 <span>Select an image to upload</span>
-            </div>
+            </div> -->
             <button class="post-button" @click="savePost">Post</button>
         </div>
         <div>
             <button @click="logout">Logout</button>
         </div>
 
+        <div>
+            <label for="image" lass="upload-icon">📷</label>
+            <input type="file" @change="onFileChange" />
+        </div>
+
     </body>
 </template>
 
 <script>
-import PostService from "./PostService"
+import PostService from "../PostService"
 import { VueEditor } from "vue3-editor";
 
 export default {
@@ -66,6 +71,13 @@ export default {
                 console.log('User has been logged out.');
             } catch (error) {
                 console.error('Error during logout:', error);
+            }
+        },
+
+        onFileChange(event) {
+            const file = event.target.files[0];
+            if (file) {
+                this.post.image = file;
             }
         }
     }

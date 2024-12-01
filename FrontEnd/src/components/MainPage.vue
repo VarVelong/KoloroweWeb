@@ -14,7 +14,7 @@
         <div>
             <button @click="$router.push({ name: 'login'})">Login</button>
             <button @click="$router.push({ name: 'register'})">Register</button>
-            <button @click="$router.push({ name: 'updates'})">Updates</button>
+            <button @click="$router.push({ name: 'post-list'})">Updates</button>
         </div>
 
     </body>

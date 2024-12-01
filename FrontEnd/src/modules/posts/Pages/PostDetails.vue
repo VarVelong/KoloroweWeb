@@ -6,7 +6,8 @@
         <div v-if="post">
             <h2>{{ plainPostText }}</h2>
             <p>{{ post.date }}</p>
-            <button @click="$router.push('/updates')">Back to Posts</button>
+            <img v-if="post.image" :src="post.image" alt="Post Image" class="post-image" />
+            <button @click="$router.push('/post-list')">Back to Posts</button>
             <button @click="deletePost">Delete Post</button>
         </div>
     </div>
@@ -19,7 +20,7 @@ export default {
         return {
             post: null,
             loading: false,
-            error: null,
+            error: null
         };
     },
 
@@ -64,7 +65,7 @@ export default {
                         throw new Error(`Error: ${response.statusText}`);
                     }
                     alert("Post deleted successfully.");
-                    this.$router.push("/updates");
+                    this.$router.push("/post-list");
                 } catch (err) {
                     alert(`Failed to delete post: ${err.message}`);
                 }

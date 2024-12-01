@@ -15,6 +15,9 @@ namespace KoloroweWeb.Controllers
     public class UserPostController : ControllerBase
     {
         private readonly KolorowewebContext kolorowewebContext;
+        private const string ImageDirectory = "PostImages";
+        private readonly string ImagePathDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", ImageDirectory);
+
 
         public UserPostController(KolorowewebContext kolorowewebContext)
         {
@@ -22,15 +25,17 @@ namespace KoloroweWeb.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<UserPostDTO>>> Get()
+        public async Task<ActionResult<List<PostsResponseDTO>>> Get()
         {
             var post = await kolorowewebContext.Userposts.Select(
-                s => new UserPostDTO
+                s => new PostsResponseDTO
                 {
                     Id = s.Id,
                     Date = s.Date,
                     Content = s.Content,
-                    Image = s.Image,
+                    Image = !string.IsNullOrEmpty(s.Image)
+                ? $"{Request.Scheme}://{Request.Host}/{ImageDirectory}/{s.Image}"
+                : null,
                 }
             ).ToListAsync();
 
@@ -45,10 +50,10 @@ namespace KoloroweWeb.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserPostDTO>> GetUserByDate(int Id)
+        public async Task<ActionResult<PostsResponseDTO>> GetUserByDate(int Id)
         {
             var post = await kolorowewebContext.Userposts.Select(
-                    s => new UserPostDTO
+                    s => new PostsResponseDTO
                     {
                         Id = s.Id,
                         Date = s.Date,
@@ -66,38 +71,24 @@ namespace KoloroweWeb.Controllers
             }
         }
 
-        //[HttpPut("{id}")]
-        //public async Task<HttpStatusCode> UpdatePost(int id, UserPostDTO post)
-        //{
-        //    var entity = await kolorowewebContext.Userposts.FirstOrDefaultAsync(s => s.Id == post.Id);
-
-        //    entity.Id = post.Id;
-        //    entity.Date = post.Date;
-        //    entity.Content = post.Content;
-        //    entity.Image = post.Image;
-
-        //    await kolorowewebContext.SaveChangesAsync();
-
-        //    if (id != post.Id)
-        //    {
-        //        return HttpStatusCode.BadRequest;
-        //    }
-        //    else 
-        //    { 
-        //        return HttpStatusCode.OK; 
-        //    }
-        //}
-
+        
         [HttpPost("post")]
         [Authorize]
-        public async Task<HttpStatusCode> InsertPost(UserPostDTO post)
+        public async Task<HttpStatusCode> InsertPost(PostsRequestDTO post)
         {
+            var filePath = Path.Combine(ImagePathDirectory, post.Image.FileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await post.Image.CopyToAsync(stream);
+            }
+
             var entity = new Userpost()
             {
                 Id = post.Id,
                 Date = post.Date,
                 Content = post.Content,
-                Image = post.Image,
+                Image = $"/{ImageDirectory}/{post.Image.FileName}",
             };
 
             kolorowewebContext.Add(entity);
@@ -118,5 +109,7 @@ namespace KoloroweWeb.Controllers
             await kolorowewebContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
+
+
     }
 }

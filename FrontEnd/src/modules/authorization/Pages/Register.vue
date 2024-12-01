@@ -18,7 +18,7 @@
   </template>
   
   <script>
-  import AuthService from '../authorization/AuthService.js';
+  import AuthService from '../AuthService.js';
   
   export default {
     data() {

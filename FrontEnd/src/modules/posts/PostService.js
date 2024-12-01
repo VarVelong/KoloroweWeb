@@ -28,7 +28,7 @@ export default {
     },
 
 
-    updateSave(date, content, image) {
+    updatePost(date, content, image) {
         return fetch("https://localhost:7119/userpost", {
             method: "PATCH",
             headers: {
