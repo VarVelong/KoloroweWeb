@@ -6,8 +6,8 @@
         <div v-if="post">
             <h2>{{ plainPostText }}</h2>
             <p>{{ post.date }}</p>
-            <img v-if="post.image" :src="post.image" alt="Post Image" class="post-image" />
-            <button @click="$router.push('/post-list')">Back to Posts</button>
+            <img :src="post.image" alt="Image" />
+            <button @click="$router.push('/post-list')">Back to Posts</button>  
             <button @click="deletePost">Delete Post</button>
         </div>
     </div>

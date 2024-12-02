@@ -8,14 +8,18 @@ export default {
     },
 
     createPost(data) {
+        const formData = new FormData();
+        formData.append('date', data.date.toISOString());
+        formData.append('content', data.content);
+        formData.append('image', data.image);
+    
         return fetch("https://localhost:7119/userpost/post", {
             method: "POST",
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('user')}`
+                'Accept': 'application/json', // Keep this for the response type
+                Authorization: `Bearer ${localStorage.getItem('user')}`, // Authentication header
             },
-            body: JSON.stringify(data)
+            body: formData, // FormData automatically sets multipart/form-data
         })
         .then(response => {
             if (response.status === 401) {

@@ -78,6 +78,11 @@ namespace KoloroweWeb.Controllers
         {
             var filePath = Path.Combine(ImagePathDirectory, post.Image.FileName);
 
+            if (!string.IsNullOrEmpty(ImagePathDirectory) && !Directory.Exists(ImagePathDirectory))
+            {
+                Directory.CreateDirectory(ImagePathDirectory);
+            }
+
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await post.Image.CopyToAsync(stream);
