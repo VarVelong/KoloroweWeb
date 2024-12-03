@@ -1,5 +1,6 @@
 <template>
-    <h1>Aktualności</h1>    
+    <h1>Aktualności</h1>
+
     <body>
         <div>
             <div v-if="loading">Loading posts</div>
@@ -13,6 +14,12 @@
                 </li>
             </ul>
         </div>
+
+        <div v-if="totalPages > 1" class="pagination">
+            <button @click="changePage(currentPage - 1)" :disabled="currentPage === 1">Previous</button>
+            <span>Page {{ currentPage }} of {{ totalPages }}</span>
+            <button @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages">Next</button>
+        </div>
     </body>
 </template>
 
@@ -23,6 +30,9 @@ export default {
             posts: [],
             loading: false,
             error: null,
+            currentPage: 1,
+            pageSize: 5,
+            totalPages: 0,
         };
     },
 
@@ -45,6 +55,13 @@ export default {
                 this.error = err.message;
             } finally {
                 this.loading = false;
+            }
+        },
+
+        changePage(page) {
+            if (page >= 1 && page <= this.totalPages) {
+                this.currentPage = page;
+                this.fetchPosts();
             }
         },
 
@@ -106,7 +123,7 @@ div {
     max-width: 600px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    background-color: #FFF9C4; 
+    background-color: #FFF9C4;
 }
 
 h2 {

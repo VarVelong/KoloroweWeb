@@ -24,29 +24,65 @@ namespace KoloroweWeb.Controllers
             this.kolorowewebContext = kolorowewebContext;
         }
 
+        //[HttpGet]
+        //public async Task<ActionResult<List<PostsResponseDTO>>> Get()
+        //{
+        //    var post = await kolorowewebContext.Userposts.Select(
+        //        s => new PostsResponseDTO
+        //        {
+        //            Id = s.Id,
+        //            Date = s.Date,
+        //            Content = s.Content,
+        //            Image = !string.IsNullOrEmpty(s.Image)
+        //        ? $"{Request.Scheme}://{Request.Host}/{s.Image}"
+        //        : null,
+        //        }
+        //    ).ToListAsync();
+
+        //    if (post.Count < 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    else
+        //    {
+        //        return post;
+        //    }
+        //}
+
         [HttpGet]
-        public async Task<ActionResult<List<PostsResponseDTO>>> Get()
+        public async Task<ActionResult<PaginatedResponse<PostsResponseDTO>>> Get(int page = 1, int pageSize = 10)
         {
-            var post = await kolorowewebContext.Userposts.Select(
-                s => new PostsResponseDTO
+            if (page < 1 || pageSize < 1)
+            {
+                return BadRequest("Page and pageSize must be greater than zero.");
+            }
+            
+            var totalCount = await kolorowewebContext.Userposts.CountAsync();
+
+            var posts = await kolorowewebContext.Userposts
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Select(s => new PostsResponseDTO
                 {
                     Id = s.Id,
                     Date = s.Date,
                     Content = s.Content,
                     Image = !string.IsNullOrEmpty(s.Image)
-                ? $"{Request.Scheme}://{Request.Host}/{s.Image}"
-                : null,
-                }
-            ).ToListAsync();
+                        ? $"{Request.Scheme}://{Request.Host}/{s.Image}"
+                        : null,
+                })
+                .ToListAsync();
 
-            if (post.Count < 0)
+            var paginatedResponse = new PaginatedResponse<PostsResponseDTO>
             {
-                return NotFound();
-            }
-            else
-            {
-                return post;
-            }
+                Data = posts,
+                TotalCount = totalCount,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize)
+            };
+
+            return paginatedResponse;
         }
 
         [HttpGet("{id}")]
