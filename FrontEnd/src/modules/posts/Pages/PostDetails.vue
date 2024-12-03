@@ -5,15 +5,17 @@
         <div v-if="error" class="error">{{ error }}</div>
         <div v-if="post">
             <h2>{{ plainPostText }}</h2>
-            <p>{{ post.date }}</p>
-            <img :src="post.image" alt="Image" />
-            <button @click="$router.push('/post-list')">Back to Posts</button>  
+            <p>{{ formattedDate }}</p>
+            <img v-if="post.image !== null" :src="post.image" alt="Image" class="image" />
+            <button @click="$router.push('/post-list')">Back to Posts</button>
             <button @click="deletePost">Delete Post</button>
         </div>
     </div>
 </template>
 
 <script>
+import { format } from "date-fns";
+
 export default {
     props: ["id"],
     data() {
@@ -34,6 +36,10 @@ export default {
             div.innerHTML = this.post.content;
             return div.textContent || "";
         },
+
+        formattedDate() {
+            return format(this.post.date, "MMMM do, yyyy"); 
+        }
     },
 
     methods: {
@@ -72,9 +78,17 @@ export default {
             }
 
         },
+
         created() {
             this.fetchPost();
         }
     }
 }
 </script>
+
+<style scoped>
+.image {
+    width: 100px;
+    height: 100px;
+}
+</style>

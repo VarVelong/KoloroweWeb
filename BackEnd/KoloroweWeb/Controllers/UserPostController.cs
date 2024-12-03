@@ -34,7 +34,7 @@ namespace KoloroweWeb.Controllers
                     Date = s.Date,
                     Content = s.Content,
                     Image = !string.IsNullOrEmpty(s.Image)
-                ? $"{Request.Scheme}://{Request.Host}/{ImageDirectory}/{s.Image}"
+                ? $"{Request.Scheme}://{Request.Host}/{s.Image}"
                 : null,
                 }
             ).ToListAsync();
@@ -58,7 +58,9 @@ namespace KoloroweWeb.Controllers
                         Id = s.Id,
                         Date = s.Date,
                         Content = s.Content,
-                        Image = s.Image,
+                        Image = !string.IsNullOrEmpty(s.Image)
+                ? $"{Request.Scheme}://{Request.Host}/{s.Image}"
+                : null,
                     }).FirstOrDefaultAsync(s => s.Id == Id);
 
             if (post == null)
@@ -71,7 +73,7 @@ namespace KoloroweWeb.Controllers
             }
         }
 
-        
+
         [HttpPost("post")]
         [Authorize]
         public async Task<HttpStatusCode> InsertPost(PostsRequestDTO post)

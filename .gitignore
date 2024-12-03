@@ -9,6 +9,7 @@
 *.cache
 bin/
 obj/
+PostImages/
 
 # Ignore build files and directories
 *.user
