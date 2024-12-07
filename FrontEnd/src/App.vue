@@ -33,6 +33,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <button @click="$router.push({ name: 'postcreation' })">Posty</button>
       <button @click="$router.push({ name: 'login' })">Login</button>
       <button @click="$router.push({ name: 'register' })">Register</button>
+      <button v-if="hasToken" @click="logout"> Logout </button>
     </div>
   </footer>
 
@@ -45,6 +46,23 @@ export default {
     handleClick() {
     },
   },
+
+  coputed: {
+    hasToken() {
+      return localStorage.getItem(token) != null;
+    }
+  },
+
+  methods: {
+    logout() {
+      try {
+        localStorage.removeItem('user');
+        console.log('User has been logged out.');
+      } catch (error) {
+        console.error('Error during logout:', error);
+      }
+    }
+  }
 };
 
 </script>

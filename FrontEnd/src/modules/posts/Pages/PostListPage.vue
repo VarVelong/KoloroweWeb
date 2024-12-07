@@ -7,8 +7,9 @@
             <div v-if="error" class="error">{{ error }}</div>
             <ul v-if="posts.length">
                 <li v-for="post in posts" :key="post.id">
-                    <h2>{{ plainPostText(post.content) }}</h2>
-                    <p>{{ post.date }}</p>
+                    <!-- <h2>{{ plainPostText(post.content) }}</h2> -->
+                    <h2 v-html="cleanHtml(post.content)"></h2>
+                    <!-- <p>{{ formattedDate(post.date) }}</p> -->
                     <img v-if="post.image !== null" :src="post.image" alt="Image" class="image" />
                     <button @click="goToPost(post.id)">View Details</button>
                 </li>
@@ -24,6 +25,8 @@
 </template>
 
 <script>
+import { format } from "date-fns";
+
 export default {
     data() {
         return {
@@ -36,21 +39,30 @@ export default {
         };
     },
 
-    computed: {
+    mounted() {
+        this.fetchPosts();
+    },
 
+    computed: {   
+        formattedDate(date) {
+            debugger;
+            return format(date, "MMMM do, yyyy"); 
+        }
     },
 
     methods: {
-        async fetchPosts() {
+        async fetchPosts(page) {
             this.loading = true;
             this.error = null;
             try {
-                const response = await fetch("https://localhost:7119/userpost");
+                let link = page ? `https://localhost:7119/userpost?page=${page}` : "https://localhost:7119/userpost";
+                const response = await fetch(link);
                 if (!response.ok) {
                     throw new Error(`Error: ${response.statusText}`);
                 }
                 const data = await response.json();
-                this.posts = data;
+                this.posts = data.data;
+                this.totalPages = data.totalPages;
             } catch (err) {
                 this.error = err.message;
             } finally {
@@ -61,23 +73,25 @@ export default {
         changePage(page) {
             if (page >= 1 && page <= this.totalPages) {
                 this.currentPage = page;
-                this.fetchPosts();
+                this.fetchPosts(page);
             }
         },
 
-        plainPostText(post) {
-            const div = document.createElement("div");
-            div.innerHTML = post;
-            return div.textContent || "";
+        // plainPostText(post) {
+        //     const div = document.createElement("div");
+        //     div.innerHTML = post;
+        //     return div.textContent || "";
+        // },
+
+        cleanHtml(html) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, "text/html");
+            return doc.body.innerHTML;
         },
 
         goToPost(id) {
             this.$router.push(`/post/${id}`);
-        },
-
-    },
-    created() {
-        this.fetchPosts();
+        }
     },
 };
 </script>
@@ -114,6 +128,8 @@ body {
     color: #333;
     width: 80%;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 div {
@@ -142,5 +158,9 @@ p {
 .image {
     width: 100px;
     height: 100px;
+}
+
+strong {
+    font-weight: bold !important
 }
 </style>

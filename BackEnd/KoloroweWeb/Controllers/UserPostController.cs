@@ -45,18 +45,18 @@ namespace KoloroweWeb.Controllers
         //    }
         //    else
         //    {
-        //        return post;
+        //        re    turn post;
         //    }
         //}
 
         [HttpGet]
-        public async Task<ActionResult<PaginatedResponse<PostsResponseDTO>>> Get(int page = 1, int pageSize = 10)
+        public async Task<ActionResult<PaginatedResponse<PostsResponseDTO>>> Get(int page = 1, int pageSize = 5)
         {
             if (page < 1 || pageSize < 1)
             {
                 return BadRequest("Page and pageSize must be greater than zero.");
             }
-            
+
             var totalCount = await kolorowewebContext.Userposts.CountAsync();
 
             var posts = await kolorowewebContext.Userposts
@@ -114,16 +114,21 @@ namespace KoloroweWeb.Controllers
         [Authorize]
         public async Task<HttpStatusCode> InsertPost(PostsRequestDTO post)
         {
-            var filePath = Path.Combine(ImagePathDirectory, post.Image.FileName);
+            
 
-            if (!string.IsNullOrEmpty(ImagePathDirectory) && !Directory.Exists(ImagePathDirectory))
+            if (post.Image != null)
             {
-                Directory.CreateDirectory(ImagePathDirectory);
-            }
+                var filePath = Path.Combine(ImagePathDirectory, post.Image.FileName);
 
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await post.Image.CopyToAsync(stream);
+                if (!string.IsNullOrEmpty(ImagePathDirectory) && !Directory.Exists(ImagePathDirectory))
+                {
+                    Directory.CreateDirectory(ImagePathDirectory);
+                }
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await post.Image.CopyToAsync(stream);
+                }
             }
 
             var entity = new Userpost()
@@ -131,7 +136,7 @@ namespace KoloroweWeb.Controllers
                 Id = post.Id,
                 Date = post.Date,
                 Content = post.Content,
-                Image = $"/{ImageDirectory}/{post.Image.FileName}",
+                Image = post.Image != null ? $"/{ImageDirectory}/{post.Image.FileName}" : null,
             };
 
             kolorowewebContext.Add(entity);
@@ -153,6 +158,40 @@ namespace KoloroweWeb.Controllers
             return HttpStatusCode.OK;
         }
 
+        [HttpPut("{Id}")]
+        public async Task<HttpStatusCode> UpdatePostContent([FromRoute] int id,[FromBody] string content)
+        {
+            var existingPost = await kolorowewebContext.Userposts.FindAsync(id);
 
+            if (existingPost == null)
+            {
+                return HttpStatusCode.NotFound;
+            }
+
+            existingPost.Content = content;
+
+            await kolorowewebContext.SaveChangesAsync();
+
+            return HttpStatusCode.OK;
+        }   
+
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> UpdatePostContent(int id, [FromBody] UpdatePostDto updatePostDto)
+        //{
+        //    var existingPost = await kolorowewebContext.Userposts.FindAsync(id);
+
+        //    if (existingPost == null)
+        //    {
+        //        return NotFound(new { Message = "Post not found" });
+        //    }
+
+        //    existingPost.Content = updatePostDto.NewContent;
+
+        //    await kolorowewebContext.SaveChangesAsync();
+
+        //    return Ok(new { Message = "Post updated successfully" });
+        //}
     }
 }
+
+

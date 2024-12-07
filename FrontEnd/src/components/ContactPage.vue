@@ -4,7 +4,7 @@
         <form @submit.prevent="sendEmail">
             <div>
                 <label for="subject">Subject:</label>
-                <input type="text" v-model="subject" id="subject" required />
+                <input v-model="subject" id="subject" required />
             </div>
             <div>
                 <label for="message">Message:</label>
@@ -17,8 +17,8 @@
 
     <div>
         <h2>Kontakt</h2>
-        <p>Telefon: 123 456 789</p>
-        <p>Email: biuro@kolorowe.gda.pl</p>
+        <p  href="tel:123456789">Telefon: 123 456 789</p>
+        <p href="mailto:biuro@kolorowe.gda.pl">Email: biuro@kolorowe.gda.pl</p>
     </div>
 </template>
 
@@ -34,7 +34,7 @@ export default {
     methods: {
         async sendEmail() {
             try {
-                const response = await fetch("https://your-api-url/api/email/send", {
+                const response = await fetch("https://localhost:7119/Communication", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

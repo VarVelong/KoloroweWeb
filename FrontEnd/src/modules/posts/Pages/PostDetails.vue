@@ -9,6 +9,7 @@
             <img v-if="post.image !== null" :src="post.image" alt="Image" class="image" />
             <button @click="$router.push('/post-list')">Back to Posts</button>
             <button @click="deletePost">Delete Post</button>
+            <button @click="goToPost(post.id)">PostEdit</button>
         </div>
     </div>
 </template>
@@ -81,6 +82,10 @@ export default {
 
         created() {
             this.fetchPost();
+        },
+
+        goToPost(id) {
+            this.$router.push(`/posteditingpage/${id}`);
         }
     }
 }

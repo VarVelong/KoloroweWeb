@@ -1,13 +1,14 @@
-import MainPage from "../components/MainPage.vue"
-import AboutPage from "../components/AboutPage.vue"
-import ContactPage from "../components/ContactPage.vue"
-import OfferPage from "../components/OfferPage.vue"
-import PersonnelPage from "../components/PersonnelPage.vue"
-import PostCreationPage from "./posts/Pages/PostCreationPage.vue"
-import Login from "./authorization/Pages/Login.vue"
-import Register from "./authorization/Pages/Register.vue"
-import PostListPage from "./posts/Pages/PostListPage.vue"
+import MainPage from "../components/MainPage.vue";
+import AboutPage from "../components/AboutPage.vue";
+import ContactPage from "../components/ContactPage.vue";
+import OfferPage from "../components/OfferPage.vue";
+import PersonnelPage from "../components/PersonnelPage.vue";
+import PostCreationPage from "./posts/Pages/PostCreationPage.vue";
+import Login from "./authorization/Pages/Login.vue";
+import Register from "./authorization/Pages/Register.vue";
+import PostListPage from "./posts/Pages/PostListPage.vue";
 import PostDetails from "./posts/Pages/PostDetails.vue";
+import PostEditingPage from "./posts/Pages/PostEditingPage.vue";
 
 export default
     [
@@ -70,5 +71,11 @@ export default
             name: 'postdetails',
             component: PostDetails,
             props: true
+        },
+
+        {
+            path: '/posteditingpage/:id',
+            name: 'posteditingpage',
+            component: PostEditingPage
         }
     ]

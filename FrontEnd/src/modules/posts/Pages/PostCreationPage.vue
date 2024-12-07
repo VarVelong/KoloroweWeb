@@ -4,26 +4,21 @@
 
         <div class="post-container">
             <h2>Create New Post</h2>
-            <!-- <textarea v-model="post.content" class="text-box" placeholder="Write your post here..."></textarea> -->
-
+            
             <div>
                 <vue-editor v-model="post.content"></vue-editor>
             </div>
 
-            <!-- <div class="upload-section">
-                <label for="file-upload" class="upload-icon">📷</label>
-                <input type="file" id="file-upload" class="file-input" accept="image/*">
-                <span>Select an image to upload</span>
-            </div> -->
             <button class="post-button" @click="savePost">Post</button>
-        </div>
-        <div>
-            <button @click="logout">Logout</button>
         </div>
 
         <div>
             <label for="image" lass="upload-icon">📷</label>
             <input type="file" @change="onFileChange" />
+        </div>
+
+        <div>
+            <button @click="logout">Logout</button>
         </div>
 
     </body>
@@ -93,7 +88,9 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #f2f2f2;
+    background-color: #4CAF50;
+    display: flex;
+    flex-direction: column;
 }
 
 .post-container {
@@ -107,7 +104,7 @@ body {
 
 .post-container h2 {
     margin-bottom: 20px;
-    color: #333;
+    color: #ffffff;
 }
 
 .text-box {

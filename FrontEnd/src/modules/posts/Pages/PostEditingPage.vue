@@ -1,0 +1,202 @@
+<template>
+
+    <body>
+        <div class="post-container">
+            <h2>Edit Post</h2>
+            <div>
+                <vue-editor v-model="post.content"></vue-editor>
+            </div>
+            <button class="post-button" @click="savePost">Post</button>
+        </div>
+    </body>
+</template>
+
+<script>
+import PostService from "../PostService"
+import { VueEditor } from "vue3-editor";
+
+export default {
+    data() {
+        return {
+            post: {
+                content: "",
+                id: null
+            }
+        }
+    },
+
+    mounted() {
+        this.fetchPost()
+    },
+
+    components: {
+        VueEditor
+    },
+
+    methods: {
+
+        async fetchPost() {
+            this.loading = true;
+            this.error = null;
+            const path = window.location.pathname;
+            const segments = path.split('/');
+            const id = segments[segments.length - 1];
+            try {
+                const response = await fetch(`https://localhost:7119/userpost/${id}`);
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.statusText}`);
+                }
+                const data = await response.json();
+                this.post = data;
+            } catch (err) {
+                this.error = err.message;
+            } finally {
+                this.loading = false;
+            }
+        },
+
+        // savePost() {
+        //     PostService.createPost(this.post)
+        //         .then((post) => {
+        //             alert("post has been edited")
+        //         })
+        //         .catch((error) => {
+        //             alert(`error, post was not edited ${error}`)
+        //         })
+        // }
+
+        // async savePost() {
+        //     this.loading = true;
+        //     this.error = null;
+        //     const path = window.location.pathname;
+        //     const segments = path.split('/');
+        //     const id = segments[segments.length - 1]
+        //     debugger;
+        //     try {
+        //         const response = await fetch(`https://localhost:7119/userpost/${id}`, {
+        //             method: 'PUT', // Use 'PATCH' if you are only updating specific fields
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             },
+        //             body: JSON.stringify({
+        //                 content: this.post.Content // Assuming `post.content` holds the updated content
+        //             })
+        //         });
+
+        //         if (!response.ok) {
+        //             throw new Error(`Error: ${response.statusText}`);
+        //         }
+
+        //         const updatedPost = await response.json();
+        //         this.post = updatedPost; // Optionally update the local state with the updated post
+        //     } catch (err) {
+        //         this.error = err.message;
+        //     } finally {
+        //         this.loading = false;
+        //     }
+        // }
+
+        async savePost() {
+            this.loading = true;
+            this.error = null;
+            const path = window.location.pathname;
+            const segments = path.split('/');
+            const id = segments[segments.length - 1]
+            debugger;
+            try {
+                const response = await fetch(`https://localhost:7119/userpost/${id}`, {
+                    method: 'PUT', 
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(this.post.content)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.statusText}`);
+                }
+
+                const updatedPost = await response.json();
+                this.post = updatedPost; 
+            } catch (err) {
+                this.error = err.message;
+            } finally {
+                this.loading = false;
+            }
+        }
+    }
+}
+
+</script>
+
+<style scoped>
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #4CAF50;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-container {
+    background: #2e2b2b;
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.post-container h2 {
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.text-box {
+    width: 100%;
+    min-height: 150px;
+    padding: 10px;
+    border: 1px solid #ec0303;
+    border-radius: 5px;
+    resize: vertical;
+    font-size: 16px;
+}
+
+.upload-section {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.upload-icon {
+    font-size: 24px;
+    color: #007bff;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.file-input {
+    display: none;
+}
+
+.post-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.post-button:hover {
+    background-color: #0056b3;
+}
+</style>
