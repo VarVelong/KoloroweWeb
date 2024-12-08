@@ -24,31 +24,6 @@ namespace KoloroweWeb.Controllers
             this.kolorowewebContext = kolorowewebContext;
         }
 
-        //[HttpGet]
-        //public async Task<ActionResult<List<PostsResponseDTO>>> Get()
-        //{
-        //    var post = await kolorowewebContext.Userposts.Select(
-        //        s => new PostsResponseDTO
-        //        {
-        //            Id = s.Id,
-        //            Date = s.Date,
-        //            Content = s.Content,
-        //            Image = !string.IsNullOrEmpty(s.Image)
-        //        ? $"{Request.Scheme}://{Request.Host}/{s.Image}"
-        //        : null,
-        //        }
-        //    ).ToListAsync();
-
-        //    if (post.Count < 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    else
-        //    {
-        //        re    turn post;
-        //    }
-        //}
-
         [HttpGet]
         public async Task<ActionResult<PaginatedResponse<PostsResponseDTO>>> Get(int page = 1, int pageSize = 5)
         {

@@ -55,47 +55,6 @@ export default {
             }
         },
 
-        // savePost() {
-        //     PostService.createPost(this.post)
-        //         .then((post) => {
-        //             alert("post has been edited")
-        //         })
-        //         .catch((error) => {
-        //             alert(`error, post was not edited ${error}`)
-        //         })
-        // }
-
-        // async savePost() {
-        //     this.loading = true;
-        //     this.error = null;
-        //     const path = window.location.pathname;
-        //     const segments = path.split('/');
-        //     const id = segments[segments.length - 1]
-        //     debugger;
-        //     try {
-        //         const response = await fetch(`https://localhost:7119/userpost/${id}`, {
-        //             method: 'PUT', // Use 'PATCH' if you are only updating specific fields
-        //             headers: {
-        //                 'Content-Type': 'application/json'
-        //             },
-        //             body: JSON.stringify({
-        //                 content: this.post.Content // Assuming `post.content` holds the updated content
-        //             })
-        //         });
-
-        //         if (!response.ok) {
-        //             throw new Error(`Error: ${response.statusText}`);
-        //         }
-
-        //         const updatedPost = await response.json();
-        //         this.post = updatedPost; // Optionally update the local state with the updated post
-        //     } catch (err) {
-        //         this.error = err.message;
-        //     } finally {
-        //         this.loading = false;
-        //     }
-        // }
-
         async savePost() {
             this.loading = true;
             this.error = null;
