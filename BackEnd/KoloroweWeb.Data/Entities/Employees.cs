@@ -8,11 +8,12 @@ namespace KoloroweWeb.Data.Entities
 {
     public class Employees
     {
-        public string Principals;
-        public string GroupRed;
-        public string GroupYellow;
-        public string GroupBlue;
-        public string GroupGreen;
-        public string Specialists;
+        public int Id { get; set; }
+        public string Principals { get; set; }
+        public string GroupRed { get; set; }
+        public string GroupYellow { get; set; }
+        public string GroupBlue { get; set; }
+        public string GroupGreen { get; set; }
+        public string Specialists { get; set; }
     }
 }

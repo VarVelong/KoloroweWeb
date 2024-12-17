@@ -7,7 +7,6 @@
             <div v-if="error" class="error">{{ error }}</div>
             <ul v-if="posts.length">
                 <li v-for="post in posts" :key="post.id">
-                    <!-- <h2>{{ plainPostText(post.content) }}</h2> -->
                     <h2 v-html="cleanHtml(post.content)"></h2>
                     <!-- <p>{{ formattedDate(post.date) }}</p> -->
                     <img v-if="post.image !== null" :src="post.image" alt="Image" class="image" />

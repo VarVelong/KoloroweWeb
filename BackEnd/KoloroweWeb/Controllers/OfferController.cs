@@ -7,7 +7,7 @@ using System.Net;
 namespace KoloroweWeb.Controllers
 {
    
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class OffersController : ControllerBase
     {
@@ -15,8 +15,13 @@ namespace KoloroweWeb.Controllers
 
         public OffersController(KolorowewebContext context)
         {
-            kolorowewebContext = context;
+            this.kolorowewebContext = context;
         }
+
+        //public UserPostController(KolorowewebContext kolorowewebContext)
+        //{
+        //    this.kolorowewebContext = kolorowewebContext;
+        //}
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Offers>>> GetOffers()

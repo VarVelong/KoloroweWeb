@@ -8,14 +8,14 @@ namespace KoloroweWeb.Entities;
 
 public partial class KolorowewebContext : DbContext
 {
-    //public KolorowewebContext()
-    //{
-    //}
+    public KolorowewebContext()
+    {
+    }
 
-    //public KolorowewebContext(DbContextOptions<KolorowewebContext> options)
-    //    : base(options)
-    //{
-    //}
+    public KolorowewebContext(DbContextOptions<KolorowewebContext> options)
+        : base(options)
+    {
+    }
 
     public virtual DbSet<Userpost> Userposts { get; set; }
     public virtual DbSet<Users> Users { get; set; }
@@ -54,6 +54,7 @@ public partial class KolorowewebContext : DbContext
 
         modelBuilder.Entity<Employees>(entity =>
         {
+            entity.Property(e => e.Id).HasColumnType("int(11)");
             entity.Property(e => e.Principals).HasColumnType("text");
             entity.Property(e => e.GroupRed).HasColumnType("text");
             entity.Property(e => e.GroupYellow).HasColumnType("text");

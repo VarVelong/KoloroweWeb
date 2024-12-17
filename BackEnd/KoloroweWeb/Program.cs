@@ -28,7 +28,7 @@ namespace KoloroweWeb
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(options => //i will work
+            .AddJwtBearer(options => 
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {

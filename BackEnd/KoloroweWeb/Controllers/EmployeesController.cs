@@ -8,23 +8,21 @@ using System.Text.RegularExpressions;
 namespace KoloroweWeb.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class EmployeesController : ControllerBase
     {
         private readonly KolorowewebContext kolorowewebContext;
 
-        private readonly KolorowewebContext _context;
-
         public EmployeesController(KolorowewebContext context)
         {
-            _context = context;
+            kolorowewebContext = context;
         }
 
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<Offers>>> GetOffers()
-        //{
-        //    return await _context.Offers.ToListAsync();
-        //}
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Employees>>> GetEmployees()
+        {
+            return await kolorowewebContext.Employees.ToListAsync();
+        }
 
         [HttpPut("{groupName}")]
         public async Task<IActionResult> Update([FromRoute] string groupName, [FromBody] string groupContent)
@@ -47,7 +45,7 @@ namespace KoloroweWeb.Controllers
 
             var sql = $"UPDATE employees SET {groupName} = @groupContent WHERE Id = 1";
 
-            var rowsAffected = await _context.Database.ExecuteSqlRawAsync(sql, groupContent);
+            var rowsAffected = await kolorowewebContext.Database.ExecuteSqlRawAsync(sql, groupContent);
 
             if (rowsAffected == 0)
             {
