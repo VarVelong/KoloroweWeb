@@ -9,6 +9,7 @@ import Register from "./authorization/Pages/Register.vue";
 import PostListPage from "./posts/Pages/PostListPage.vue";
 import PostDetails from "./posts/Pages/PostDetails.vue";
 import PostEditingPage from "./posts/Pages/PostEditingPage.vue";
+import OfferCreationPage from "./posts/Pages/OfferCreationPage.vue"
 
 export default
     [
@@ -77,5 +78,11 @@ export default
             path: '/posteditingpage/:id',
             name: 'posteditingpage',
             component: PostEditingPage
+        },
+
+        {
+            path: '/offercreationpage',
+            name: 'offercreationpage',
+            component: OfferCreationPage
         }
     ]

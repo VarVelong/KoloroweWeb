@@ -1,17 +1,22 @@
 <template>
 
     <body>
-        <ul v-if="offers.length">
+        <!-- <ul v-if="offers.length">
             <li v-for="offer in offers" :key="offer.id">
                 <h1 v-html="(offer.title)"></h1>
                 <h2 v-html="(offer.content)"></h2>
-                <!-- <p>{{ formattedDate(post.date) }}</p> -->
                 <img v-if="post.image !== null" :src="post.image" alt="Image" class="image" />
                 <button @click="goToPost(post.id)">View Details</button>
             </li>
+        </ul> -->
+        <ul v-if="offers.length">
+            <li v-for="offer in offers" :key="offers.id">
+                {{offer}}
+                <h2>{{offer.id}}</h2>
+            </li>
         </ul>
         <div>
-            <button @click="saveOffer">Create Offer</button>
+            <button @click="$router.push({ name: 'offercreationpage'})">Create Offer</button>
         </div>
     </body>
 </template>
@@ -32,15 +37,15 @@ export default {
 
     methods: {
         async fetchOffers() {
+            this.error = null;
             try {
-                let link = `https://localhost:7119/offers`
+                let link = `https://localhost:7119/Offers`;
                 const response = await fetch(link);
                 if (!response.ok) {
                     throw new Error(`Error: ${response.statusText}`);
                 }
                 const data = await response.json();
-                this.posts = data.data;
-                this.totalPages = data.totalPages;
+                this.offers = data;
             } catch (err) {
                 this.error = err.message;
             }
@@ -99,6 +104,18 @@ div {
     max-width: 600px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    border: 1px solid #000000;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
 }
 
 h2 {

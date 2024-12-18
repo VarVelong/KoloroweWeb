@@ -26,7 +26,6 @@ export default {
     },
 
     methods: {
-
         async fetchEmployees() {
             this.error = null;
             try {
