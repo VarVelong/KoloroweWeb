@@ -1,20 +1,6 @@
-
 const API_URL = 'https://localhost:7119/auth/';
 
 class AuthService {
-  // login(user) {
-  // return axios
-  //   .post(API_URL + 'login', {
-  //     username: user.username,
-  //     passwordHash: user.password,
-  //   })
-  //   .then(response => {
-  //     if (response.data.token) {
-  //       localStorage.setItem('user', JSON.stringify(response.data));
-  //     }
-  //     return response.data;
-  //   });
-
   login(user) {
     return fetch(API_URL + 'login', {
       method: "POST",
@@ -28,14 +14,9 @@ class AuthService {
       })
     })
     .then(response => {
-      // if (response) {
-      //   localStorage.setItem('user', JSON.stringify(response));
-      // }
-  
       return response.json();
     });
   }
-
 
   logout() {
     try {

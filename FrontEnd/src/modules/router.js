@@ -11,6 +11,7 @@ import PostDetails from "./posts/Pages/PostDetails.vue";
 import PostEditingPage from "./posts/Pages/PostEditingPage.vue";
 import OfferCreationPage from "./offers/Pages/OfferCreationPage.vue";
 import AdminPage from "./authorization/Pages/AdminPage.vue";
+import GalleryPage from "./imageGallery/Pages/GalleryPage.vue";
 
 export default
 [
@@ -78,7 +79,8 @@ export default
     {
         path: '/posteditingpage/:id',
         name: 'posteditingpage',
-        component: PostEditingPage
+        component: PostEditingPage,
+        props: true
     },
 
     {
@@ -91,5 +93,11 @@ export default
         path: '/adminpage',
         name: 'adminpage',
         component: AdminPage
+    }, 
+
+    {
+        path: '/gallery',
+        name: 'gallery',
+        component: GalleryPage
     }
 ]

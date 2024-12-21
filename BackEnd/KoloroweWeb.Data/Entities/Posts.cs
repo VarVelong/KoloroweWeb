@@ -1,6 +1,8 @@
-﻿namespace KoloroweWeb.Entities;
+﻿using static System.Net.Mime.MediaTypeNames;
 
-public partial class Posts
+namespace KoloroweWeb.Entities;
+
+public class Posts
 {
     public int? Id { get; set; }
 
@@ -8,5 +10,5 @@ public partial class Posts
 
     public string Content { get; set; } = null!;
 
-    public string? Image { get; set; }
+    public ICollection<Images>? Images { get; set; } // Navigation property
 }

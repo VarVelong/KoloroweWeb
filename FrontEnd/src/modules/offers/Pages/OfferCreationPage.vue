@@ -41,7 +41,6 @@ export default {
 
     methods: {
         saveOffer() {
-            debugger;
             OfferService.createOffer(this.offer)
                 .then((offer) => {
                     alert("post is added")

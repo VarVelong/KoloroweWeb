@@ -44,12 +44,6 @@ export default {
     },
 
     methods: {
-        async fetchPosts() {
-            await pageService.getPosts().then(posts => {
-                this.posts = posts;
-            })
-        },
-
         savePost() {
             PostService.createPost(this.post)
                 .then((post) => {

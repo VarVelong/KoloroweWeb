@@ -25,6 +25,8 @@ export default {
         this.fetchEmployees();
     },
 
+    //TODO MOVE TO EMPLOYER MODULE AND CREATE SERVICE!!!!
+
     methods: {
         async fetchEmployees() {
             this.error = null;
@@ -35,9 +37,7 @@ export default {
                     throw new Error(`Error: ${response.statusText}`);
                 }
                 const data = await response.json();
-
                 this.employees = data;
-                // debugger;
             } catch (err) {
                 this.error = err.message;
             }

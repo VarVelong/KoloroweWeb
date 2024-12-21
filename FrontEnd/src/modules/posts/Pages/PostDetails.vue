@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import PostService from "../PostService"
 import { format } from "date-fns";
 
 export default {
@@ -26,6 +27,7 @@ export default {
             error: null
         };
     },
+    
 
     mounted() {
         this.fetchPost()
@@ -47,35 +49,29 @@ export default {
         async fetchPost() {
             this.loading = true;
             this.error = null;
-            try {
-                const response = await fetch(`https://localhost:7119/userpost/${this.id}`);
-                if (!response.ok) {
-                    throw new Error(`Error: ${response.statusText}`);
-                }
-                const data = await response.json();
-                this.post = data;
-            } catch (err) {
-                this.error = err.message;
-            } finally {
-                this.loading = false;
-            }
+            PostService.getPost(this.id)
+                .then((data) => {
+                    this.post = data;
+                })
+                .catch((error) => {
+                    this.error = error.message;
+                })
+                .finally(() => {
+                    this.loading = false;
+                })
         },
 
         async deletePost() {
             const confirmation = confirm("Are you sure you want to delete this post?");
             if (confirmation) {
-                try {
-                    const response = await fetch(`https://localhost:7119/userpost/${this.id}`, {
-                        method: "DELETE",
-                    });
-                    if (!response.ok) {
-                        throw new Error(`Error: ${response.statusText}`);
-                    }
+                PostService.deletePost(this.id)
+                .then((data) => {
                     alert("Post deleted successfully.");
                     this.$router.push("/post-list");
-                } catch (err) {
-                    alert(`Failed to delete post: ${err.message}`);
-                }
+                })
+                .catch((error) => {
+                    alert(`Failed to delete post: ${error.message}`);
+                })
             }
 
         },

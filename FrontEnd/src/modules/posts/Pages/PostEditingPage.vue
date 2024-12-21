@@ -16,12 +16,15 @@ import PostService from "../PostService"
 import { VueEditor } from "vue3-editor";
 
 export default {
+    props: ["id"],
     data() {
         return {
             post: {
                 content: "",
-                id: null
-            }
+                id: null,
+            },
+            loading: false,
+            error: null
         }
     },
 
@@ -34,25 +37,19 @@ export default {
     },
 
     methods: {
-
         async fetchPost() {
             this.loading = true;
             this.error = null;
-            const path = window.location.pathname;
-            const segments = path.split('/');
-            const id = segments[segments.length - 1];
-            try {
-                const response = await fetch(`https://localhost:7119/userpost/${id}`);
-                if (!response.ok) {
-                    throw new Error(`Error: ${response.statusText}`);
-                }
-                const data = await response.json();
-                this.post = data;
-            } catch (err) {
-                this.error = err.message;
-            } finally {
-                this.loading = false;
-            }
+            PostService.getPost(this.id)
+                .then((data) => {
+                    this.post = data;
+                })
+                .catch((error) => {
+                    this.error = error.message;
+                })
+                .finally(() => {
+                    this.loading = false;
+                })
         },
 
         async savePost() {

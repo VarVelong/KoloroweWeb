@@ -1,5 +1,6 @@
 ﻿using KoloroweWeb.Data;
 using KoloroweWeb.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +24,7 @@ namespace KoloroweWeb.Controllers
         }
 
         [HttpPut("{groupName}")]
+        [Authorize]
         public async Task<IActionResult> Update([FromRoute] string groupName, [FromBody] string groupContent)
         {
             var validGroupNames = new List<string>

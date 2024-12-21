@@ -1,15 +1,13 @@
 <template>
-    <h1>Aktualności</h1>
+    <h1>Galeria</h1>
 
     <body>
         <div>
-            <div v-if="loading">Loading posts</div>
+            <div v-if="loading">Loading images</div>
             <div v-if="error" class="error">{{ error }}</div>
-            <ul v-if="posts.length">
-                <li v-for="post in posts" :key="post.id">
-                    <h2 v-html="cleanHtml(post.content)"></h2>
-                    <img v-if="post.image !== null" :src="post.image" alt="Image" class="image" />
-                    <button @click="goToPost(post.id)">View Details</button>
+            <ul v-if="images.length">
+                <li v-for="image in images" :key="image.id">
+                    <img v-if="image.fileName !== null" :src="image.fileName" alt="Image" class="image" />
                 </li>
             </ul>
         </div>
@@ -19,17 +17,18 @@
             <span>Page {{ currentPage }} of {{ totalPages }}</span>
             <button @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages">Next</button>
         </div>
+
     </body>
 </template>
 
 <script>
-import PostService from "../PostService"
+import GalleryService from "../GalleryService"
 import { format } from "date-fns";
 
 export default {
     data() {
         return {
-            posts: [],
+            images: [],
             loading: false,
             error: null,
             currentPage: 1,
@@ -39,23 +38,16 @@ export default {
     },
 
     mounted() {
-        this.fetchPosts();
-    },
-
-    computed: {
-        formattedDate(date) {
-            debugger;
-            return format(date, "MMMM do, yyyy");
-        }
+        this.fetchImages();
     },
 
     methods: {
-        async fetchPosts(page) {
+        async fetchImages(page) {
             this.loading = true;
             this.error = null;
-            PostService.fetchPosts(page)
+            GalleryService.fetchImages(page)
                 .then((data) => {
-                    this.posts = data.data;
+                    this.images = data.data;
                     this.totalPages = data.totalPages;
                 })
                 .catch((error) => {
@@ -66,22 +58,11 @@ export default {
                 })
         },
 
-
         changePage(page) {
             if (page >= 1 && page <= this.totalPages) {
                 this.currentPage = page;
-                this.fetchPosts(page);
+                this.fetchImages(page);
             }
-        },
-
-        cleanHtml(html) {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, "text/html");
-            return doc.body.innerHTML;
-        },
-
-        goToPost(id) {
-            this.$router.push(`/post/${id}`);
         }
     },
 };

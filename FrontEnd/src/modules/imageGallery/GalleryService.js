@@ -1,7 +1,9 @@
-export default {
+const BASE_URL= "https://localhost:7119/gallery";
 
-    getPost(id) {
-        return fetch(`https://localhost:7119/post/${id}`, { method: "GET" })
+export default {
+    
+    getImage(id) {
+        return fetch(`${BASE_URL}/${id}`, { method: "GET" })
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Error: ${response.statusText}`);
@@ -10,13 +12,11 @@ export default {
             });
     },
 
-    createPost(data) {
+    createImage(data) {
         const formData = new FormData();
-        formData.append('date', data.date.toISOString());
-        formData.append('content', data.content);
         formData.append('image', data.image);
     
-        return fetch("https://localhost:7119/post", {
+        return fetch(`${BASE_URL}/`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json', // Keep this for the response type
@@ -34,24 +34,8 @@ export default {
         });
     },
 
-
-    updatePost(date, content, image) {
-        return fetch("https://localhost:7119/post", {
-            method: "PATCH",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('user')}`
-            },
-            body: JSON.stringify({ date, content, image })
-        })
-            .then(response => {
-                return response.json();
-            });
-    },
-
-    fetchPosts(page) {
-        let link = page ? `https://localhost:7119/post?page=${page}` : "https://localhost:7119/post";
+    fetchImages(page) {
+        let link = page ? `${BASE_URL}/?page=${page}` : `${BASE_URL}/`;
         return fetch(link, {
             method: "GET"})
             .then(response => {
@@ -61,18 +45,6 @@ export default {
                     throw new Error(`Error: ${response.statusText}`);
                 }
                 return response.json();
-            });
-    },
-
-    deletePost(id) {
-        return fetch(`https://localhost:7119/post/${id}`, {
-            method: "DELETE"})
-            .then(response => {
-                if (response.status === 401) {
-                    throw new Error("Unauthorized: Please check your login credentials or token.");
-                } else if (!response.ok) {
-                    throw new Error(`Error: ${response.statusText}`);
-                }
             });
     }
 }

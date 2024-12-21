@@ -7,7 +7,7 @@ export default {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('user')}`,
             },
-            body: JSON.stringify({title: data.title, content: data.content})
+            body: JSON.stringify({ title: data.title, content: data.content })
         })
             .then(response => {
                 if (response.status === 401) {

@@ -1,6 +1,6 @@
 ﻿namespace KoloroweWeb.Entities;
 
-public partial class PostsResponseDTO
+public class PostsResponseDTO
 {
     public int? Id { get; set; }
 

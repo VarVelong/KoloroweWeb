@@ -1,5 +1,6 @@
 ﻿using KoloroweWeb.Data;
 using KoloroweWeb.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
@@ -25,6 +26,7 @@ namespace KoloroweWeb.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Offers>> PostOffer(Offers offer)
         {
             kolorowewebContext.Offers.Add(offer);
@@ -34,6 +36,7 @@ namespace KoloroweWeb.Controllers
         }
 
         [HttpDelete("{Id}")]
+        [Authorize]
         public async Task<HttpStatusCode> DeleteOffer(int Id)
         {
             var entity = new Offers()
