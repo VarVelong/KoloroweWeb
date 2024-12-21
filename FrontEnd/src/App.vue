@@ -47,11 +47,11 @@ export default {
     },
   },
 
-  coputed: {
-    hasToken() {
-      return localStorage.getItem(token) != null;
-    }
-  },
+  // computed: {
+  //   hasToken() {
+  //     return localStorage.getItem(token) != null;
+  //   }
+  // },
 
   methods: {
     logout() {
@@ -69,18 +69,26 @@ export default {
 
 <style scoped>
 #app {
+  padding-top: 10%
+  ;
   padding: 0px !important;
-  max-width: none;
+  max-width: 100%;
 }
 
 header {
-  background: #3B8A3E;
-  color: white;
+  background: #388388;
+  border-bottom: 5px solid #4ABFBD;
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: max-content;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  height: 10%;
 }
 
 nav ul {
@@ -105,14 +113,33 @@ div {
   margin: 10px 0;
 }
 
-footer {
+/* footer {
   background: #333;
   color: white;
   text-align: center;
-  padding: 10px;
+  padding: 0px;
   position: relative;
   bottom: 0;
+  height: max-content;
   width: 100%;
+  position: fixed; 
+  bottom: 0; 
+  right: 0; 
+} */
+
+footer {
+  background: #333;
+  border-top: 5px solid #292929;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 10%;
 }
 
 .image-button {

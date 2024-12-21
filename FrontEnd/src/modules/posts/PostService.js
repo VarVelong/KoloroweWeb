@@ -47,27 +47,6 @@ export default {
             });
     },
 
-    createOffer(data) {
-        formData.append('title', data.title);
-        formData.append('content', data.content);
 
-        debugger;
-        return fetch("https://localhost:7119/offers", {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json', 
-                Authorization: `Bearer ${localStorage.getItem('user')}`, 
-            },
-            body: formData,
-        })
-        .then(response => {
-            if (response.status === 401) {
-                throw new Error("Unauthorized: Please check your login credentials or token.");
-            } else if (!response.ok) {
-                throw new Error(`Error: ${response.statusText}`);
-            }
-            return response.json();
-        });
-    }
 }
 

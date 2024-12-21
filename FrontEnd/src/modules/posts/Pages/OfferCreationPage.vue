@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import PostService from "../PostService"
+import OfferService from "../Pages/OfferService.js"
 import { VueEditor } from "vue3-editor";
 
 export default {
@@ -42,7 +42,7 @@ export default {
     methods: {
         saveOffer() {
             debugger;
-            PostService.createOffer(this.offer)
+            OfferService.createOffer(this.offer)
                 .then((offer) => {
                     alert("post is added")
                 })

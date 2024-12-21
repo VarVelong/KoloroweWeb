@@ -10,6 +10,7 @@ import PostListPage from "./posts/Pages/PostListPage.vue";
 import PostDetails from "./posts/Pages/PostDetails.vue";
 import PostEditingPage from "./posts/Pages/PostEditingPage.vue";
 import OfferCreationPage from "./posts/Pages/OfferCreationPage.vue"
+import AdminPage from "./authorization/Pages/AdminPage.vue"
 
 export default
     [
@@ -84,5 +85,11 @@ export default
             path: '/offercreationpage',
             name: 'offercreationpage',
             component: OfferCreationPage
+        },
+
+        {
+            path: '/adminpage',
+            name: 'adminpage',
+            component: AdminPage
         }
     ]

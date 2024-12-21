@@ -37,7 +37,7 @@ export default {
           if (token) {
             localStorage.setItem('user', token);
           }
-          this.$router.push('/postcreation');
+          this.$router.push('/adminpage');
         })
         .catch((e) => {
           this.errorMessage = 'Invalid credentials. Please try again. ';
