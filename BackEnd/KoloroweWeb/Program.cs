@@ -1,12 +1,11 @@
-
-using KoloroweWeb.Entities;
 using Microsoft.EntityFrameworkCore;
 using MySql.EntityFrameworkCore.Extensions;
 using System.Configuration;
-using static KoloroweWeb.Entities.KolorowewebContext;
+using static KoloroweWeb.Data.KolorowewebContext;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using KoloroweWeb.Data;
 
 namespace KoloroweWeb
 {

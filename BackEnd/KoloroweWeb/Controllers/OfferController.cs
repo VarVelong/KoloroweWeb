@@ -1,12 +1,12 @@
-﻿using KoloroweWeb.Data.Entities;
-using KoloroweWeb.Entities;
+﻿using KoloroweWeb.Data;
+using KoloroweWeb.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace KoloroweWeb.Controllers
 {
-   
+
     [Route("[controller]")]
     [ApiController]
     public class OffersController : ControllerBase
@@ -15,13 +15,8 @@ namespace KoloroweWeb.Controllers
 
         public OffersController(KolorowewebContext context)
         {
-            this.kolorowewebContext = context;
+            kolorowewebContext = context;
         }
-
-        //public UserPostController(KolorowewebContext kolorowewebContext)
-        //{
-        //    this.kolorowewebContext = kolorowewebContext;
-        //}
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Offers>>> GetOffers()
@@ -45,11 +40,11 @@ namespace KoloroweWeb.Controllers
             {
                 Id = Id
             };
+
             kolorowewebContext.Offers.Attach(entity);
             kolorowewebContext.Offers.Remove(entity);
             await kolorowewebContext.SaveChangesAsync();
             return HttpStatusCode.OK;
-
         }
     }
 }

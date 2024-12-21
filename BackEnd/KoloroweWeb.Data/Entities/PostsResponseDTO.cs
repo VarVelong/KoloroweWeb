@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-
-namespace KoloroweWeb.Entities;
+﻿namespace KoloroweWeb.Entities;
 
 public partial class PostsResponseDTO
 {

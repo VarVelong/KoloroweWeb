@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿namespace KoloroweWeb.Entities;
 
-namespace KoloroweWeb.Entities;
-
-public partial class Userpost : DbContext
+public partial class Posts
 {
     public int? Id { get; set; }
 

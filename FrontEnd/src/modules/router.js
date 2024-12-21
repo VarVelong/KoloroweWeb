@@ -9,87 +9,87 @@ import Register from "./authorization/Pages/Register.vue";
 import PostListPage from "./posts/Pages/PostListPage.vue";
 import PostDetails from "./posts/Pages/PostDetails.vue";
 import PostEditingPage from "./posts/Pages/PostEditingPage.vue";
-import OfferCreationPage from "./posts/Pages/OfferCreationPage.vue"
-import AdminPage from "./authorization/Pages/AdminPage.vue"
+import OfferCreationPage from "./offers/Pages/OfferCreationPage.vue";
+import AdminPage from "./authorization/Pages/AdminPage.vue";
 
 export default
-    [
-        {
-            path: '/',
-            name: 'main',
-            component: MainPage
-        },
+[
+    {
+        path: '/',
+        name: 'main',
+        component: MainPage
+    },
 
-        {
-            path: '/about',
-            name: 'about',
-            component: AboutPage
-        },
+    {
+        path: '/about',
+        name: 'about',
+        component: AboutPage
+    },
 
-        {
-            path: '/offer',
-            name: 'offer',
-            component: OfferPage
-        },
+    {
+        path: '/offer',
+        name: 'offer',
+        component: OfferPage
+    },
 
-        {
-            path: '/personnel',
-            name: 'personnel',
-            component: PersonnelPage
-        },
-        
-        {
-            path: '/contact',
-            name: 'contact',
-            component: ContactPage
-        },
+    {
+        path: '/personnel',
+        name: 'personnel',
+        component: PersonnelPage
+    },
 
-        {
-            path: '/postcreation',
-            name: 'postcreation',
-            component: PostCreationPage
-        },
+    {
+        path: '/contact',
+        name: 'contact',
+        component: ContactPage
+    },
 
-        {
-            path: '/login',
-            name: 'login',
-            component: Login
-        },
+    {
+        path: '/postcreation',
+        name: 'postcreation',
+        component: PostCreationPage
+    },
 
-        {
-            path: '/register',
-            name: 'register',
-            component: Register
-        },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login
+    },
 
-        {
-            path: '/post-list',
-            name: 'post-list',
-            component: PostListPage
-        },
+    {
+        path: '/register',
+        name: 'register',
+        component: Register
+    },
 
-        {
-            path: '/post/:id',
-            name: 'postdetails',
-            component: PostDetails,
-            props: true
-        },
+    {
+        path: '/post-list',
+        name: 'post-list',
+        component: PostListPage
+    },
 
-        {
-            path: '/posteditingpage/:id',
-            name: 'posteditingpage',
-            component: PostEditingPage
-        },
+    {
+        path: '/post/:id',
+        name: 'postdetails',
+        component: PostDetails,
+        props: true
+    },
 
-        {
-            path: '/offercreationpage',
-            name: 'offercreationpage',
-            component: OfferCreationPage
-        },
+    {
+        path: '/posteditingpage/:id',
+        name: 'posteditingpage',
+        component: PostEditingPage
+    },
 
-        {
-            path: '/adminpage',
-            name: 'adminpage',
-            component: AdminPage
-        }
-    ]
+    {
+        path: '/offercreationpage',
+        name: 'offercreationpage',
+        component: OfferCreationPage
+    },
+
+    {
+        path: '/adminpage',
+        name: 'adminpage',
+        component: AdminPage
+    }
+]

@@ -1,12 +1,10 @@
-﻿using KoloroweWeb.Data.Entities;
+﻿using KoloroweWeb.Data;
+using KoloroweWeb.Data.Entities;
 using KoloroweWeb.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
 
 namespace KoloroweWeb.Controllers
 {
@@ -17,7 +15,6 @@ namespace KoloroweWeb.Controllers
         private readonly KolorowewebContext kolorowewebContext;
         private const string ImageDirectory = "PostImages";
         private readonly string ImagePathDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", ImageDirectory);
-
 
         public UserPostController(KolorowewebContext kolorowewebContext)
         {
@@ -32,9 +29,9 @@ namespace KoloroweWeb.Controllers
                 return BadRequest("Page and pageSize must be greater than zero.");
             }
 
-            var totalCount = await kolorowewebContext.Userposts.CountAsync();
+            var totalCount = await kolorowewebContext.Posts.CountAsync();
 
-            var posts = await kolorowewebContext.Userposts
+            var posts = await kolorowewebContext.Posts
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .Select(s => new PostsResponseDTO
@@ -61,9 +58,9 @@ namespace KoloroweWeb.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<PostsResponseDTO>> GetUserByDate(int Id)
+        public async Task<ActionResult<PostsResponseDTO>> GetPostByDate(int Id)
         {
-            var post = await kolorowewebContext.Userposts.Select(
+            var post = await kolorowewebContext.Posts.Select(
                     s => new PostsResponseDTO
                     {
                         Id = s.Id,
@@ -74,23 +71,13 @@ namespace KoloroweWeb.Controllers
                 : null,
                     }).FirstOrDefaultAsync(s => s.Id == Id);
 
-            if (post == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                return post;
-            }
+            return post is null ? NotFound() : post;
         }
-
 
         [HttpPost("post")]
         [Authorize]
         public async Task<HttpStatusCode> InsertPost(PostsRequestDTO post)
         {
-            
-
             if (post.Image != null)
             {
                 var filePath = Path.Combine(ImagePathDirectory, post.Image.FileName);
@@ -106,7 +93,7 @@ namespace KoloroweWeb.Controllers
                 }
             }
 
-            var entity = new Userpost()
+            var entity = new Posts()
             {
                 Id = post.Id,
                 Date = post.Date,
@@ -123,12 +110,13 @@ namespace KoloroweWeb.Controllers
         [HttpDelete("{Id}")]
         public async Task<HttpStatusCode> DeletePost(int Id)
         {
-            var entity = new Userpost()
+            var entity = new Posts()
             {
                 Id = Id
             };
-            kolorowewebContext.Userposts.Attach(entity);
-            kolorowewebContext.Userposts.Remove(entity);
+
+            kolorowewebContext.Posts.Attach(entity);
+            kolorowewebContext.Posts.Remove(entity);
             await kolorowewebContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
@@ -136,15 +124,13 @@ namespace KoloroweWeb.Controllers
         [HttpPut("{Id}")]
         public async Task<HttpStatusCode> UpdatePostContent([FromRoute] int id,[FromBody] string content)
         {
-            var existingPost = await kolorowewebContext.Userposts.FindAsync(id);
-
+            var existingPost = await kolorowewebContext.Posts.FindAsync(id);
             if (existingPost == null)
             {
                 return HttpStatusCode.NotFound;
             }
 
             existingPost.Content = content;
-
             await kolorowewebContext.SaveChangesAsync();
 
             return HttpStatusCode.OK;
@@ -153,7 +139,7 @@ namespace KoloroweWeb.Controllers
         //[HttpPut("{id}")]
         //public async Task<IActionResult> UpdatePostContent(int id, [FromBody] UpdatePostDto updatePostDto)
         //{
-        //    var existingPost = await kolorowewebContext.Userposts.FindAsync(id);
+        //    var existingPost = await kolorowewebContext.Posts.FindAsync(id);
 
         //    if (existingPost == null)
         //    {
@@ -168,5 +154,3 @@ namespace KoloroweWeb.Controllers
         //}
     }
 }
-
-

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using KoloroweWeb.Data.Entities;
+﻿using KoloroweWeb.Data.Entities;
+using KoloroweWeb.Entities;
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Tls;
 
-namespace KoloroweWeb.Entities;
+namespace KoloroweWeb.Data;
 
 public partial class KolorowewebContext : DbContext
 {
@@ -17,7 +15,7 @@ public partial class KolorowewebContext : DbContext
     {
     }
 
-    public virtual DbSet<Userpost> Userposts { get; set; }
+    public virtual DbSet<Posts> Posts { get; set; }
     public virtual DbSet<Users> Users { get; set; }
     public virtual DbSet<Employees> Employees { get; set; }
     public virtual DbSet<Offers> Offers { get; set; }
@@ -27,11 +25,11 @@ public partial class KolorowewebContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Userpost>(entity =>
+        modelBuilder.Entity<Posts>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("userpost");
+            entity.ToTable("posts");
 
             entity.Property(e => e.Id).HasColumnType("int(11)");
             entity.Property(e => e.Content).HasColumnType("text");

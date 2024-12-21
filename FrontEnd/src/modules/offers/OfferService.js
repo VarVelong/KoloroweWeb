@@ -1,6 +1,5 @@
 export default {
     createOffer(data) {
-        debugger;
         return fetch("https://localhost:7119/Offers", {
             method: "POST",
             headers: {

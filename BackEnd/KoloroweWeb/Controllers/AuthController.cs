@@ -1,13 +1,11 @@
 ﻿using KoloroweWeb.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using static KoloroweWeb.Entities.KolorowewebContext;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
-using KoloroweWeb.Entities;
+using KoloroweWeb.Data;
 
 namespace KoloroweWeb.Controllers
 {
@@ -32,15 +30,9 @@ namespace KoloroweWeb.Controllers
                 Username = registerDto.Username,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(registerDto.PasswordHash),
             };
-            try
-            {
-                _context.Users.Add(user);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
 
-            };
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
 
             return Ok(new { message = "User registered successfully" });
         }
@@ -63,9 +55,9 @@ namespace KoloroweWeb.Controllers
         {
             var claims = new[]
             {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Username),
-            new Claim("id", user.Id.ToString()),
-        };
+                new Claim(JwtRegisteredClaimNames.Sub, user.Username),
+                new Claim("id", user.Id.ToString()),
+            };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:Secret"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

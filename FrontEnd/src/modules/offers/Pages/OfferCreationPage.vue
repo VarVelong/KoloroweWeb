@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import OfferService from "../Pages/OfferService.js"
+import OfferService from "../OfferService.js"
 import { VueEditor } from "vue3-editor";
 
 export default {

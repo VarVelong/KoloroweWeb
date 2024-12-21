@@ -1,9 +1,7 @@
-﻿using KoloroweWeb.Data.Entities;
-using KoloroweWeb.Entities;
+﻿using KoloroweWeb.Data;
+using KoloroweWeb.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
-using System.Text.RegularExpressions;
 
 namespace KoloroweWeb.Controllers
 {
@@ -27,7 +25,6 @@ namespace KoloroweWeb.Controllers
         [HttpPut("{groupName}")]
         public async Task<IActionResult> Update([FromRoute] string groupName, [FromBody] string groupContent)
         {
-
             var validGroupNames = new List<string>
             {
                 nameof(Employees.Principals),
@@ -45,14 +42,8 @@ namespace KoloroweWeb.Controllers
 
             var sql = $"UPDATE employees SET {groupName} = @groupContent WHERE Id = 1";
 
-            var rowsAffected = await kolorowewebContext.Database.ExecuteSqlRawAsync(sql, groupContent);
-
-            if (rowsAffected == 0)
-            {
-                return NotFound();
-            }
-                
-            return Ok("Group property updated successfully.");
+            var rowsAffected = await kolorowewebContext.Database.ExecuteSqlRawAsync(sql, groupContent);             
+            return rowsAffected == 0 ? NotFound() : Ok("Group property updated successfully.");
         }
     }
 }
