@@ -73,7 +73,6 @@ export default {
                     alert(`Failed to delete post: ${error.message}`);
                 })
             }
-
         },
 
         created() {

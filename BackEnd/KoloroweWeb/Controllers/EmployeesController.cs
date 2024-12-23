@@ -3,6 +3,7 @@ using KoloroweWeb.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 
 namespace KoloroweWeb.Controllers
 {
@@ -18,10 +19,7 @@ namespace KoloroweWeb.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Employees>>> GetEmployees()
-        {
-            return await kolorowewebContext.Employees.ToListAsync();
-        }
+        public async Task<ActionResult<Employees>> GetEmployees() => await kolorowewebContext.Employees.FirstOrDefaultAsync();
 
         [HttpPut("{groupName}")]
         [Authorize]
@@ -43,8 +41,8 @@ namespace KoloroweWeb.Controllers
             }
 
             var sql = $"UPDATE employees SET {groupName} = @groupContent WHERE Id = 1";
-
-            var rowsAffected = await kolorowewebContext.Database.ExecuteSqlRawAsync(sql, groupContent);             
+            var parameters = new[] { new MySqlParameter("@groupContent", groupContent) };
+            var rowsAffected = await kolorowewebContext.Database.ExecuteSqlRawAsync(sql, parameters);             
             return rowsAffected == 0 ? NotFound() : Ok("Group property updated successfully.");
         }
     }

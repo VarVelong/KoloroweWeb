@@ -20,8 +20,7 @@ export default {
     data() {
         return {
             post: {
-                content: "",
-                id: null,
+                content: ""
             },
             loading: false,
             error: null
@@ -51,34 +50,20 @@ export default {
                     this.loading = false;
                 })
         },
-
+        
         async savePost() {
             this.loading = true;
             this.error = null;
-            const path = window.location.pathname;
-            const segments = path.split('/');
-            const id = segments[segments.length - 1]
-            debugger;
-            try {
-                const response = await fetch(`https://localhost:7119/userpost/${id}`, {
-                    method: 'PUT', 
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(this.post.content)
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Error: ${response.statusText}`);
-                }
-
-                const updatedPost = await response.json();
-                this.post = updatedPost; 
-            } catch (err) {
-                this.error = err.message;
-            } finally {
-                this.loading = false;
-            }
+            PostService.updatePost(this.id, this.post.content)
+                .then((data) => {
+                    this.post = data;
+                })
+                .catch((error) => {
+                    this.error = error.message;
+                })
+                .finally(() => {
+                    this.loading = false;
+                })
         }
     }
 }

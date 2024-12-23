@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2024 at 03:42 PM
+-- Generation Time: Dec 23, 2024 at 02:53 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -56,6 +56,15 @@ CREATE TABLE `images` (
   `PostId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `images`
+--
+
+INSERT INTO `images` (`Id`, `FileName`, `PostId`) VALUES
+(1, '/PostImages/IMG20241122153430.jpg', 15),
+(2, '/PostImages/10x10 _1-832x1000 (1).png', 18),
+(3, '/ImageGallery/obraz_2024-12-06_205956548.png', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -85,24 +94,23 @@ INSERT INTO `offers` (`Id`, `Title`, `Content`) VALUES
 CREATE TABLE `posts` (
   `Id` int(11) NOT NULL,
   `Date` date NOT NULL,
-  `Content` text NOT NULL,
-  `Image` text DEFAULT NULL
+  `Content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`Id`, `Date`, `Content`, `Image`) VALUES
-(9, '2024-11-26', '<p>345asdasd</p>', ''),
-(10, '2024-11-26', '567', ''),
-(12, '2024-11-28', '<p>12345</p>', ''),
-(13, '2024-11-28', '<p>12345678</p><p><br></p>', ''),
-(15, '2024-12-02', '<p>image</p>', '/PostImages/IMG20241122153430.jpg'),
-(16, '2024-12-02', '<p>image</p>', '/PostImages/IMG20241122153430.jpg'),
-(18, '2024-12-06', '<p>123</p>', '/PostImages/10x10 _1-832x1000 (1).png'),
-(19, '2024-12-06', '<p>123</p>', '/PostImages/obraz_2024-12-06_205956548.png'),
-(20, '2024-12-06', '<p>123 <strong>456 <u>789</u></strong></p>', NULL);
+INSERT INTO `posts` (`Id`, `Date`, `Content`) VALUES
+(9, '2024-11-26', '<p>345asdasd</p>'),
+(10, '2024-11-26', '567'),
+(12, '2024-11-28', '<p>12345</p>'),
+(13, '2024-11-28', '<p>12345678</p><p><br></p>'),
+(15, '2024-12-02', '<p>image</p>'),
+(16, '2024-12-02', '<p>image</p>'),
+(18, '2024-12-06', '<p>123</p>'),
+(19, '2024-12-06', '<p>123</p>'),
+(20, '2024-12-06', '<p>123 <strong>456 <u>789</u></strong></p>');
 
 -- --------------------------------------------------------
 
@@ -172,7 +180,7 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `offers`
@@ -184,7 +192,7 @@ ALTER TABLE `offers`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`

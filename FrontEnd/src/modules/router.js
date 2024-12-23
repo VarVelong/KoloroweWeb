@@ -1,8 +1,8 @@
 import MainPage from "../components/MainPage.vue";
 import AboutPage from "../components/AboutPage.vue";
 import ContactPage from "../components/ContactPage.vue";
-import OfferPage from "../components/OfferPage.vue";
-import PersonnelPage from "../components/PersonnelPage.vue";
+import OfferPage from "./offers/Pages/OfferPage.vue";
+import EmployeesPage from "./employees/Pages/EmployeesPage.vue";
 import PostCreationPage from "./posts/Pages/PostCreationPage.vue";
 import Login from "./authorization/Pages/Login.vue";
 import Register from "./authorization/Pages/Register.vue";
@@ -34,9 +34,9 @@ export default
     },
 
     {
-        path: '/personnel',
-        name: 'personnel',
-        component: PersonnelPage
+        path: '/employees',
+        name: 'employees',
+        component: EmployeesPage
     },
 
     {
@@ -100,4 +100,5 @@ export default
         name: 'gallery',
         component: GalleryPage
     }
+
 ]

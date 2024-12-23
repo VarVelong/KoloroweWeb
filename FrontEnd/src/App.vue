@@ -19,7 +19,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <button @click="$router.push({ name: 'about' })">O nas</button>
         <button @click="$router.push({ name: 'post-list' })">Aktualności</button>
         <button @click="$router.push({ name: 'offer' })">Oferta</button>
-        <button @click="$router.push({ name: 'personnel' })">Kadra</button>
+        <button @click="$router.push({ name: 'employees' })">Kadra</button>
         <button @click="$router.push({ name: 'contact' })">Kontakt</button>
       </ul>
     </nav>
@@ -30,10 +30,9 @@ import { RouterLink, RouterView } from 'vue-router'
   <footer>
     <p>&copy; 2024 Kolorowe Przedszkole.</p>
     <div>
-      <button @click="$router.push({ name: 'postcreation' })">Posty</button>
       <button @click="$router.push({ name: 'login' })">Login</button>
       <button @click="$router.push({ name: 'register' })">Register</button>
-      <button v-if="hasToken" @click="logout"> Logout </button>
+      <button v-if="(this.$isLoggedIn())" @click="logout"> Logout </button>
     </div>
   </footer>
 

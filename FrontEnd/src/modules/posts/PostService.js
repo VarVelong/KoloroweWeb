@@ -15,7 +15,7 @@ export default {
         formData.append('date', data.date.toISOString());
         formData.append('content', data.content);
         formData.append('image', data.image);
-    
+
         return fetch("https://localhost:7119/post", {
             method: "POST",
             headers: {
@@ -24,28 +24,12 @@ export default {
             },
             body: formData, // FormData automatically sets multipart/form-data
         })
-        .then(response => {
-            if (response.status === 401) {
-                throw new Error("Unauthorized: Please check your login credentials or token.");
-            } else if (!response.ok) {
-                throw new Error(`Error: ${response.statusText}`);
-            }
-            return response.json();
-        });
-    },
-
-
-    updatePost(date, content, image) {
-        return fetch("https://localhost:7119/post", {
-            method: "PATCH",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('user')}`
-            },
-            body: JSON.stringify({ date, content, image })
-        })
             .then(response => {
+                if (response.status === 401) {
+                    throw new Error("Unauthorized: Please check your login credentials or token.");
+                } else if (!response.ok) {
+                    throw new Error(`Error: ${response.statusText}`);
+                }
                 return response.json();
             });
     },
@@ -53,7 +37,8 @@ export default {
     fetchPosts(page) {
         let link = page ? `https://localhost:7119/post?page=${page}` : "https://localhost:7119/post";
         return fetch(link, {
-            method: "GET"})
+            method: "GET"
+        })
             .then(response => {
                 if (response.status === 401) {
                     throw new Error("Unauthorized: Please check your login credentials or token.");
@@ -71,13 +56,29 @@ export default {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('user')}`
-            },})
+            },
+        })
             .then(response => {
                 if (response.status === 401) {
                     throw new Error("Unauthorized: Please check your login credentials or token.");
                 } else if (!response.ok) {
                     throw new Error(`Error: ${response.statusText}`);
                 }
+            });
+    },
+
+    updatePost(id, content) {
+        return fetch(`https://localhost:7119/post/${id}`, {
+            method: "PUT",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('user')}`
+            },
+            body: JSON.stringify(content)
+        })
+            .then(response => {
+                return response.json();
             });
     }
 }

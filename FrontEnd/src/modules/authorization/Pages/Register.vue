@@ -1,16 +1,16 @@
 <template>
     <div>
-      <h2>Register</h2>
+      <h2>Rejestracja</h2>
       <form @submit.prevent="register">
         <div>
-          <label for="username">Username:</label>
+          <label for="username">Nazwa:</label>
           <input type="text" v-model="username" id="username" />
         </div>
         <div>
-          <label for="password">Password:</label>
+          <label for="password">Hasło:</label>
           <input type="password" v-model="password" id="password" />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit">Zarejestruj się</button>
       </form>
       <p v-if="message">{{ message }}</p>
       <p v-if="errorMessage">{{ errorMessage }}</p>

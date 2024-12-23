@@ -3,7 +3,7 @@
 
     <body>
         <div>
-            <div v-if="loading">Loading images</div>
+            <div v-if="loading">Wczytywanie Obrazów</div>
             <div v-if="error" class="error">{{ error }}</div>
             <ul v-if="images.length">
                 <li v-for="image in images" :key="image.id">
@@ -14,9 +14,9 @@
         </div>
 
         <div v-if="totalPages > 1" class="pagination">
-            <button @click="changePage(currentPage - 1)" :disabled="currentPage === 1">Previous</button>
+            <button @click="changePage(currentPage - 1)" :disabled="currentPage === 1">Poprzednia</button>
             <span>Page {{ currentPage }} of {{ totalPages }}</span>
-            <button @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages">Next</button>
+            <button @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages">Następna</button>
         </div>
 
     </body>

@@ -3,7 +3,7 @@
     <body>
 
         <div class="post-container">
-            <h2>Create New Offer</h2>
+            <h2>Stwórz Nową Ofertę</h2>
             <div>
                 <label for="title">Title:</label>
                 <textarea v-model="offer.title"></textarea>
@@ -11,11 +11,11 @@
             <div>
                 <vue-editor v-model="offer.content"></vue-editor>
             </div>
-
-            <button class="post-button" @click="saveOffer">Post</button>
         </div>
+
         <div>
-            <button @click="$router.push({ name: 'offer'})">Return</button>
+            <button class="post-button" @click="saveOffer">Stwórz</button>
+            <button @click="$router.push({ name: 'offer'})">Powrót</button>
         </div>
 
     </body>

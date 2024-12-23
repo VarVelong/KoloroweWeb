@@ -3,14 +3,14 @@
         <h1>Contact Us</h1>
         <form @submit.prevent="sendEmail">
             <div>
-                <label for="subject">Subject:</label>
+                <label for="subject">Temat:</label>
                 <input v-model="subject" id="subject" required />
             </div>
             <div>
-                <label for="message">Message:</label>
+                <label for="message">Wiadomość:</label>
                 <textarea v-model="message" id="message" required></textarea>
             </div>
-            <button type="submit">Send</button>
+            <button type="submit">Wyślij</button>
         </form>
         <p v-if="responseMessage">{{ responseMessage }}</p>
     </div>

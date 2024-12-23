@@ -18,7 +18,7 @@ body {
     margin: 0 auto; 
     padding: 0;
     color: #333;
-    width: 80%; 
+    width: 90%;
     box-sizing: border-box; 
 }
 

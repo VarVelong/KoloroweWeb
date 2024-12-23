@@ -44,7 +44,6 @@ export default {
 
     computed: {
         formattedDate(date) {
-            debugger;
             return format(date, "MMMM do, yyyy");
         }
     },
@@ -65,7 +64,6 @@ export default {
                     this.loading = false;
                 })
         },
-
 
         changePage(page) {
             if (page >= 1 && page <= this.totalPages) {

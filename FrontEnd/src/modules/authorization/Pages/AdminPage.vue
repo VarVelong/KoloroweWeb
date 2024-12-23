@@ -1,10 +1,10 @@
 <template>
     <body>
         <div>
-            <button @click="$router.push({ name: 'offercreationpage'})">Create Offer</button>
+            <button @click="$router.push({ name: 'offercreationpage'})">Stwórz Ofertę</button>
         </div>
         <div>
-            <button @click="$router.push({ name: 'postcreation'})">Create Post</button>
+            <button @click="$router.push({ name: 'postcreation'})">Stwórz Post</button>
         </div>
     </body>
 </template>
