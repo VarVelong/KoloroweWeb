@@ -66,7 +66,12 @@ export default {
 
     deletePost(id) {
         return fetch(`https://localhost:7119/post/${id}`, {
-            method: "DELETE"})
+            method: "DELETE",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('user')}`
+            },})
             .then(response => {
                 if (response.status === 401) {
                     throw new Error("Unauthorized: Please check your login credentials or token.");

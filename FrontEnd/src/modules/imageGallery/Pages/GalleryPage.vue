@@ -8,6 +8,7 @@
             <ul v-if="images.length">
                 <li v-for="image in images" :key="image.id">
                     <img v-if="image.fileName !== null" :src="image.fileName" alt="Image" class="image" />
+                    <!-- use bootstrap tiles -->
                 </li>
             </ul>
         </div>
