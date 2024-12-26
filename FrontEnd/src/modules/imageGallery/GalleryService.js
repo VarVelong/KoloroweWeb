@@ -14,8 +14,7 @@ export default {
 
     createImage(data) {
         const formData = new FormData();
-        formData.append('image', data.image);
-    
+        formData.append('image', data);
         return fetch(`${link}/`, {
             method: "POST",
             headers: {
@@ -58,9 +57,9 @@ export default {
             });
     },
 
-    fetchImages(page) {
+    async fetchImages(page) {
         let fullLink = page ? `${link}/?page=${page}` : `${link}/`;
-        return fetch(fullLink, {
+        return await fetch(fullLink, {
             method: "GET"})
             .then(response => {
                 if (response.status === 401) {

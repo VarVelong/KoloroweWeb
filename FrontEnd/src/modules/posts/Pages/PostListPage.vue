@@ -10,8 +10,8 @@
                     <h2 v-html="cleanHtml(post.content)"></h2>
                     <img v-if="post.image !== null" :src="post.image" alt="Image" class="image" />
                     <button @click="goToPostDetails(post.id)">View Details</button>
-                    <button v-if="(this.$isLoggedIn())" @click="deletePost">Delete Post</button>
-                    <button v-if="(this.$isLoggedIn())" @click="goToPostEdit(post.id)">PostEdit</button>
+                    <button v-if="this.$isLoggedIn()" @click="deletePost">Delete Post</button>
+                    <button v-if="this.$isLoggedIn()" @click="goToPostEdit(post.id)">PostEdit</button>
                 </li>
             </ul>
         </div>

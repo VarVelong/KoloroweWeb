@@ -17,10 +17,6 @@
             <input type="file" @change="onFileChange" />
         </div>
 
-        <div>
-            <button @click="logout">Logout</button>
-        </div>
-
     </body>
 </template>
 
@@ -52,15 +48,6 @@ export default {
                 .catch((error) => {
                     alert(`error, potst not added ${error}`)
                 })
-        },
-
-        logout() {
-            try {
-                localStorage.removeItem('user');
-                console.log('User has been logged out.');
-            } catch (error) {
-                console.error('Error during logout:', error);
-            }
         },
 
         onFileChange(event) {

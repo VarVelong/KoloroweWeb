@@ -21,6 +21,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <button @click="$router.push({ name: 'offer' })">Oferta</button>
         <button @click="$router.push({ name: 'employees' })">Kadra</button>
         <button @click="$router.push({ name: 'contact' })">Kontakt</button>
+        <button @click="$router.push({ name: 'gallery' })">Galeria</button>
       </ul>
     </nav>
   </header>
@@ -33,7 +34,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <button @click="$router.push({ name: 'login' })">Login</button>
       <button @click="$router.push({ name: 'register' })">Register</button>
       <button @click="$router.push({ name: 'adminpage'});">AdminPage</button>
-      <button v-if="(this.$isLoggedIn())" @click="logout"> Logout </button>
+      <button v-if="this.$isLoggedIn()" @click="logout"> Logout </button>
     </div>
   </footer>
 
@@ -46,12 +47,6 @@ export default {
     handleClick() {
     },
   },
-
-  // computed: {
-  //   hasToken() {
-  //     return localStorage.getItem(token) != null;
-  //   }
-  // },
 
   methods: {
     logout() {
@@ -112,20 +107,6 @@ div {
   padding: 10px;
   margin: 10px 0;
 }
-
-/* footer {
-  background: #333;
-  color: white;
-  text-align: center;
-  padding: 0px;
-  position: relative;
-  bottom: 0;
-  height: max-content;
-  width: 100%;
-  position: fixed; 
-  bottom: 0; 
-  right: 0; 
-} */
 
 footer {
   background: #333;

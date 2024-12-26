@@ -71,14 +71,14 @@ namespace KoloroweWeb.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<HttpStatusCode> InsertImage(ImagesRequestDTO image)
+        public async Task<HttpStatusCode> InsertImage(IFormFile image)
         {
-            if (image?.Image == null)
+            if (image == null)
             {
                 return HttpStatusCode.NoContent;
             }
 
-            var filePath = Path.Combine(ImagePathDirectory, image.Image.FileName);
+            var filePath = Path.Combine(ImagePathDirectory, image.FileName);
 
             if (!string.IsNullOrEmpty(ImagePathDirectory) && !Directory.Exists(ImagePathDirectory))
             {
@@ -87,14 +87,12 @@ namespace KoloroweWeb.Controllers
 
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
-                await image.Image.CopyToAsync(stream);
+                await image.CopyToAsync(stream);
             }
 
             var entity = new Images()
             {
-                Id = image.Id,
-                PostId = image.PostId,
-                FileName = $"/{ImageDirectory}/{image.Image.FileName}"
+                FileName = $"/{ImageDirectory}/{image.FileName}"
             };
 
             kolorowewebContext.Add(entity);

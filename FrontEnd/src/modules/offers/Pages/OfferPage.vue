@@ -4,7 +4,7 @@
         <ul v-if="offers.length">
             <li v-for="offer in offers" :key="offers.id">
                 <h2>{{offer.id}}</h2>
-                <button v-if="(this.$isLoggedIn())" @click="deleteOffer(offer.id)">Usuń Ofertę</button>
+                <button v-if="this.$isLoggedIn()" @click="deleteOffer(offer.id)">Usuń Ofertę</button>
             </li>
         </ul>
     </body>
