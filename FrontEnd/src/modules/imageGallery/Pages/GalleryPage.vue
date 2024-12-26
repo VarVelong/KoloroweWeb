@@ -13,6 +13,11 @@
             </ul>
         </div>
 
+        <div>
+            <label for="image" >📷</label>
+            <input type="file" @change="onFileChange" />
+        </div>
+
         <div v-if="totalPages > 1" class="pagination">
             <button @click="changePage(currentPage - 1)" :disabled="currentPage === 1">Poprzednia</button>
             <span>Page {{ currentPage }} of {{ totalPages }}</span>
@@ -57,6 +62,10 @@ export default {
                 .finally(() => {
                     this.loading = false;
                 })
+        },
+
+        async saveImages() {
+
         },
 
         changePage(page) {

@@ -9,7 +9,9 @@
                 <li v-for="post in posts" :key="post.id">
                     <h2 v-html="cleanHtml(post.content)"></h2>
                     <img v-if="post.image !== null" :src="post.image" alt="Image" class="image" />
-                    <button @click="goToPost(post.id)">View Details</button>
+                    <button @click="goToPostDetails(post.id)">View Details</button>
+                    <button v-if="(this.$isLoggedIn())" @click="deletePost">Delete Post</button>
+                    <button v-if="(this.$isLoggedIn())" @click="goToPostEdit(post.id)">PostEdit</button>
                 </li>
             </ul>
         </div>
@@ -78,8 +80,12 @@ export default {
             return doc.body.innerHTML;
         },
 
-        goToPost(id) {
+        goToPostDetails(id) {
             this.$router.push(`/post/${id}`);
+        },
+        
+        goToPostEdit(id) {
+            this.$router.push(`/posteditingpage/${id}`);
         }
     },
 };

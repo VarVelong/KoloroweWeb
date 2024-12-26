@@ -1,7 +1,8 @@
+const link = "https://localhost:7119/Employees"
+
 export default {
 
     fetchEmployees() {
-        let link = `https://localhost:7119/Employees`;
         return fetch(link, {
             method: "GET"})
             .then(response => {
@@ -15,7 +16,7 @@ export default {
     },
 
     updateEmployee(groupName, content) {
-        return fetch(`https://localhost:7119/Employees/${groupName}`, {
+        return fetch(`${link}/${groupName}`, {
             method: "PUT",
             headers: {
                 'Accept': 'application/json',

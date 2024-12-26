@@ -57,6 +57,8 @@ export default {
             PostService.updatePost(this.id, this.post.content)
                 .then((data) => {
                     this.post = data;
+                    alert("Post został pomyślnie zapisany!")
+                    this.$router.push('/post-list')
                 })
                 .catch((error) => {
                     this.error = error.message;

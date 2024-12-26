@@ -1,7 +1,9 @@
+const link = "https://localhost:7119/post";
+
 export default {
 
     getPost(id) {
-        return fetch(`https://localhost:7119/post/${id}`, { method: "GET" })
+        return fetch(`${link}/${id}`, { method: "GET" })
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Error: ${response.statusText}`);
@@ -16,7 +18,7 @@ export default {
         formData.append('content', data.content);
         formData.append('image', data.image);
 
-        return fetch("https://localhost:7119/post", {
+        return fetch(link, {
             method: "POST",
             headers: {
                 'Accept': 'application/json', // Keep this for the response type
@@ -35,8 +37,8 @@ export default {
     },
 
     fetchPosts(page) {
-        let link = page ? `https://localhost:7119/post?page=${page}` : "https://localhost:7119/post";
-        return fetch(link, {
+        let fullLink = page ? `${link}?page=${page}` : link;
+        return fetch(fullLink, {
             method: "GET"
         })
             .then(response => {
@@ -50,7 +52,7 @@ export default {
     },
 
     deletePost(id) {
-        return fetch(`https://localhost:7119/post/${id}`, {
+        return fetch(`${link}/${id}`, {
             method: "DELETE",
             headers: {
                 'Accept': 'application/json',
@@ -68,7 +70,7 @@ export default {
     },
 
     updatePost(id, content) {
-        return fetch(`https://localhost:7119/post/${id}`, {
+        return fetch(`${link}/${id}`, {
             method: "PUT",
             headers: {
                 'Accept': 'application/json',

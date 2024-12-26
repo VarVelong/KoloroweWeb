@@ -1,6 +1,8 @@
+const link = "https://localhost:7119/Offers";
+
 export default {
     fetchOffers() {
-        return fetch(`https://localhost:7119/Offers`, { method: "GET" })
+        return fetch(link, { method: "GET" })
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Error: ${response.statusText}`);
@@ -10,7 +12,7 @@ export default {
     },
 
     createOffer(data) {
-        return fetch("https://localhost:7119/Offers", {
+        return fetch(link, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -31,7 +33,7 @@ export default {
 
 
     deleteOffer(id) {
-        return fetch(`https://localhost:7119/offers/${id}`, {
+        return fetch(`${link}/${id}`, {
             method: "DELETE",
             headers: {
                 'Accept': 'application/json',

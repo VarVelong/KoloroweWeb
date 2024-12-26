@@ -1,7 +1,17 @@
 <template>
     <body>
         <div>
+            <h2>Opcje ofert</h2>
             <button @click="$router.push({ name: 'offercreationpage'})">Stwórz Ofertę</button>
+            <button @click="$router.push({ name: 'offer'})">Zobacz Oferty</button>
+        </div>
+        <div>
+            <h2>Opcje aktualności</h2>
+            <button @click="$router.push({ name: 'postcreation'})">Stwórz Post</button>
+        </div>
+        <div>
+            <h2>Opcje Galerii</h2>
+            <button @click="$router.push({ name: 'postcreation'})">Stwórz Post</button>
         </div>
         <div>
             <button @click="$router.push({ name: 'postcreation'})">Stwórz Post</button>

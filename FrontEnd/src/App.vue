@@ -32,6 +32,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <div>
       <button @click="$router.push({ name: 'login' })">Login</button>
       <button @click="$router.push({ name: 'register' })">Register</button>
+      <button @click="$router.push({ name: 'adminpage'});">AdminPage</button>
       <button v-if="(this.$isLoggedIn())" @click="logout"> Logout </button>
     </div>
   </footer>
