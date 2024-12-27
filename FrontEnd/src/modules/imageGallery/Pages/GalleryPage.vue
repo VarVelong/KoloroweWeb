@@ -5,8 +5,10 @@
         <div>
             <div v-if="loading">Wczytywanie Obrazów</div>
             <div v-if="error" class="error">{{ error }}</div>
+            <!-- <i class="fa fa-window-close"></i> -->
+            <!-- <button class="btn btn-danger">123123</button> -->
             <ul v-if="images.length">
-                <li v-for="(image,index) in images" :key="image.id">
+                <li v-for="(image, index) in images" :key="image.id">
                     <img v-if="image.fileName !== null" :src="image.fileName" alt="Image" class="image" @click="selectedImageIndex=index;imageModal = true"/>
                     <!-- use bootstrap tiles -->
                 </li>
@@ -25,7 +27,7 @@
             <button @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages">Następna</button>
         </div>
 
-        <ImageModal :open="imageModal" :images="images" :selectedImageIndex="selectedImageIndex"></ImageModal>
+        <ImageModal v-model="imageModal" :images="images" :index="selectedImageIndex"></ImageModal>
 
     </body>
 </template>
@@ -46,7 +48,7 @@ export default {
             totalPages: 0,
             uploadedImage: null,
             imageModal: false,
-            selectedImageIndex: null
+            selectedImageIndex: 0
         };
     },
 
@@ -103,70 +105,8 @@ export default {
 </script>
 
 <style scoped>
-#error {
-    color: red;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    border: 1px solid #000000;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
-}
-
-h1 {
-    background-color: #4CAF50;
-    padding: 20px;
-    margin: 0px auto;
-    width: 80%;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #4CAF50;
-    margin: 0 auto;
-    padding: 0;
-    color: #333;
-    width: 80%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-}
-
-div {
-    border-radius: 15px;
-    padding: 20px;
-    margin: 30px auto;
-    max-width: 600px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    background-color: #FFF9C4;
-}
-
-h2 {
-    font-size: 2em;
-    margin-bottom: 10px;
-    text-shadow: 1px 1px #FFD9E8;
-}
-
-p {
-    font-size: 1.2em;
-    line-height: 1.5;
-    margin: 5px 0;
-    color: #555;
-}
-
 .image {
     width: 100px;
     height: 100px;
-}
-
-strong {
-    font-weight: bold !important
 }
 </style>

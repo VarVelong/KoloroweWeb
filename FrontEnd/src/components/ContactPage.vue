@@ -1,25 +1,28 @@
 <template>
-    <div>
-        <h1>Contact Us</h1>
-        <form @submit.prevent="sendEmail">
-            <div>
-                <label for="subject">Temat:</label>
-                <input v-model="subject" id="subject" required />
-            </div>
-            <div>
-                <label for="message">Wiadomość:</label>
-                <textarea v-model="message" id="message" required></textarea>
-            </div>
-            <button type="submit">Wyślij</button>
-        </form>
-        <p v-if="responseMessage">{{ responseMessage }}</p>
-    </div>
 
-    <div>
-        <h2>Kontakt</h2>
-        <p  href="tel:123456789">Telefon: 123 456 789</p>
-        <p href="mailto:biuro@kolorowe.gda.pl">Email: biuro@kolorowe.gda.pl</p>
-    </div>
+    <body>
+        <div>
+            <h1>Contact Us</h1>
+            <form @submit.prevent="sendEmail">
+                <div>
+                    <label for="subject">Temat:</label>
+                    <input v-model="subject" id="subject" required />
+                </div>
+                <div>
+                    <label for="message">Wiadomość:</label>
+                    <textarea v-model="message" id="message" required></textarea>
+                </div>
+                <button type="submit">Wyślij</button>
+            </form>
+            <p v-if="responseMessage">{{ responseMessage }}</p>
+        </div>
+
+        <div>
+            <h2>Kontakt</h2>
+            <p href="tel:123456789">Telefon: 123 456 789</p>
+            <p href="mailto:biuro@kolorowe.gda.pl">Email: biuro@kolorowe.gda.pl</p>
+        </div>
+    </body>
 </template>
 
 <script>
@@ -60,14 +63,14 @@ export default {
 };
 </script>
 
-<style scoped>
+<!-- <style scoped>
 body {
-    background-color: #4CAF50;
     margin: 0 auto;
     padding: 0;
     color: #333;
     width: 80%;
     box-sizing: border-box;
+    background-color: #4CAF50;
 }
 
 div {
@@ -94,4 +97,4 @@ p {
     margin: 5px 0;
     color: #555;
 }
-</style>
+</style> -->

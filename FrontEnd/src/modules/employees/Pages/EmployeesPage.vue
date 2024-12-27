@@ -115,7 +115,7 @@ export default {
 
 </script>
 
-<style scoped>
+<!-- <style scoped>
 body {
     background-color: #4CAF50;
     margin: 0 auto;
@@ -149,4 +149,4 @@ p {
     margin: 5px 0;
     color: #555;
 }
-</style>
+</style> -->

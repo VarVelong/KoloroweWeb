@@ -92,7 +92,7 @@ export default {
 </script>
 
 <style scoped>
-#error {
+/* #error {
     color: red;
 }
 
@@ -148,14 +148,14 @@ p {
     line-height: 1.5;
     margin: 5px 0;
     color: #555;
-}
+} */
 
 .image {
     width: 100px;
     height: 100px;
 }
 
-strong {
+/* strong {
     font-weight: bold !important
-}
+} */
 </style>

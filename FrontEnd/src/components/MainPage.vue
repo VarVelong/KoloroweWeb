@@ -1,26 +1,22 @@
 <template>
     <body>
-
         <div class="main">
             <h1>Witamy w kolorowym przedszkolu</h1>
             <button id="a-button" @click="$router.push({ name: 'offer'})">Zobacz naszą ofertę</button>
             <button id="a-button" @click="$router.push({ name: 'contact'})">Umów wizytę</button>
         </div>
-
-
-
     </body>
 </template>
 
 <style scoped>
-body {
+/* body {
     background-color:#4CAF50;
     margin: 0 auto; 
     padding: 0;
     color: #333;
     width: 90%;
     box-sizing: border-box; 
-}
+} */
 
 div {
     background-color: #FFF9C4; 
@@ -33,7 +29,7 @@ div {
     text-align: center; 
 }
 
-h2 {
+/* h2 {
     color: #FF6F61; 
     font-size: 2em;
     margin-bottom: 10px;
@@ -45,6 +41,7 @@ p {
     line-height: 1.5;
     margin: 5px 0;
     color: #555; 
-}
+} */
 </style>
+
 

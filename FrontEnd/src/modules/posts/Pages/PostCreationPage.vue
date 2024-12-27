@@ -1,5 +1,4 @@
 <template>
-
     <body>
 
         <div class="post-container">

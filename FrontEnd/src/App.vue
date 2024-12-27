@@ -30,10 +30,9 @@ import { RouterLink, RouterView } from 'vue-router'
 
   <footer>
     <p>&copy; 2024 Kolorowe Przedszkole.</p>
-    <div>
+    <div id="clear">
       <button @click="$router.push({ name: 'login' })">Login</button>
-      <button @click="$router.push({ name: 'register' })">Register</button>
-      <button @click="$router.push({ name: 'adminpage'});">AdminPage</button>
+      <button @click="$router.push({ name: 'adminpage' });">AdminPage</button>
       <button v-if="this.$isLoggedIn()" @click="logout"> Logout </button>
     </div>
   </footer>
@@ -64,10 +63,19 @@ export default {
 
 <style scoped>
 #app {
-  padding-top: 10%
-  ;
+  padding-top: 10%;
   padding: 0px !important;
   max-width: 100%;
+}
+
+#clear {
+  background: none;
+  border: 0px;
+  border-radius: 0px;
+  padding: 0px;
+  margin: 0px;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  text-align: center;
 }
 
 header {
@@ -86,7 +94,7 @@ header {
   height: 10%;
 }
 
-nav ul {
+/* nav ul {
   list-style: none;
   display: flex;
   gap: 15px;
@@ -95,18 +103,18 @@ nav ul {
 nav a {
   color: white;
   text-decoration: none;
-}
+} */
 
 div {
   padding: 20px;
   margin: 10px;
 }
 
-.program {
+/* .program {
   border: 1px solid #ccc;
   padding: 10px;
   margin: 10px 0;
-}
+} */
 
 footer {
   background: #333;
@@ -117,7 +125,6 @@ footer {
   align-items: center;
   width: 100%;
   box-sizing: border-box;
-  position: fixed;
   bottom: 0;
   right: 0;
   height: 10%;

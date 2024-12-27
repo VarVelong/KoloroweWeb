@@ -63,7 +63,7 @@ export default {
 
 </script>
 
-<style scoped>
+<!-- <style scoped>
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -133,4 +133,4 @@ body {
 .post-button:hover {
     background-color: #0056b3;
 }
-</style>
+</style> -->

@@ -4,17 +4,22 @@
             <h2>Opcje ofert</h2>
             <button @click="$router.push({ name: 'offercreationpage'})">Stwórz Ofertę</button>
             <button @click="$router.push({ name: 'offer'})">Zobacz Oferty</button>
+            <p>instrukcja</p>
         </div>
         <div>
             <h2>Opcje aktualności</h2>
             <button @click="$router.push({ name: 'postcreation'})">Stwórz Post</button>
+            <p>instrukcja</p>
         </div>
         <div>
             <h2>Opcje Galerii</h2>
             <button @click="$router.push({ name: 'postcreation'})">Stwórz Post</button>
+            <p>instrukcja</p>
         </div>
         <div>
-            <button @click="$router.push({ name: 'postcreation'})">Stwórz Post</button>
+            <h2>Zarejestruj nowe konto</h2>
+            <button @click="$router.push({ name: 'register' })">Register</button>
+            <p>instrukcja</p>
         </div>
     </body>
 </template>
@@ -24,7 +29,7 @@
 
 </script>
 
-<style scoped>
+<!-- <style scoped>
 body {
     background-color: #4CAF50;
     margin: 0 auto;
@@ -45,4 +50,4 @@ div {
     text-align: center;
 }
 
-</style>
+</style> -->
