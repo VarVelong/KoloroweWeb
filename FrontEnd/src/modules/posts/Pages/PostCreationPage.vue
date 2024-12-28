@@ -61,18 +61,6 @@ export default {
 </script>
 
 <style scoped>
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    background-color: #4CAF50;
-    display: flex;
-    flex-direction: column;
-}
-
 .post-container {
     background: #2e2b2b;
     padding: 20px;

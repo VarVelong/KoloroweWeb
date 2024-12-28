@@ -72,17 +72,12 @@ export default {
 
 </script>
 
-<!-- <style scoped>
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    background-color: #4CAF50;
-    display: flex;
-    flex-direction: column;
+<style scoped>
+h2 {
+  color: #FF6F61; 
+  font-size: 2em;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px #FFD9E8;
 }
 
 .post-container {
@@ -99,33 +94,6 @@ body {
     color: #ffffff;
 }
 
-.text-box {
-    width: 100%;
-    min-height: 150px;
-    padding: 10px;
-    border: 1px solid #ec0303;
-    border-radius: 5px;
-    resize: vertical;
-    font-size: 16px;
-}
-
-.upload-section {
-    display: flex;
-    align-items: center;
-    margin-top: 15px;
-}
-
-.upload-icon {
-    font-size: 24px;
-    color: #007bff;
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-.file-input {
-    display: none;
-}
-
 .post-button {
     display: block;
     width: 100%;
@@ -138,8 +106,4 @@ body {
     font-size: 16px;
     margin-top: 20px;
 }
-
-.post-button:hover {
-    background-color: #0056b3;
-}
-</style> -->
+</style>

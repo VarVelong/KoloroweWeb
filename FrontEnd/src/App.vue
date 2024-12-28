@@ -14,6 +14,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <button @click="$router.push('/')" class="image-button">
       <img src="../src/assets/logo.png" />
     </button>
+    <div v-if="this.$isLoggedIn()"> Zalogowano jako Administrator.</div>
     <nav>
       <ul>
         <button @click="$router.push({ name: 'about' })">O nas</button>
@@ -52,6 +53,7 @@ export default {
       try {
         localStorage.removeItem('user');
         console.log('User has been logged out.');
+        this.$router.go();
       } catch (error) {
         console.error('Error during logout:', error);
       }

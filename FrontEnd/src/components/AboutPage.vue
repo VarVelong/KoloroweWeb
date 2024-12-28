@@ -27,10 +27,9 @@ export default {
 };
 </script>
 
-
 <style>
 #map, #map div{
-    height: 500px;
+  height: 500px;
     width: 500px;
     background-color: 0;
     background: none;
@@ -41,8 +40,10 @@ export default {
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
     text-align: center;
 }
+</style>
 
-/* div {
+<style scoped>
+div {
   background-color: #FFF9C4; 
   border: 3px solid #FFD54F;
   border-radius: 15px;
@@ -50,5 +51,19 @@ export default {
   margin: 30px auto;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center; 
-} */
+}
+
+h2 {
+  color: #FF6F61; 
+  font-size: 2em;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px #FFD9E8;
+}
+
+p {
+  font-size: 1.2em;
+  line-height: 1.5;
+  margin: 5px 0;
+  color: #555; 
+}
 </style>

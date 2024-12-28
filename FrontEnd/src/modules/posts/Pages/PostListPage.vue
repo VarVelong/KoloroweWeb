@@ -5,13 +5,16 @@
         <div>
             <div v-if="loading">Loading posts</div>
             <div v-if="error" class="error">{{ error }}</div>
-            <ul v-if="posts.length">
-                <li v-for="post in posts" :key="post.id">
-                    <h2 v-html="cleanHtml(post.content)"></h2>
-                    <img v-if="post.image !== null" :src="post.image" alt="Image" class="image" />
-                    <button @click="goToPostDetails(post.id)">View Details</button>
-                    <button v-if="this.$isLoggedIn()" @click="deletePost">Delete Post</button>
-                    <button v-if="this.$isLoggedIn()" @click="goToPostEdit(post.id)">PostEdit</button>
+            <ul v-if="posts.length" class="post-list">
+                <li v-for="post in posts" :key="post.id" class="post-item">
+                    <h2 v-html="cleanHtml(post.content)" class="post-content"></h2>
+                    <img v-if="post.image !== null" :src="post.image" alt="Image" class="post-image" />
+
+                    <div class="button-group">
+                        <button v-if="this.$isLoggedIn()" @click="deletePost(post.id)"><i class="fas fa-trash-alt"></i></button>
+                        <button v-if="this.$isLoggedIn()" @click="goToPostEdit(post.id)"><i class="fas fa-edit"></i></button>
+                        <button @click="goToPostDetails(post.id)">View Details</button>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -67,6 +70,20 @@ export default {
                 })
         },
 
+        async deletePost(id) {
+            const confirmation = confirm("Are you sure you want to delete this post?");
+            if (confirmation) {
+                PostService.deletePost(id)
+                    .then((data) => {
+                        alert("Post deleted successfully.");
+                        this.$router.go();
+                    })
+                    .catch((error) => {
+                        alert(`Failed to delete post: ${error.message}`);
+                    })
+            }
+        },
+
         changePage(page) {
             if (page >= 1 && page <= this.totalPages) {
                 this.currentPage = page;
@@ -83,7 +100,7 @@ export default {
         goToPostDetails(id) {
             this.$router.push(`/post/${id}`);
         },
-        
+
         goToPostEdit(id) {
             this.$router.push(`/posteditingpage/${id}`);
         }
@@ -92,8 +109,14 @@ export default {
 </script>
 
 <style scoped>
-/* #error {
-    color: red;
+div {
+    background-color: #FFF9C4;
+    border: 3px solid #FFD54F;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 30px auto;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 ul {
@@ -102,60 +125,70 @@ ul {
 }
 
 li {
-    border: 1px solid #000000;
+    border: 2px dotted #000000;
     padding: 15px;
     margin: 10px 0;
     border-radius: 5px;
 }
 
-h1 {
-    background-color: #4CAF50;
-    padding: 20px;
-    margin: 0px auto;
-    width: 80%;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #4CAF50;
-    margin: 0 auto;
-    padding: 0;
-    color: #333;
-    width: 80%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-}
-
-div {
-    border-radius: 15px;
-    padding: 20px;
-    margin: 30px auto;
-    max-width: 600px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    background-color: #FFF9C4;
-}
-
 h2 {
+    color: #FF6F61;
     font-size: 2em;
     margin-bottom: 10px;
     text-shadow: 1px 1px #FFD9E8;
 }
-
-p {
-    font-size: 1.2em;
-    line-height: 1.5;
-    margin: 5px 0;
-    color: #555;
-} */
 
 .image {
     width: 100px;
     height: 100px;
 }
 
-/* strong {
-    font-weight: bold !important
-} */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.pagination span {
+    flex: 1;
+    text-align: center;
+}
+
+.post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.post-content {
+    max-width: 500px;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+.post-image {
+    max-width: 100%;
+    width: 500px;
+    height: auto;
+    display: block;
+    margin: 10px 0;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
 </style>

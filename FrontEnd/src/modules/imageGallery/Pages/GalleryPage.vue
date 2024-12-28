@@ -27,7 +27,7 @@
             <button @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages">Następna</button>
         </div>
 
-        <ImageModal v-model="imageModal" :images="images" :index="selectedImageIndex"></ImageModal>
+        <ImageModal v-model="imageModal" :initialImages="images" :initialIndex="selectedImageIndex" :initialPage="currentPage" :totalPages="totalPages"></ImageModal>
 
     </body>
 </template>
@@ -44,7 +44,7 @@ export default {
             loading: false,
             error: null,
             currentPage: 1,
-            pageSize: 5,
+            pageSize: 3,
             totalPages: 0,
             uploadedImage: null,
             imageModal: false,

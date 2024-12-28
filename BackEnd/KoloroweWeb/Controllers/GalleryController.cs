@@ -22,14 +22,16 @@ namespace KoloroweWeb.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<PaginatedResponse<ImagesResponseDTO>>> Get(int page = 1, int pageSize = 5)
+        public async Task<ActionResult<PaginatedResponse<ImagesResponseDTO>>> Get(int page = 1, int pageSize = 3)
         {
             if (page < 1 || pageSize < 1)
             {
                 return BadRequest("Page and pageSize must be greater than zero.");
             }
 
-            var totalCount = await kolorowewebContext.Images.CountAsync();
+            var totalCount = await kolorowewebContext.Images
+                .Where(i => i.PostId == null)
+                .CountAsync();
 
             var images = await kolorowewebContext.Images
                 .Where(i => i.PostId == null)
