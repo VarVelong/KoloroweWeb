@@ -10,21 +10,24 @@ import { RouterLink, RouterView } from 'vue-router'
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
+  <div v-if="this.$isLoggedIn()" class="status">Zalogowano jako Administrator.</div>
+
   <header>
-    <button @click="$router.push('/')" class="image-button">
-      <img src="../src/assets/logo.png" />
-    </button>
-    <div v-if="this.$isLoggedIn()"> Zalogowano jako Administrator.</div>
-    <nav>
-      <ul>
-        <button @click="$router.push({ name: 'about' })">O nas</button>
-        <button @click="$router.push({ name: 'post-list' })">Aktualności</button>
-        <button @click="$router.push({ name: 'offer' })">Oferta</button>
-        <button @click="$router.push({ name: 'employees' })">Kadra</button>
-        <button @click="$router.push({ name: 'contact' })">Kontakt</button>
-        <button @click="$router.push({ name: 'gallery' })">Galeria</button>
-      </ul>
-    </nav>
+    <div class="header-content">
+      <button @click="$router.push('/')" class="image-button">
+        <img src="../src/assets/logo.png" />
+      </button>
+      <nav>
+        <ul>
+          <button @click="$router.push({ name: 'about' })">O nas</button>
+          <button @click="$router.push({ name: 'post-list' })">Aktualności</button>
+          <button @click="$router.push({ name: 'offer' })">Oferta</button>
+          <button @click="$router.push({ name: 'employees' })">Kadra</button>
+          <button @click="$router.push({ name: 'contact' })">Kontakt</button>
+          <button @click="$router.push({ name: 'gallery' })">Galeria</button>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <RouterView />
@@ -80,62 +83,57 @@ export default {
   text-align: center;
 }
 
-header {
-  background: #388388;
-  border-bottom: 5px solid #4ABFBD;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  height: 10%;
-}
-
-/* nav ul {
-  list-style: none;
-  display: flex;
-  gap: 15px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-} */
-
 div {
   padding: 20px;
   margin: 10px;
 }
 
-/* .program {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px 0;
-} */
-
-footer {
-  background: #333;
-  border-top: 5px solid #292929;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  box-sizing: border-box;
-  bottom: 0;
-  right: 0;
-  height: 10%;
-}
-
-.image-button {
+/* .image-button {
   border: none;
   background: none;
   padding: 0;
   cursor: pointer;
+} */
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-button img {
+  max-height: 75px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+nav ul {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  background: none;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  text-decoration: underline;
+}
+
+.status {
+  margin-top: 10px;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  justify-content: left;
+  bottom: 0;
+  left: 0;
 }
 </style>

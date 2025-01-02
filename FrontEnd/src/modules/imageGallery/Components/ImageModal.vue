@@ -74,7 +74,7 @@ export default {
 
     methods: {
         changeImage() {
-            debugger;
+
             if (this.currentIndex >= 0 && this.currentIndex < this.currentImages.length) {
                 return;
             }
@@ -107,7 +107,7 @@ export default {
 
         deleteImage(id) {
             const confirmation = confirm("Are you sure you want to delete this post?");
-            debugger;
+
             if (confirmation) {
                 GalleryService.deleteImage(id)
                 .then((data) => {

@@ -34,14 +34,14 @@ public partial class KolorowewebContext : DbContext
 
             entity.Property(e => e.Id).HasColumnType("int(11)");
             entity.Property(e => e.Content).HasColumnType("text");
+            entity.Property(e => e.Title).HasColumnType("text");
             entity.Property(e => e.Date).HasColumnType("date");
 
-            // Configure the relationship with Images
-            entity.HasMany(e => e.Images) // Navigation property for related Images
-                .WithOne(i => i.Post)    // Reference to the parent Post
-                .HasForeignKey(i => i.PostId) // FK in Images table
-                .HasConstraintName("ImagesPostsFK") // Optional: Name the foreign key constraint
-                .OnDelete(DeleteBehavior.Cascade); // Optional: Cascade delete related images when a post is deleted
+            entity.HasMany(e => e.Images) 
+                .WithOne(i => i.Post)    
+                .HasForeignKey(i => i.PostId) 
+                .HasConstraintName("ImagesPostsFK") 
+                .OnDelete(DeleteBehavior.Cascade); 
         });
 
         modelBuilder.Entity<Offers>(entity =>

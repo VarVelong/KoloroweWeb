@@ -72,7 +72,6 @@ export default {
     },
 
     async deleteImage(id){
-        debugger;
         return fetch(`${link}/${id}`, {
             method: "DELETE",
             headers: {

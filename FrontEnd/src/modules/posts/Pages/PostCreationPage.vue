@@ -1,21 +1,27 @@
 <template>
-    <body>
 
-        <div class="post-container">
-            <h2>Create New Post</h2>
-            
-            <div>
-                <vue-editor v-model="post.content"></vue-editor>
+    <body>
+        <div id="middle-block">
+            <div class="post-container">
+                <h2>Create New Post</h2>
+
+                <div>
+                    <label for="title">Tytuł:</label>
+                    <input type="title" v-model="post.title" />
+                </div>
+
+                <div>
+                    <vue-editor v-model="post.content"></vue-editor>
+                </div>
+
+                <button class="post-button" @click="savePost">Post</button>
             </div>
 
-            <button class="post-button" @click="savePost">Post</button>
+            <div>
+                <label for="image" lass="upload-icon">📷</label>
+                <input type="file" @change="onFileChange" />
+            </div>
         </div>
-
-        <div>
-            <label for="image" lass="upload-icon">📷</label>
-            <input type="file" @change="onFileChange" />
-        </div>
-
     </body>
 </template>
 
@@ -29,6 +35,7 @@ export default {
             post: {
                 date: new Date(),
                 content: "",
+                title: "",
                 image: null
             }
         }
@@ -43,6 +50,7 @@ export default {
             PostService.createPost(this.post)
                 .then((post) => {
                     alert("post is added")
+                    this.$router.push({ name: 'post-list' })
                 })
                 .catch((error) => {
                     alert(`error, potst not added ${error}`)
@@ -61,6 +69,19 @@ export default {
 </script>
 
 <style scoped>
+#middle-block {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    margin-top: 125px;
+    border-radius: 0px;
+}
+
 .post-container {
     background: #2e2b2b;
     padding: 20px;

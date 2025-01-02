@@ -1,26 +1,28 @@
 <template>
 
     <body>
-        <div>
-            <h1>Contact Us</h1>
-            <form @submit.prevent="sendEmail">
-                <div>
-                    <label for="subject">Temat:</label>
-                    <input v-model="subject" id="subject" required />
-                </div>
-                <div>
-                    <label for="message">Wiadomość:</label>
-                    <textarea v-model="message" id="message" required></textarea>
-                </div>
-                <button type="submit">Wyślij</button>
-            </form>
-            <p v-if="responseMessage">{{ responseMessage }}</p>
-        </div>
+        <div id="middle-block">
+            <div>
+                <h1>Contact Us</h1>
+                <form @submit.prevent="sendEmail">
+                    <div>
+                        <label for="subject">Temat:</label>
+                        <input v-model="subject" id="subject" required />
+                    </div>
+                    <div>
+                        <label for="message">Wiadomość:</label>
+                        <textarea v-model="message" id="message" required></textarea>
+                    </div>
+                    <button type="submit">Wyślij</button>
+                </form>
+                <p v-if="responseMessage">{{ responseMessage }}</p>
+            </div>
 
-        <div>
-            <h2>Kontakt</h2>
-            <p href="tel:123456789">Telefon: 123 456 789</p>
-            <p href="mailto:biuro@kolorowe.gda.pl">Email: biuro@kolorowe.gda.pl</p>
+            <div>
+                <h2>Kontakt</h2>
+                <p href="tel:123456789">Telefon: 123 456 789</p>
+                <p href="mailto:biuro@kolorowe.gda.pl">Email: biuro@kolorowe.gda.pl</p>
+            </div>
         </div>
     </body>
 </template>
@@ -64,27 +66,40 @@ export default {
 </script>
 
 <style scoped>
+#middle-block {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  margin-top: 125px;
+  border-radius: 0px;
+}
+
 div {
-  background-color: #FFF9C4; 
-  border: 3px solid #FFD54F;
-  border-radius: 15px;
-  padding: 20px;
-  margin: 30px auto;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center; 
+    background-color: #FFF9C4;
+    border: 3px solid #FFD54F;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 30px auto;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 h2 {
-  color: #FF6F61; 
-  font-size: 2em;
-  margin-bottom: 10px;
-  text-shadow: 1px 1px #FFD9E8;
+    color: #FF6F61;
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px #FFD9E8;
 }
 
 p {
-  font-size: 1.2em;
-  line-height: 1.5;
-  margin: 5px 0;
-  color: #555; 
+    font-size: 1.2em;
+    line-height: 1.5;
+    margin: 5px 0;
+    color: #555;
 }
 </style>

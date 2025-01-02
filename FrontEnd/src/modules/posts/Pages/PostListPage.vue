@@ -2,27 +2,32 @@
     <h1>Aktualności</h1>
 
     <body>
-        <div>
-            <div v-if="loading">Loading posts</div>
-            <div v-if="error" class="error">{{ error }}</div>
-            <ul v-if="posts.length" class="post-list">
-                <li v-for="post in posts" :key="post.id" class="post-item">
-                    <h2 v-html="cleanHtml(post.content)" class="post-content"></h2>
-                    <img v-if="post.image !== null" :src="post.image" alt="Image" class="post-image" />
+        <div id="middle-block">
+            <div>
+                <div v-if="loading">Loading posts</div>
+                <div v-if="error" class="error">{{ error }}</div>
+                <ul v-if="posts.length" class="post-list">
+                    <li v-for="post in posts" :key="post.id" class="post-item">
+                        <h1>{{ post.title }}</h1>
+                        <h2 v-html="cleanHtml(post.content)" class="post-content"></h2>
+                        <img v-if="post.image !== null" :src="post.image" alt="Image" class="post-image" />
 
-                    <div class="button-group">
-                        <button v-if="this.$isLoggedIn()" @click="deletePost(post.id)"><i class="fas fa-trash-alt"></i></button>
-                        <button v-if="this.$isLoggedIn()" @click="goToPostEdit(post.id)"><i class="fas fa-edit"></i></button>
-                        <button @click="goToPostDetails(post.id)">View Details</button>
-                    </div>
-                </li>
-            </ul>
-        </div>
+                        <div class="button-group">
+                            <button v-if="this.$isLoggedIn()" @click="deletePost(post.id)" class="btn-left"><i
+                                    class="fas fa-trash-alt"></i></button>
+                            <button @click="goToPostDetails(post.id)" class="btn-middle">Czytaj dalej...</button>
+                            <button v-if="this.$isLoggedIn()" @click="goToPostEdit(post.id)" class="btn-right"><i
+                                    class="fas fa-edit"></i></button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
-        <div v-if="totalPages > 1" class="pagination">
-            <button @click="changePage(currentPage - 1)" :disabled="currentPage === 1">Previous</button>
-            <span>Page {{ currentPage }} of {{ totalPages }}</span>
-            <button @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages">Next</button>
+            <div v-if="totalPages > 1" id="pagination">
+                <button @click="changePage(currentPage - 1)" :disabled="currentPage === 1">Previous</button>
+                <span>Page {{ currentPage }} of {{ totalPages }}</span>
+                <button @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages">Next</button>
+            </div>
         </div>
     </body>
 </template>
@@ -109,6 +114,18 @@ export default {
 </script>
 
 <style scoped>
+#middle-block {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  margin-top: 125px;
+}
+
 div {
     background-color: #FFF9C4;
     border: 3px solid #FFD54F;
@@ -143,14 +160,14 @@ h2 {
     height: 100px;
 }
 
-.pagination {
+#pagination {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
 }
 
-.pagination span {
+#pagination span {
     flex: 1;
     text-align: center;
 }
@@ -185,10 +202,45 @@ h2 {
     margin: 10px 0;
 }
 
-.button-group {
+/* .button-group {
     display: flex;
     gap: 10px;
     justify-content: flex-start;
     margin-top: 10px;
+}
+
+.btn-left {
+    text-align: left;
+}
+
+.btn-middle {
+    text-align: center;
+}
+
+.btn-right {
+    text-align: right;
+} */
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-left {
+    margin-right: auto;
+}
+
+.btn-middle {
+    margin: 0 auto;
+}
+
+.btn-right {
+    margin-left: auto;
+}
+
+.button:hover {
+    background-color: #0056b3;
 }
 </style>

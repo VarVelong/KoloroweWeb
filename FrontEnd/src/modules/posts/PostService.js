@@ -16,6 +16,7 @@ export default {
         const formData = new FormData();
         formData.append('date', data.date.toISOString());
         formData.append('content', data.content);
+        formData.append('title', data.title);
         formData.append('image', data.image);
 
         return fetch(link, {

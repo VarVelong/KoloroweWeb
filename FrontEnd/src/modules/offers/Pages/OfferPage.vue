@@ -1,12 +1,15 @@
 <template>
 
     <body>
-        <ul v-if="offers.length">
-            <li v-for="offer in offers" :key="offers.id">
-                <h2>{{offer.id}}</h2>
-                <button v-if="this.$isLoggedIn()" @click="deleteOffer(offer.id)">Usuń Ofertę</button>
-            </li>
-        </ul>
+        <div id="middle-block">
+            <h1>Zobacz naszą ofertę!</h1>
+            <ul v-if="offers.length">
+                <li v-for="offer in offers" :key="offers.id">
+                    <h2>{{ offer.content }}</h2>
+                    <button v-if="this.$isLoggedIn()" @click="deleteOffer(offer.id)">Usuń Ofertę</button>
+                </li>
+            </ul>
+        </div>
     </body>
 </template>
 
@@ -45,18 +48,32 @@ export default {
             const confirmation = confirm("Are you sure you want to delete this post?");
             if (confirmation) {
                 OfferService.deleteOffer(id)
-                .then((data) => {
-                    alert("Post deleted successfully.");
-                })
-                .catch((error) => {
-                    alert(`Failed to delete post: ${error.message}`);
-                })
+                    .then((data) => {
+                        alert("Post deleted successfully.");
+                    })
+                    .catch((error) => {
+                        alert(`Failed to delete post: ${error.message}`);
+                    })
             }
         }
     }
 }
 
 </script>
+
+<style scoped>
+#middle-block {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    margin-top: 150px;
+}
+</style>
 
 <!-- <style scoped>
 body {

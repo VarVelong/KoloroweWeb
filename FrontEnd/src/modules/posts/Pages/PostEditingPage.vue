@@ -1,12 +1,14 @@
 <template>
 
     <body>
-        <div class="post-container">
-            <h2>Edit Post</h2>
-            <div>
-                <vue-editor v-model="post.content"></vue-editor>
+        <div id="middle-block">
+            <div class="post-container">
+                <h2>Edit Post</h2>
+                <div>
+                    <vue-editor v-model="post.content"></vue-editor>
+                </div>
+                <button class="post-button" @click="savePost">Post</button>
             </div>
-            <button class="post-button" @click="savePost">Post</button>
         </div>
     </body>
 </template>
@@ -50,7 +52,7 @@ export default {
                     this.loading = false;
                 })
         },
-        
+
         async savePost() {
             this.loading = true;
             this.error = null;
@@ -73,11 +75,23 @@ export default {
 </script>
 
 <style scoped>
+#middle-block {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  margin-top: 125px;
+}
+
 h2 {
-  color: #FF6F61; 
-  font-size: 2em;
-  margin-bottom: 10px;
-  text-shadow: 1px 1px #FFD9E8;
+    color: #FF6F61;
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px #FFD9E8;
 }
 
 .post-container {

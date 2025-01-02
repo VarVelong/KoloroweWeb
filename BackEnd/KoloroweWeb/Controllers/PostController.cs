@@ -38,10 +38,11 @@ namespace KoloroweWeb.Controllers
                 {
                     Id = s.Id,
                     Date = s.Date,
+                    Title = s.Title,
                     Content = s.Content,
                     Image = s.Images != null && s.Images.Any()
                             ? s.Images
-                                .Where(img => img.PostId == s.Id) // Filter images for this post
+                                .Where(img => img.PostId == s.Id)
                                 .Select(img => $"{Request.Scheme}://{Request.Host}/{img.FileName}")
                                 .FirstOrDefault()
                             : null
@@ -69,13 +70,11 @@ namespace KoloroweWeb.Controllers
                         Id = s.Id,
                         Date = s.Date,
                         Content = s.Content,
-                        //Image = !string.IsNullOrEmpty(s.Image)
-                        //    ? $"{Request.Scheme}://{Request.Host}/{s.Image}"
-                        //    : null
+                        Title = s.Title,
 
                         Image = s.Images != null && s.Images.Any()
                             ? s.Images
-                                .Where(img => img.PostId == s.Id) // Filter images for this post
+                                .Where(img => img.PostId == s.Id) 
                                 .Select(img => $"{Request.Scheme}://{Request.Host}/{img.FileName}")
                                 .FirstOrDefault()
                             : null
@@ -92,7 +91,8 @@ namespace KoloroweWeb.Controllers
             {
                 Id = post.Id,
                 Date = post.Date,
-                Content = post.Content
+                Content = post.Content,
+                Title = post.Title
             };
 
             kolorowewebContext.Add(postEntity);
@@ -114,12 +114,12 @@ namespace KoloroweWeb.Controllers
 
                 var imageEntity = new Images
                 {
-                    PostId = postEntity.Id, // Use the generated Post ID as the FK
+                    PostId = postEntity.Id, 
                     FileName = $"/{ImageDirectory}/{post.Image.FileName}"
                 };
 
                 kolorowewebContext.Images.Add(imageEntity);
-                await kolorowewebContext.SaveChangesAsync(); // Save the image
+                await kolorowewebContext.SaveChangesAsync();
             }
 
             return HttpStatusCode.Created;
