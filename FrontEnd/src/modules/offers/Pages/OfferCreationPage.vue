@@ -1,5 +1,4 @@
 <template>
-
     <body>
         <div id="middle-block">
             <div class="post-container">

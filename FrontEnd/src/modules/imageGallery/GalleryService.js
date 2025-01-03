@@ -33,29 +33,29 @@ export default {
         });
     },
 
-    createPost(data) {
-        const formData = new FormData();
-        formData.append('date', data.date.toISOString());
-        formData.append('content', data.content);
-        formData.append('image', data.image);
+    // createPost(data) {
+    //     const formData = new FormData();
+    //     formData.append('date', data.date.toISOString());
+    //     formData.append('content', data.content);
+    //     formData.append('image', data.image);
 
-        return fetch(link, {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json', // Keep this for the response type
-                Authorization: `Bearer ${localStorage.getItem('user')}`, // Authentication header
-            },
-            body: formData, // FormData automatically sets multipart/form-data
-        })
-            .then(response => {
-                if (response.status === 401) {
-                    throw new Error("Unauthorized: Please check your login credentials or token.");
-                } else if (!response.ok) {
-                    throw new Error(`Error: ${response.statusText}`);
-                }
-                return response.json();
-            });
-    },
+    //     return fetch(link, {
+    //         method: "POST",
+    //         headers: {
+    //             'Accept': 'application/json', // Keep this for the response type
+    //             Authorization: `Bearer ${localStorage.getItem('user')}`, // Authentication header
+    //         },
+    //         body: formData, // FormData automatically sets multipart/form-data
+    //     })
+    //         .then(response => {
+    //             if (response.status === 401) {
+    //                 throw new Error("Unauthorized: Please check your login credentials or token.");
+    //             } else if (!response.ok) {
+    //                 throw new Error(`Error: ${response.statusText}`);
+    //             }
+    //             return response.json();
+    //         });
+    // },
 
     async fetchImages(page) {
         let fullLink = page ? `${link}/?page=${page}` : `${link}/`;
