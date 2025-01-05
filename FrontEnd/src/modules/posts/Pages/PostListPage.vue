@@ -1,35 +1,30 @@
 <template>
-    <h1>Aktualności</h1>
+    <h1 class="page-title">Aktualności</h1>
 
-    <body>
-        <div id="middle-block">
-            <div>
-                <div v-if="loading">Loading posts</div>
-                <div v-if="error" class="error">{{ error }}</div>
-                <ul v-if="posts.length" class="post-list">
-                    <li v-for="post in posts" :key="post.id" class="post-item">
-                        <h1>{{ post.title }}</h1>
-                        <h2 v-html="cleanHtml(post.content)" class="post-content"></h2>
-                        <img v-if="post.image !== null" :src="post.image" alt="Image" class="post-image" />
+    <div>
+        <div v-if="loading">Loading posts</div>
+        <div v-if="error" class="error">{{ error }}</div>
+        <ul v-if="posts.length" class="post-list">
+            <li v-for="post in posts" :key="post.id" class="post-item">
+                <h1>{{ post.title }}</h1>
+                <img v-if="post.image !== null" :src="post.image" alt="Image" class="post-image" />
+                <p v-html="cleanHtml(post.content)" class="post-text"></p>
 
-                        <div class="button-group">
-                            <button v-if="this.$isLoggedIn()" @click="deletePost(post.id)" class="btn-left"><i
-                                    class="fas fa-trash-alt"></i></button>
-                            <button @click="goToPostDetails(post.id)" class="btn-middle">Czytaj dalej...</button>
-                            <button v-if="this.$isLoggedIn()" @click="goToPostEdit(post.id)" class="btn-right"><i
-                                    class="fas fa-edit"></i></button>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                <div class="button-group">
+                    <button class="btn btn-danger fas fa-trash-alt" v-if="this.$isLoggedIn()" @click="deletePost(post.id)" id="btn-left"></button>
+                    <button class="button-orange" @click="goToPostDetails(post.id)" id="btn-middle">Czytaj dalej...</button>
+                    <button class="btn btn-warning fas fa-edit" v-if="this.$isLoggedIn()" @click="goToPostEdit(post.id)" id="btn-right"></button>
+                </div>
+            </li>
+        </ul>
+    </div>
 
-            <div v-if="totalPages > 1" id="pagination">
-                <button @click="changePage(currentPage - 1)" :disabled="currentPage === 1">Previous</button>
-                <span>Page {{ currentPage }} of {{ totalPages }}</span>
-                <button @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages">Next</button>
-            </div>
-        </div>
-    </body>
+    <div v-if="totalPages > 1" id="pagination">
+        <button class="button-orange" @click="changePage(currentPage - 1)" :disabled="currentPage === 1">Poprzednia strona.</button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button class="button-orange" @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages">Następna strona.</button>
+    </div>
+
 </template>
 
 <script>
@@ -93,6 +88,10 @@ export default {
             if (page >= 1 && page <= this.totalPages) {
                 this.currentPage = page;
                 this.fetchPosts(page);
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                })
             }
         },
 
@@ -114,25 +113,11 @@ export default {
 </script>
 
 <style scoped>
-#middle-block {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 700px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-  margin-top: 125px;
-}
-
 div {
-    background-color: #FFF9C4;
-    border: 3px solid #FFD54F;
-    border-radius: 15px;
+    width: 80%;
     padding: 20px;
     margin: 30px auto;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
     text-align: center;
 }
 
@@ -148,23 +133,23 @@ li {
     border-radius: 5px;
 }
 
-h2 {
-    color: #FF6F61;
-    font-size: 2em;
-    margin-bottom: 10px;
-    text-shadow: 1px 1px #FFD9E8;
+#title{
+    /* display: flex;
+    align-items: center;
+    justify-content: space-between; */
+    text-align: center;
+    margin-top: 25px;
 }
 
-.image {
-    width: 100px;
-    height: 100px;
-}
-
+/* no clue how to make nucer */
 #pagination {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
+    margin-bottom: 100px;
+    background-color: #ddd;
+    border-radius: 15px;
 }
 
 #pagination span {
@@ -176,6 +161,10 @@ h2 {
     list-style: none;
     padding: 0;
     margin: 0;
+    border: 3px solid black;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 25px;
 }
 
 .post-item {
@@ -183,24 +172,30 @@ h2 {
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 5px;
-    background-color: #ffffff;
+    background-color: #ddd;
     border-radius: 8px;
+
 }
 
 .post-content {
-    max-width: 500px;
+    width: 125px;
+    height: auto;
     font-size: 1.5rem;
     margin-bottom: 10px;
     color: #000000;
 }
 
 .post-image {
-    max-width: 100%;
-    width: 500px;
+    width: 300px;
     height: auto;
-    display: block;
     margin: 10px 0;
+    align-items: center;
+    justify-content: center;
+    border: #000000 3px solid;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
 }
+
 
 /* .button-group {
     display: flex;
@@ -228,19 +223,19 @@ h2 {
     gap: 10px;
 }
 
-.btn-left {
+#btn-left {
     margin-right: auto;
 }
 
-.btn-middle {
+#btn-middle {
     margin: 0 auto;
 }
 
-.btn-right {
+#btn-right {
     margin-left: auto;
 }
-
+/* 
 .button:hover {
     background-color: #0056b3;
-}
+} */
 </style>

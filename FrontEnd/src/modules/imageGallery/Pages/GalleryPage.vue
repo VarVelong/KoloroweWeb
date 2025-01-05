@@ -1,39 +1,32 @@
 <template>
+    <div>
+        <div v-if="loading">Wczytywanie Obrazów</div>
+        <div v-if="error" class="error">{{ error }}</div>
+        <!-- <i class="fa fa-window-close"></i> -->
+        <!-- <button class="btn btn-danger">123123</button> -->
 
-
-
-    <body>
-
-        <div>
-            <div v-if="loading">Wczytywanie Obrazów</div>
-            <div v-if="error" class="error">{{ error }}</div>
-            <!-- <i class="fa fa-window-close"></i> -->
-            <!-- <button class="btn btn-danger">123123</button> -->
-
-            <!-- <ul v-if="images.length">
+        <!-- <ul v-if="images.length">
                 <li v-for="(image, index) in images" :key="image.id">
                     <img v-if="image.fileName !== null" :src="image.fileName" alt="Image" class="image"
                         @click="selectedImageIndex = index; imageModal = true" />
                 </li>
             </ul> -->
 
-            <div id="absolute">
-                <h1>Galeria</h1>
-                <div class="row" v-if="images.length" id="middle-block">
-                    <div class="col-6 col-sm-4 col-md-3 mb-3" v-for="(image, index) in images" :key="image.id">
-                        <img v-if="image.fileName !== null" :src="image.fileName" alt="Image"
-                            class="img-fluid rounded shadow-sm"
-                            @click="selectedImageIndex = index; imageModal = true" />
-                    </div>
-                </div>
-                <div v-if="totalPages > 1" id="pagination">
-                    <button @click="changePage(currentPage - 1)" :disabled="currentPage === 1">Poprzednia</button>
-                    <span>Page {{ currentPage }} of {{ totalPages }}</span>
-                    <button @click="changePage(currentPage + 1)"
-                        :disabled="currentPage === totalPages">Następna</button>
+        <div id="absolute">
+            <h1 class="page-title">Galeria</h1>
+            <div class="row" v-if="images.length" id="middle-block">
+                <div class="col-6 col-sm-4 col-md-3 mb-3" v-for="(image, index) in images" :key="image.id">
+                    <img v-if="image.fileName !== null" :src="image.fileName" alt="Image"
+                        class="img-fluid rounded shadow-sm" @click="selectedImageIndex = index; imageModal = true" />
                 </div>
             </div>
-            <!-- 
+            <div v-if="totalPages > 1" id="pagination">
+                <button @click="changePage(currentPage - 1)" :disabled="currentPage === 1">Poprzednia</button>
+                <span>Page {{ currentPage }} of {{ totalPages }}</span>
+                <button @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages">Następna</button>
+            </div>
+        </div>
+        <!-- 
 
             <div>
                 <label for="image">📷</label>
@@ -43,10 +36,10 @@
 
 
 
-            <ImageModal v-model="imageModal" :initialImages="images" :initialIndex="selectedImageIndex"
-                :initialPage="currentPage" :totalPages="totalPages"></ImageModal>
-        </div>
-    </body>
+        <ImageModal v-model="imageModal" :initialImages="images" :initialIndex="selectedImageIndex"
+            :initialPage="currentPage" :totalPages="totalPages"></ImageModal>
+    </div>
+
 </template>
 
 <script>
@@ -122,42 +115,9 @@ export default {
 </script>
 
 <style scoped>
-/* h1 {
-    padding: 20px;
-}
-
-#pagination{
-    
-}
-
-#middle-block {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 700px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    margin-top: 150px;
-} */
-
 .image {
     width: 100px;
     height: 100px;
-}
-
-#middle-block {
-    position: relative; 
-    width: 700px;
-    margin: 150px auto; 
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
-    border-radius: 10px;
-    height: 80%;
-    
 }
 
 #pagination {
@@ -171,15 +131,5 @@ export default {
     flex: 1;
     text-align: center;
 }
-
-h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    margin-bottom: 20px; /* Add spacing below the heading */
-}
-
 
 </style>

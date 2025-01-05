@@ -5,41 +5,54 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-
-  <div v-if="this.$isLoggedIn()" class="status">Zalogowano jako Administrator.</div>
+  <!-- <div v-if="this.$isLoggedIn()" class="status">Zalogowano jako Administrator.</div> -->
 
   <header>
     <div class="header-content">
-      <button @click="$router.push('/')" class="image-button">
-        <img src="../src/assets/logo.png" />
-      </button>
+      <img id="logo" src="../src/assets/logo.png" @click="$router.push('/')" />
       <nav>
-        <ul>
-          <button @click="$router.push({ name: 'about' })">O nas</button>
-          <button @click="$router.push({ name: 'post-list' })">Aktualności</button>
-          <button @click="$router.push({ name: 'offer' })">Oferta</button>
-          <button @click="$router.push({ name: 'employees' })">Kadra</button>
-          <button @click="$router.push({ name: 'contact' })">Kontakt</button>
-          <button @click="$router.push({ name: 'gallery' })">Galeria</button>
-        </ul>
+        <div>
+          <button :class="{ active: $route.name === 'about' }" @click="$router.push({ name: 'about' })">
+            O nas
+          </button>
+          <button :class="{ active: $route.name === 'post-list' }" @click="$router.push({ name: 'post-list' })">
+            Aktualności
+          </button>
+          <button :class="{ active: $route.name === 'offer' }" @click="$router.push({ name: 'offer' })">
+            Oferta
+          </button>
+          <button :class="{ active: $route.name === 'employees' }" @click="$router.push({ name: 'employees' })">
+            Kadra
+          </button>
+          <button :class="{ active: $route.name === 'contact' }" @click="$router.push({ name: 'contact' })">
+            Kontakt
+          </button>
+          <button :class="{ active: $route.name === 'gallery' }" @click="$router.push({ name: 'gallery' })">
+            Galeria
+          </button>
+        </div>
       </nav>
     </div>
   </header>
 
-  <RouterView />
-
-  <footer>
-    <p>&copy; 2024 Kolorowe Przedszkole.</p>
-    <div id="clear">
-      <button @click="$router.push({ name: 'login' })">Login</button>
-      <button @click="$router.push({ name: 'adminpage' });">AdminPage</button>
-      <button v-if="this.$isLoggedIn()" @click="logout"> Logout </button>
+  <main class="row">
+    <div class="col-md-3">
+      <div id="left-background"></div>
     </div>
-  </footer>
+   
+    <div class="col-md-6">
+      <div class="col-sm-12">
+        <RouterView />
+      </div>
+      <footer class="col-md-6">
+        <p>&copy; 2024 Kolorowe Przedszkole.</p>
+        <button v-if="this.$isLoggedIn()" @click="logout">logout</button>
+      </footer>
+    </div>
+    <div class="col-md-3">
+      <div id="right-background"></div>
+    </div>
+  </main>
 
 </template>
 
@@ -67,33 +80,9 @@ export default {
 </script>
 
 <style scoped>
-#app {
-  padding-top: 10%;
-  padding: 0px !important;
-  max-width: 100%;
+footer p {
+  margin: 0;
 }
-
-#clear {
-  background: none;
-  border: 0px;
-  border-radius: 0px;
-  padding: 0px;
-  margin: 0px;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-  text-align: center;
-}
-
-div {
-  padding: 20px;
-  margin: 10px;
-}
-
-/* .image-button {
-  border: none;
-  background: none;
-  padding: 0;
-  cursor: pointer;
-} */
 
 .header-content {
   display: flex;
@@ -108,7 +97,7 @@ div {
   margin-top: 5px;
 }
 
-nav ul {
+nav>div {
   display: flex;
   gap: 10px;
   list-style: none;
@@ -122,10 +111,17 @@ button {
   color: rgb(0, 0, 0);
   font-size: 16px;
   cursor: pointer;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
 button:hover {
   text-decoration: underline;
+}
+
+button.active {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 .status {

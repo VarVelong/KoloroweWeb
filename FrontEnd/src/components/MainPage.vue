@@ -1,33 +1,16 @@
 <template>
-
-    <body>
-        <div id="middle-block">
-            <div class="main">
-                <h1>Witamy w kolorowym przedszkolu</h1>
-                <button id="a-button" @click="$router.push({ name: 'offer' })">Zobacz naszą ofertę</button>
-                <button id="a-button" @click="$router.push({ name: 'contact' })">Umów wizytę</button>
-            </div>
-        </div>
-    </body>
+    <div class="main">
+        <h1>Witamy w kolorowym przedszkolu</h1>
+        <button class="button-orange" @click="$router.push({ name: 'offer' })">Zobacz naszą ofertę</button>
+        <button class="button-orange" @click="$router.push({ name: 'contact' })">Umów wizytę</button>
+    </div>
 </template>
 
 <style scoped>
-#middle-block {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 700px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    margin-top: 125px;
-    border-radius: 0px;
-}
-
 div {
-    background-color: #FFF9C4;
-    border: 3px solid #FFD54F;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 80%;
+    border: 3px solid black;
     border-radius: 15px;
     padding: 20px;
     margin: 30px auto;

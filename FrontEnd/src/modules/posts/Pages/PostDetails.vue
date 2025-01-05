@@ -1,20 +1,18 @@
 <template>
-    <div id="middle-block">
         <div id="post-details">
-            <h1>Post Details</h1>
-            <div v-if="loading">Loading post...</div>
+            <h1 class="page-title">Sczegóły postu</h1>
+            <div v-if="loading">Wczytywanie postu...</div>
             <div v-if="error" class="error">{{ error }}</div>
-            <div v-if="post">
-                <h1>{{ post.title }}</h1>
-                <h2>{{ plainPostText }}</h2>
-                <p>{{ formattedDate }}</p>
+            <div v-if="post" id="post-content">
+                <p id="date">{{ formattedDate }}</p>
+                <h1 id="title">{{ post.title }}</h1>
                 <img v-if="post.image !== null" :src="post.image" alt="Image" class="image" />
-                <button @click="$router.push('/post-list')">Back to Posts</button>
-                <button @click="deletePost">Delete Post</button>
-                <button @click="goToPost(post.id)">PostEdit</button>
+                <p class="post-text">{{ plainPostText }}</p>
+                <button class="button-orange" @click="$router.push('/post-list')">Back to Posts</button>
+                <button class="btn btn-danger fas fa-trash-alt" @click="deletePost"></button>
+                <button class="btn btn-warning fas fa-edit" @click="goToPost(post.id)"></button>
             </div>
         </div>
-    </div>
 </template>
 
 <script>
@@ -90,45 +88,50 @@ export default {
 </script>
 
 <style scoped>
-#middle-block {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 700px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-  margin-top: 125px;
-  border-radius: 0px;
-}
-
 .image {
-    width: 100px;
-    height: 100px;
+    max-width: 300px;
+    max-height: 300px;
 }
 
 div {
-    background-color: #FFF9C4;
-    border: 3px solid #FFD54F;
     border-radius: 15px;
     padding: 20px;
     margin: 30px auto;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-h2 {
-    color: #FF6F61;
-    font-size: 2em;
-    margin-bottom: 10px;
-    text-shadow: 1px 1px #FFD9E8;
+#post-content {
+    background-color: #ddd;
+    border: 3px solid black;
+    border-radius: 15px;
 }
 
-p {
+#title{
+    font-family: 'Arial', sans-serif;
+    font-size: 3rem;
+    color: #2c3e50;
+    text-align: center;
+    margin: 20px 0;
+}
+
+#date{
+    font-family: 'Arial', sans-serif;
+    font-size: 0.6rem;
+    color: black;
+    text-align: left;
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+button{
+    margin: 10px;
+    padding: 15px;
+}
+
+/* p {
     font-size: 1.2em;
     line-height: 1.5;
     margin: 5px 0;
     color: #555;
-}
+} */
 </style>

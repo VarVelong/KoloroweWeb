@@ -10,7 +10,7 @@
         <label for="password">Hasło:</label>
         <input type="password" v-model="password" id="password" />
       </div>
-      <button type="submit">Zarejestruj się</button>
+      <button class="button-orange" type="submit">Zarejestruj się</button>
     </form>
     <p v-if="message">{{ message }}</p>
     <p v-if="errorMessage">{{ errorMessage }}</p>
@@ -46,19 +46,6 @@ export default {
 </script>
 
 <style scoped>
-#middle-block {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 700px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    margin-top: 150px;
-    border-radius: 0px;
-}
-
 div {
   background-color: #FFF9C4;
   border: 3px solid #FFD54F;

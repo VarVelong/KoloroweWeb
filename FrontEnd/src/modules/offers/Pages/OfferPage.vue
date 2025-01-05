@@ -1,16 +1,15 @@
 <template>
-
-    <body>
-        <div id="middle-block">
-            <h1>Zobacz naszą ofertę!</h1>
-            <ul v-if="offers.length">
-                <li v-for="offer in offers" :key="offers.id">
-                    <h2>{{ offer.content }}</h2>
-                    <button v-if="this.$isLoggedIn()" @click="deleteOffer(offer.id)">Usuń Ofertę</button>
-                </li>
-            </ul>
-        </div>
-    </body>
+    <h1 class="page-title">Zobacz naszą ofertę!</h1>
+    <div id="offer-container">
+        <ul v-if="offers.length">
+            <li v-for="offer in offers" :key="offers.id">
+                <h2>{{ offer.title }}</h2>
+                <p class="post-text">{{ offer.content }}</p>
+                <button class="btn btn-danger fas fa-trash-alt" v-if="this.$isLoggedIn()"
+                    @click="deleteOffer(offer.id)"></button>
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script>
@@ -62,17 +61,41 @@ export default {
 </script>
 
 <style scoped>
-#middle-block {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 700px;
+
+#offer-container{
+    list-style: none;
+    padding: 25px;
+    margin: 0;
+    border: 3px solid black;
+    border-radius: 15px;
     background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    margin-top: 150px;
+    width: 80%;
+    max-width: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 80%;
+}
+
+li {
+    border: 3px solid #000000;
+    border-radius: 20px;
+    background-color: #ddd;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
 </style>
 
 <!-- <style scoped>
@@ -96,17 +119,9 @@ div {
     text-align: center;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
 
-li {
-    border: 1px solid #000000;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
-}
+
+
 
 h2 {
     color: #FF6F61;

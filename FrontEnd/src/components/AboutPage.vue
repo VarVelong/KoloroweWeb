@@ -1,14 +1,9 @@
 <template>
-
-  <body>
-    <div id="middle-block">
-      <div id="map"></div>
-      <div>
-        <h2>O nas</h2>
-        <p>bla bla bla</p>
-      </div>
-    </div>
-  </body>
+  <h1 class="page-title">O nas</h1>
+  <div id="map"></div>
+  <div id="about">
+    <p>bla bla bla</p>
+  </div>
 </template>
 
 <script>
@@ -31,31 +26,20 @@ export default {
 </script>
 
 <style scoped>
-#middle-block {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 700px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-  margin-top: 125px;
-  border-radius: 0px;
-}
-
 div {
-  background-color: #FFF9C4;
-  border: 3px solid #FFD54F;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 80%;
+  border: 3px solid black;
   border-radius: 15px;
   padding: 20px;
   margin: 30px auto;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+  min-height: 100%;
 }
 
 h2 {
-  color: #FF6F61;
+  color: black;
   font-size: 2em;
   margin-bottom: 10px;
   text-shadow: 1px 1px #FFD9E8;
@@ -65,7 +49,11 @@ p {
   font-size: 1.2em;
   line-height: 1.5;
   margin: 5px 0;
-  color: #555;
+  color: black;
+}
+
+#about {
+  margin-bottom: 100px;
 }
 
 #map {

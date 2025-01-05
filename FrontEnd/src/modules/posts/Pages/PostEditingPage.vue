@@ -1,14 +1,11 @@
 <template>
-
     <body>
-        <div id="middle-block">
-            <div class="post-container">
-                <h2>Edit Post</h2>
-                <div>
-                    <vue-editor v-model="post.content"></vue-editor>
-                </div>
-                <button class="post-button" @click="savePost">Post</button>
+        <div class="post-container">
+            <h1 class="page-title">Edit Post</h1>
+            <div>
+                <vue-editor v-model="post.content"></vue-editor>
             </div>
+            <button class="button-orange" @click="savePost">Post</button>
         </div>
     </body>
 </template>
@@ -75,27 +72,8 @@ export default {
 </script>
 
 <style scoped>
-#middle-block {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 700px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-  margin-top: 125px;
-}
-
-h2 {
-    color: #FF6F61;
-    font-size: 2em;
-    margin-bottom: 10px;
-    text-shadow: 1px 1px #FFD9E8;
-}
-
 .post-container {
-    background: #2e2b2b;
+    background: #ddd;
     padding: 20px;
     max-width: 500px;
     width: 100%;
@@ -108,16 +86,8 @@ h2 {
     color: #ffffff;
 }
 
-.post-button {
-    display: block;
+button {
     width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
+    margin: 10px;
 }
 </style>

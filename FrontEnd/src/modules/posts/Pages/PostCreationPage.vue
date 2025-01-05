@@ -1,27 +1,25 @@
 <template>
 
     <body>
-        <div id="middle-block">
-            <div class="post-container">
-                <h2>Create New Post</h2>
-
-                <div>
-                    <label for="title">Tytuł:</label>
-                    <input type="title" v-model="post.title" />
-                </div>
-
-                <div>
-                    <vue-editor v-model="post.content"></vue-editor>
-                </div>
-
-                <button class="post-button" @click="savePost">Post</button>
+        <div class="post-container">
+            <h1 class="page-title">Stwórz Nowy Post</h1>
+            <div id="title-div">
+                <label for="title">Tytuł:</label>
+                <input v-model="post.title"/>
             </div>
-
-            <div>
-                <label for="image" lass="upload-icon">📷</label>
-                <input type="file" @change="onFileChange" />
+            <div class="upload-container">
+                <label for="image-upload" class="upload-label">
+                    <span class="upload-icon">📷</span>
+                    <span class="upload-text">Kliknij żeby wgrać zdjęcie.</span>
+                </label>
+                <input type="file" id="image-upload" class="upload-input" @change="onFileChange" />
             </div>
+            <vue-editor v-model="post.content"></vue-editor>
+            <button class="button-orange" @click="savePost">Post</button>
         </div>
+
+
+
     </body>
 </template>
 
@@ -69,26 +67,14 @@ export default {
 </script>
 
 <style scoped>
-#middle-block {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 700px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    margin-top: 125px;
-    border-radius: 0px;
-}
-
 .post-container {
-    background: #2e2b2b;
+    background: #ddd;
     padding: 20px;
     max-width: 500px;
     width: 100%;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 100px;
 }
 
 .post-container h2 {
@@ -96,47 +82,75 @@ export default {
     color: #ffffff;
 }
 
-.text-box {
+button {
     width: 100%;
-    min-height: 150px;
-    padding: 10px;
-    border: 1px solid #ec0303;
-    border-radius: 5px;
-    resize: vertical;
-    font-size: 16px;
+    margin: 10px;
 }
 
-.upload-section {
+#title-div {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+#title-div label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#title-div textarea {
+    width: 100%;
+    max-width: 400px;
+    min-height: 50px;
+    resize: vertical;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.upload-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px dashed #3498db;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+    position: relative;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.upload-container:hover {
+    border-color: #2980b9;
+    background-color: #ecf0f1;
+}
+
+.upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
 }
 
 .upload-icon {
-    font-size: 24px;
-    color: #007bff;
-    margin-right: 10px;
-    cursor: pointer;
+    font-size: 3rem;
+    color: #3498db;
+    margin-bottom: 10px;
 }
 
-.file-input {
+.upload-text {
+    font-size: 1rem;
+    color: #7f8c8d;
+}
+
+.upload-input {
     display: none;
 }
 
-.post-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
+input{
     color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-}
-
-.post-button:hover {
-    background-color: #0056b3;
 }
 </style>

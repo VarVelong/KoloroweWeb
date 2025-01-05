@@ -4,23 +4,23 @@
     <div id="middle-block">
       <div>
         <h2>Opcje ofert</h2>
-        <button @click="$router.push({ name: 'offercreationpage' })">Stwórz Ofertę</button>
-        <button @click="$router.push({ name: 'offer' })">Zobacz Oferty</button>
+        <button class="button-orange" @click="$router.push({ name: 'offercreationpage' })">Stwórz Ofertę</button>
+        <button class="button-orange" @click="$router.push({ name: 'offer' })">Zobacz Oferty</button>
         <p>instrukcja</p>
       </div>
       <div>
         <h2>Opcje aktualności</h2>
-        <button @click="$router.push({ name: 'postcreation' })">Stwórz Post</button>
+        <button class="button-orange" @click="$router.push({ name: 'postcreation' })">Stwórz Post</button>
         <p>instrukcja</p>
       </div>
       <div>
         <h2>Opcje Galerii</h2>
-        <button @click="$router.push({ name: 'postcreation' })">Stwórz Post</button>
+        <button class="button-orange" @click="$router.push({ name: 'postcreation' })">Stwórz Post</button>
         <p>instrukcja</p>
       </div>
       <div>
         <h2>Zarejestruj nowe konto</h2>
-        <button @click="$router.push({ name: 'register' })">Register</button>
+        <button class="button-orange" @click="$router.push({ name: 'register' })">Register</button>
         <p>instrukcja</p>
       </div>
     </div>
@@ -28,19 +28,6 @@
 </template>
 
 <style scoped>
-#middle-block {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 700px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-  margin-top: 125px;
-  border-radius: 0px;
-}
-
 div {
   background-color: #FFF9C4;
   border: 3px solid #FFD54F;

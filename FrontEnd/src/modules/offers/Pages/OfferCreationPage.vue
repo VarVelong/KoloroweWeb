@@ -1,21 +1,14 @@
 <template>
     <body>
-        <div id="middle-block">
-            <div class="post-container">
-                <h2>Stwórz Nową Ofertę</h2>
-                <div>
-                    <label for="title">Title:</label>
-                    <textarea v-model="offer.title"></textarea>
-                </div>
-                <div>
-                    <vue-editor v-model="offer.content"></vue-editor>
-                </div>
+        <div class="post-container">
+            <h1 class="page-title">Stwórz Nową Ofertę</h1>
+            <div id="title-div">
+                <label for="title">Tytuł:</label>
+                <textarea v-model="offer.title"></textarea>
             </div>
-
-            <div>
-                <button class="post-button" @click="saveOffer">Stwórz</button>
-                <button @click="$router.push({ name: 'offer' })">Powrót</button>
-            </div>
+            <vue-editor v-model="offer.content"></vue-editor>
+            <button class="button-orange" @click="saveOffer">Stwórz</button>
+            <button class="button-orange" @click="$router.push({ name: 'offer' })">Powrót</button>
         </div>
     </body>
 </template>
@@ -61,3 +54,47 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.post-container {
+    background: #ddd;
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.post-container h2 {
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+button {
+    width: 100%;
+    margin: 10px;
+}
+
+#title-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#title-div label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#title-div textarea {
+    width: 100%;
+    max-width: 400px;
+    min-height: 50px;
+    resize: vertical;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 14px;
+}
+</style>
