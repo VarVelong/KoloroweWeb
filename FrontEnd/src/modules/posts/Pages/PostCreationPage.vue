@@ -7,19 +7,23 @@
                 <label for="title">Tytuł:</label>
                 <input v-model="post.title"/>
             </div>
-            <div class="upload-container">
+            <div
+                class="upload-container"
+                @dragover.prevent="onDragOver"
+                @dragleave="onDragLeave"
+                @drop="onDrop"
+                :class="{ 'upload-active': isDragOver }"
+            >
                 <label for="image-upload" class="upload-label">
                     <span class="upload-icon">📷</span>
                     <span class="upload-text">Kliknij żeby wgrać zdjęcie.</span>
                 </label>
                 <input type="file" id="image-upload" class="upload-input" @change="onFileChange" />
+                <img v-if="previewImage" :src="previewImage" alt="Preview" class="image-preview" />
             </div>
             <vue-editor v-model="post.content"></vue-editor>
             <button class="button-orange" @click="savePost">Post</button>
         </div>
-
-
-
     </body>
 </template>
 
@@ -35,7 +39,9 @@ export default {
                 content: "",
                 title: "",
                 image: null
-            }
+            },
+            previewImage: null,
+            isDragOver: false
         }
     },
 
@@ -59,6 +65,23 @@ export default {
             const file = event.target.files[0];
             if (file) {
                 this.post.image = file;
+                this.previewImage = URL.createObjectURL(file);
+            }
+        },
+
+        onDragOver() {
+            this.isDragOver = true;
+        },
+        onDragLeave() {
+            this.isDragOver = false;
+        },
+        onDrop(event) {
+            event.preventDefault();
+            this.isDragOver = false;
+            const file = event.dataTransfer.files[0];
+            if (file) {
+                this.post.image = file;
+                this.previewImage = URL.createObjectURL(file);
             }
         }
     }
@@ -67,6 +90,11 @@ export default {
 </script>
 
 <style scoped>
+img {
+    max-height: 200px;
+    max-width: 200px;
+}
+
 .post-container {
     background: #ddd;
     padding: 20px;

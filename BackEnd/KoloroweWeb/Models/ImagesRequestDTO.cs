@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace KoloroweWeb.Data.Entities
+﻿namespace KoloroweWeb.Models
 {
     public class ImagesRequestDTO
     {

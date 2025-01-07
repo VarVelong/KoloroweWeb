@@ -1,11 +1,11 @@
 ﻿using KoloroweWeb.Data.Entities;
+using KoloroweWeb.Data.Repositories;
+using KoloroweWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
-using KoloroweWeb.Data;
 
 namespace KoloroweWeb.Controllers
 {
@@ -13,26 +13,25 @@ namespace KoloroweWeb.Controllers
     [Route("[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly KolorowewebContext _context;
-        private readonly IConfiguration _configuration;
+        private readonly IRepository<User> userRepository;
+        private readonly IConfiguration configuration;
 
-        public AuthController(KolorowewebContext context, IConfiguration configuration)
+        public AuthController(IRepository<User> userRepository, IConfiguration configuration)
         {
-            _context = context;
-            _configuration = configuration;
+            this.userRepository = userRepository;
+            this.configuration = configuration;
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register(UsersDTO registerDto)
         {
-            var user = new Users
+            var user = new User
             {
                 Username = registerDto.Username,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(registerDto.PasswordHash),
             };
 
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            await userRepository.AddAsync(user);
 
             return Ok(new { message = "User registered successfully" });
         }
@@ -40,26 +39,26 @@ namespace KoloroweWeb.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UsersDTO loginDto)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == loginDto.Username);
+            User? user = await userRepository.FindAsync(u => u.Username == loginDto.Username);
 
             if (user == null || !BCrypt.Net.BCrypt.Verify(loginDto.PasswordHash, user.PasswordHash))
             {
                 return Unauthorized(new { message = "Invalid credentials" });
             }
 
-            var token = GenerateJwtToken(user);
+            string token = GenerateJwtToken(user);
             return Ok(token);
         }
 
-        private string GenerateJwtToken(Users user)
+        private string GenerateJwtToken(User user)
         {
-            var claims = new[]
+            var claims = new Claim[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Username),
                 new Claim("id", user.Id.ToString()),
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:Secret"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Secret"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(

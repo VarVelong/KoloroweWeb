@@ -1,17 +1,6 @@
 const link= "https://localhost:7119/gallery";
 
-export default {
-    
-    getImage(id) {
-        return fetch(`${link}/${id}`, { method: "GET" })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Error: ${response.statusText}`);
-                }
-                return response.json();
-            });
-    },
-
+class GalleryService {
     createImage(data) {
         const formData = new FormData();
         formData.append('image', data);
@@ -31,7 +20,7 @@ export default {
             }
             return response.json();
         });
-    },
+    }
 
     // createPost(data) {
     //     const formData = new FormData();
@@ -55,7 +44,7 @@ export default {
     //             }
     //             return response.json();
     //         });
-    // },
+    // }
 
     async fetchImages(page) {
         let fullLink = page ? `${link}/?page=${page}` : `${link}/`;
@@ -69,7 +58,7 @@ export default {
                 }
                 return response.json();
             });
-    },
+    }
 
     async deleteImage(id){
         return fetch(`${link}/${id}`, {
@@ -90,3 +79,4 @@ export default {
     }
 }
 
+export default new GalleryService();

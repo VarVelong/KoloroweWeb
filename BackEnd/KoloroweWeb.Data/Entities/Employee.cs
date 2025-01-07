@@ -1,6 +1,6 @@
 ﻿namespace KoloroweWeb.Data.Entities
 {
-    public class EmployeesDTO
+    public class Employee
     {
         public int Id { get; set; }
         public string Principals { get; set; }

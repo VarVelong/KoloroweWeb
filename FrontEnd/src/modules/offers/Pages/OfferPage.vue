@@ -5,7 +5,7 @@
             <li v-for="offer in offers" :key="offers.id">
                 <h2>{{ offer.title }}</h2>
                 <p class="post-text">{{ offer.content }}</p>
-                <button class="btn btn-danger fas fa-trash-alt" v-if="this.$isLoggedIn()"
+                <button class="btn btn-danger fas fa-trash-alt" v-if="$isLoggedIn()"
                     @click="deleteOffer(offer.id)"></button>
             </li>
         </ul>

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KoloroweWeb.Data.Entities
+﻿namespace KoloroweWeb.Models
 {
-    public class Employees
+    public class EmployeesDTO
     {
         public int Id { get; set; }
         public string Principals { get; set; }

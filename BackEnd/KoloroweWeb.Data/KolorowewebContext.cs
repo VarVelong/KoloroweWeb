@@ -1,5 +1,4 @@
 ﻿using KoloroweWeb.Data.Entities;
-using KoloroweWeb.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace KoloroweWeb.Data;
@@ -15,18 +14,18 @@ public partial class KolorowewebContext : DbContext
     {
     }
 
-    public virtual DbSet<Posts> Posts { get; set; }
-    public virtual DbSet<Users> Users { get; set; }
-    public virtual DbSet<Employees> Employees { get; set; }
-    public virtual DbSet<Offers> Offers { get; set; }
-    public virtual DbSet<Images> Images { get; set; }
+    public virtual DbSet<Post> Posts { get; set; }
+    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<Employee> Employees { get; set; }
+    public virtual DbSet<Offer> Offers { get; set; }
+    public virtual DbSet<Image> Images { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseMySQL("server=localhost;port=3306;user=root;database=koloroweweb");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Posts>(entity =>
+        modelBuilder.Entity<Post>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
@@ -44,7 +43,7 @@ public partial class KolorowewebContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade); 
         });
 
-        modelBuilder.Entity<Offers>(entity =>
+        modelBuilder.Entity<Offer>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
@@ -55,7 +54,7 @@ public partial class KolorowewebContext : DbContext
             entity.Property(e => e.Content).HasColumnType("text");
         });
 
-        modelBuilder.Entity<Employees>(entity =>
+        modelBuilder.Entity<Employee>(entity =>
         {
             entity.Property(e => e.Id).HasColumnType("int(11)");
             entity.Property(e => e.Principals).HasColumnType("text");
@@ -66,7 +65,7 @@ public partial class KolorowewebContext : DbContext
             entity.Property(e => e.Specialists).HasColumnType("text");
         });
 
-        modelBuilder.Entity<Images>(entity =>
+        modelBuilder.Entity<Image>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 

@@ -1,8 +1,6 @@
-﻿using static System.Net.Mime.MediaTypeNames;
+﻿namespace KoloroweWeb.Models;
 
-namespace KoloroweWeb.Entities;
-
-public class Posts
+public class PostsResponseDTO
 {
     public int? Id { get; set; }
 
@@ -11,5 +9,5 @@ public class Posts
 
     public string Content { get; set; } = null!;
 
-    public ICollection<Images>? Images { get; set; }
+    public string? Image { get; set; }
 }

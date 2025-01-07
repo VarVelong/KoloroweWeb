@@ -1,19 +1,12 @@
 <template>
-    <b-modal v-model="open" title="imageView" id="modal" size="xl">
-        <spinner v-if="loading || !currentImages || !currentImages[currentIndex]" class="mx-auto self-center"></spinner>
-        <div v-else>
-
+    <b-modal v-model="open" id="modal" size="xl" hide-footer>
+        <div v-if="!loading && currentImages && currentImages[currentIndex]">
             <button :disabled="currentIndex == 0 && currentPage == 1" @click="currentIndex--; changeImage()"><i
                     class="fas fa-arrow-left"></i></button>
             <img :src="currentImages[currentIndex].fileName" alt="Image" class="image" />
             <button :disabled="currentIndex >= currentImages.length - 1 && currentPage >= totalPages"
                 @click="currentIndex++; changeImage()"><i class="fas fa-arrow-right"></i></button>
-
-
             <button class="btn btn-danger" @click="deleteImage(currentImages[currentIndex].id)"><i class="fas fa-trash-alt"></i></button>
-
-            <!-- leave it for now -->
-            <!-- <h2>{{ currentPage }} {{ totalPages }}</h2> -->
         </div>
     </b-modal>
 </template>
@@ -69,12 +62,16 @@ export default {
             if (this.initialImages) {
                 this.currentImages = this.initialImages;
             }
+        },
+        open() {
+            this.currentPage = this.initialPage;
+            this.currentIndex = this.initialIndex;
+            this.currentImages = this.initialImages;
         }
     },
 
     methods: {
         changeImage() {
-
             if (this.currentIndex >= 0 && this.currentIndex < this.currentImages.length) {
                 return;
             }

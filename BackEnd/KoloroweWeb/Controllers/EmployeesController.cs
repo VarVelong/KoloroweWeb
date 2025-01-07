@@ -1,9 +1,7 @@
-﻿using KoloroweWeb.Data;
-using KoloroweWeb.Data.Entities;
+﻿using KoloroweWeb.Data.Entities;
+using KoloroweWeb.Data.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MySql.Data.MySqlClient;
 
 namespace KoloroweWeb.Controllers
 {
@@ -11,28 +9,29 @@ namespace KoloroweWeb.Controllers
     [Route("[controller]")]
     public class EmployeesController : ControllerBase
     {
-        private readonly KolorowewebContext kolorowewebContext;
+        IRepository<Employee> employeeRepository;
+        private const int DefaultGroupsId = 1;
 
-        public EmployeesController(KolorowewebContext context)
+        public EmployeesController(IRepository<Employee> employeeRepository)
         {
-            kolorowewebContext = context;
+            this.employeeRepository = employeeRepository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<Employees>> GetEmployees() => await kolorowewebContext.Employees.FirstOrDefaultAsync();
+        public async Task<ActionResult<Employee>> GetEmployees() => await employeeRepository.GetByIdAsync(DefaultGroupsId);
 
         [HttpPut("{groupName}")]
         [Authorize]
         public async Task<IActionResult> Update([FromRoute] string groupName, [FromBody] string groupContent)
         {
-            var validGroupNames = new List<string>
+            List<string> validGroupNames = new List<string>
             {
-                nameof(Employees.Principals),
-                nameof(Employees.GroupRed),
-                nameof(Employees.GroupYellow),
-                nameof(Employees.GroupBlue),
-                nameof(Employees.GroupGreen),
-                nameof(Employees.Specialists),
+                nameof(Employee.Principals),
+                nameof(Employee.GroupRed),
+                nameof(Employee.GroupYellow),
+                nameof(Employee.GroupBlue),
+                nameof(Employee.GroupGreen),
+                nameof(Employee.Specialists),
             };
 
             if (!validGroupNames.Contains(groupName))
@@ -40,10 +39,39 @@ namespace KoloroweWeb.Controllers
                 return BadRequest("Invalid group name.");
             }
 
-            var sql = $"UPDATE employees SET {groupName} = @groupContent WHERE Id = 1";
-            var parameters = new[] { new MySqlParameter("@groupContent", groupContent) };
-            var rowsAffected = await kolorowewebContext.Database.ExecuteSqlRawAsync(sql, parameters);             
-            return rowsAffected == 0 ? NotFound() : Ok("Group property updated successfully.");
+            var existingEmployeeGroups = await employeeRepository.GetByIdAsync(DefaultGroupsId);
+            switch (groupName)
+            {
+                case nameof(Employee.Principals):
+                    existingEmployeeGroups.Principals = groupContent;
+                    break;
+
+                case nameof(Employee.GroupRed):
+                    existingEmployeeGroups.GroupRed = groupContent;
+                    break;
+
+                case nameof(Employee.GroupYellow):
+                    existingEmployeeGroups.GroupYellow = groupContent;
+                    break;
+
+                case nameof(Employee.GroupBlue):
+                    existingEmployeeGroups.GroupBlue = groupContent;
+                    break;
+
+                case nameof(Employee.GroupGreen):
+                    existingEmployeeGroups.GroupGreen = groupContent;
+                    break;
+
+                case nameof(Employee.Specialists):
+                    existingEmployeeGroups.Specialists = groupContent;
+                    break;
+
+                default:
+                    return BadRequest("Invalid group name.");
+            }
+
+            await employeeRepository.UpdateAsync(existingEmployeeGroups);
+            return Ok("Group property updated successfully.");
         }
     }
 }

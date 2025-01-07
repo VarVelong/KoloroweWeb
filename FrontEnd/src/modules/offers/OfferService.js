@@ -1,6 +1,6 @@
 const link = "https://localhost:7119/Offers";
 
-export default {
+class OfferService {
     fetchOffers() {
         return fetch(link, { method: "GET" })
             .then(response => {
@@ -9,7 +9,7 @@ export default {
                 }
                 return response.json();
             });
-    },
+    }
 
     createOffer(data) {
         return fetch(link, {
@@ -29,8 +29,7 @@ export default {
                 }
                 return response.json();
             });
-    },
-
+    }
 
     deleteOffer(id) {
         return fetch(`${link}/${id}`, {
@@ -50,3 +49,5 @@ export default {
             });
     }
 }
+
+export default new OfferService();

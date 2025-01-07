@@ -1,11 +1,10 @@
-using Microsoft.EntityFrameworkCore;
-using MySql.EntityFrameworkCore.Extensions;
-using System.Configuration;
-using static KoloroweWeb.Data.KolorowewebContext;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using KoloroweWeb.Data;
+using KoloroweWeb.Data.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using MySql.EntityFrameworkCore.Extensions;
+using System.Text;
 
 namespace KoloroweWeb
 {
@@ -14,7 +13,9 @@ namespace KoloroweWeb
 
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             builder.Services.AddEntityFrameworkMySQL()
                 .AddDbContext<KolorowewebContext>(options =>
@@ -46,7 +47,7 @@ namespace KoloroweWeb
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            var app = builder.Build();
+            WebApplication app = builder.Build();
 
             app.UseCors(builder => builder
                  .AllowAnyHeader()
@@ -71,17 +72,6 @@ namespace KoloroweWeb
 
             app.MapControllers();
             app.Run();
-
-
-
-            // Builder for DbContext
-
-
-            //builder.Services.AddDbContext<KolorowewebContext>(options =>
-            //options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-
-
         }
     }
 

@@ -1,10 +1,10 @@
 ﻿using KoloroweWeb.Data.Entities;
-using KoloroweWeb.Data;
-using KoloroweWeb.Entities;
+using KoloroweWeb.Data.Repositories;
+using KoloroweWeb.Helpers;
+using KoloroweWeb.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using Microsoft.EntityFrameworkCore;
 
 namespace KoloroweWeb.Controllers
 {
@@ -12,13 +12,12 @@ namespace KoloroweWeb.Controllers
     [Route("[controller]")]
     public class GalleryController : Controller
     {
-        private readonly KolorowewebContext kolorowewebContext;
+        private readonly IRepository<Image> imageRepository;
         private const string ImageDirectory = "ImageGallery";
-        private readonly string ImagePathDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", ImageDirectory);
 
-        public GalleryController(KolorowewebContext kolorowewebContext)
+        public GalleryController(IRepository<Image> imageRepository)
         {
-            this.kolorowewebContext = kolorowewebContext;
+            this.imageRepository = imageRepository;
         }
 
         [HttpGet]
@@ -29,46 +28,23 @@ namespace KoloroweWeb.Controllers
                 return BadRequest("Page and pageSize must be greater than zero.");
             }
 
-            var totalCount = await kolorowewebContext.Images
-                .Where(i => i.PostId == null)
-                .CountAsync();
+            var paginatedImages = await imageRepository.GetPaginatedAsync(page, pageSize);
 
-            var images = await kolorowewebContext.Images
-                .Where(i => i.PostId == null)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .Select(s => new ImagesResponseDTO
+            var paginatedImagesList = new PaginatedResponse<ImagesResponseDTO>
+            {
+                Data = paginatedImages.Data.Select(s => new ImagesResponseDTO
                 {
                     Id = s.Id,
                     PostId = s.PostId,
-                    FileName = $"{Request.Scheme}://{Request.Host}/{s.FileName}"
-                })
-                .ToListAsync();
-
-            var paginatedResponse = new PaginatedResponse<ImagesResponseDTO>
-            {
-                Data = images,
-                TotalCount = totalCount,
+                    FileName = ImageHelper.GetFullPath(Request, s)
+                }).ToList(),
+                TotalCount = paginatedImages.TotalCount,
                 CurrentPage = page,
                 PageSize = pageSize,
-                TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize)
+                TotalPages = (int)Math.Ceiling(paginatedImages.TotalCount / (double)pageSize)
             };
 
-            return paginatedResponse;
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ImagesResponseDTO>> GetImageByDate(int Id)
-        {
-            var image = await kolorowewebContext.Images.Select(
-                    s => new ImagesResponseDTO
-                    {
-                        Id = s.Id,
-                        PostId = s.PostId,
-                        FileName = $"{Request.Scheme}://{Request.Host}/{s.FileName}"
-                    }).FirstOrDefaultAsync(s => s.Id == Id);
-
-            return image is null ? NotFound() : image;
+            return paginatedImagesList;
         }
 
         [HttpPost]
@@ -80,26 +56,14 @@ namespace KoloroweWeb.Controllers
                 return HttpStatusCode.NoContent;
             }
 
-            var filePath = Path.Combine(ImagePathDirectory, image.FileName);
+            await ImageHelper.StoreImageFile(ImageDirectory, image);
 
-            if (!string.IsNullOrEmpty(ImagePathDirectory) && !Directory.Exists(ImagePathDirectory))
-            {
-                Directory.CreateDirectory(ImagePathDirectory);
-            }
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await image.CopyToAsync(stream);
-            }
-
-            var entity = new Images()
+            var entity = new Image()
             {
                 FileName = $"/{ImageDirectory}/{image.FileName}"
             };
 
-            kolorowewebContext.Add(entity);
-            await kolorowewebContext.SaveChangesAsync();
-
+            await imageRepository.AddAsync(entity);
             return HttpStatusCode.Created;
         }
 
@@ -107,14 +71,12 @@ namespace KoloroweWeb.Controllers
         [Authorize]
         public async Task<HttpStatusCode> DeleteImage(int Id)
         {
-            var entity = new Images()
+            Image entity = new Image()
             {
                 Id = Id
             };
 
-            kolorowewebContext.Images.Attach(entity);
-            kolorowewebContext.Images.Remove(entity);
-            await kolorowewebContext.SaveChangesAsync();
+            await imageRepository.RemoveAsync(entity);
             return HttpStatusCode.OK;
         }
     }

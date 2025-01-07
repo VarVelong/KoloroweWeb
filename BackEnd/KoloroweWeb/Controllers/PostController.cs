@@ -1,9 +1,9 @@
-﻿using KoloroweWeb.Data;
-using KoloroweWeb.Data.Entities;
-using KoloroweWeb.Entities;
+﻿using KoloroweWeb.Data.Entities;
+using KoloroweWeb.Data.Repositories;
+using KoloroweWeb.Helpers;
+using KoloroweWeb.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace KoloroweWeb.Controllers
@@ -12,13 +12,14 @@ namespace KoloroweWeb.Controllers
     [Route("[controller]")]
     public class PostController : ControllerBase
     {
-        private readonly KolorowewebContext kolorowewebContext;
+        private readonly IRepository<Post> postRepository;
+        private readonly IRepository<Image> imageRepository;
         private const string ImageDirectory = "PostImages";
-        private readonly string ImagePathDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", ImageDirectory);
 
-        public PostController(KolorowewebContext kolorowewebContext)
+        public PostController(IRepository<Post> postRepository, IRepository<Image> imageRepository)
         {
-            this.kolorowewebContext = kolorowewebContext;
+            this.postRepository = postRepository;
+            this.imageRepository = imageRepository;
         }
 
         [HttpGet]
@@ -29,12 +30,11 @@ namespace KoloroweWeb.Controllers
                 return BadRequest("Page and pageSize must be greater than zero.");
             }
 
-            var totalCount = await kolorowewebContext.Posts.CountAsync();
+            var paginatedPosts = await postRepository.GetPaginatedAsync(page, pageSize);
 
-            var posts = await kolorowewebContext.Posts
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .Select(s => new PostsResponseDTO
+            var paginatedResponse = new PaginatedResponse<PostsResponseDTO>
+            {
+                Data = paginatedPosts.Data.Select(s => new PostsResponseDTO
                 {
                     Id = s.Id,
                     Date = s.Date,
@@ -43,51 +43,50 @@ namespace KoloroweWeb.Controllers
                     Image = s.Images != null && s.Images.Any()
                             ? s.Images
                                 .Where(img => img.PostId == s.Id)
-                                .Select(img => $"{Request.Scheme}://{Request.Host}/{img.FileName}")
+                                .Select(img => ImageHelper.GetFullPath(Request, img))
                                 .FirstOrDefault()
                             : null
-                })
-                .ToListAsync();
-
-            var paginatedResponse = new PaginatedResponse<PostsResponseDTO>
-            {
-                Data = posts,
-                TotalCount = totalCount,
+                }).ToList(),
+                TotalCount = paginatedPosts.TotalCount,
                 CurrentPage = page,
                 PageSize = pageSize,
-                TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize)
+                TotalPages = (int)Math.Ceiling(paginatedPosts.TotalCount / (double)pageSize)
             };
 
             return paginatedResponse;
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<PostsResponseDTO>> GetPostByDate(int Id)
+        public async Task<ActionResult<PostsResponseDTO>> Get(int id)
         {
-            var post = await kolorowewebContext.Posts.Select(
-                    s => new PostsResponseDTO
-                    {
-                        Id = s.Id,
-                        Date = s.Date,
-                        Content = s.Content,
-                        Title = s.Title,
+            var post = await postRepository.GetByIdAsync(id);
+            if (post is null)
+            {
+                return NotFound();
+            }
 
-                        Image = s.Images != null && s.Images.Any()
-                            ? s.Images
-                                .Where(img => img.PostId == s.Id) 
-                                .Select(img => $"{Request.Scheme}://{Request.Host}/{img.FileName}")
+            var postResponse = new PostsResponseDTO
+            {
+                Id = post.Id,
+                Date = post.Date,
+                Content = post.Content,
+                Title = post.Title,
+                Image = post.Images != null && post.Images.Any()
+                            ? post.Images
+                                .Where(img => img.PostId == post.Id)
+                                .Select(img => ImageHelper.GetFullPath(Request, img))
                                 .FirstOrDefault()
                             : null
-                    }).FirstOrDefaultAsync(s => s.Id == Id);
+            };
 
-            return post is null ? NotFound() : post;
+            return postResponse;
         }
 
         [HttpPost]
         [Authorize]
         public async Task<HttpStatusCode> InsertPost(PostsRequestDTO post)
         {
-            var postEntity = new Posts()
+            Post postEntity = new Post()
             {
                 Id = post.Id,
                 Date = post.Date,
@@ -95,31 +94,18 @@ namespace KoloroweWeb.Controllers
                 Title = post.Title
             };
 
-            kolorowewebContext.Add(postEntity);
-            await kolorowewebContext.SaveChangesAsync();
-
+            await postRepository.AddAsync(postEntity);
             if (post.Image != null)
             {
-                var filePath = Path.Combine(ImagePathDirectory, post.Image.FileName);
+                await ImageHelper.StoreImageFile(ImageDirectory, post.Image);
 
-                if (!string.IsNullOrEmpty(ImagePathDirectory) && !Directory.Exists(ImagePathDirectory))
-                {
-                    Directory.CreateDirectory(ImagePathDirectory);
-                }
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await post.Image.CopyToAsync(stream);
-                }
-
-                var imageEntity = new Images
+                var imageEntity = new Image
                 {
                     PostId = postEntity.Id, 
                     FileName = $"/{ImageDirectory}/{post.Image.FileName}"
                 };
 
-                kolorowewebContext.Images.Add(imageEntity);
-                await kolorowewebContext.SaveChangesAsync();
+                await imageRepository.AddAsync(imageEntity);
             }
 
             return HttpStatusCode.Created;
@@ -129,14 +115,12 @@ namespace KoloroweWeb.Controllers
         [Authorize]
         public async Task<HttpStatusCode> DeletePost(int Id)
         {
-            var entity = new Posts()
+            Post entity = new Post()
             {
                 Id = Id
             };
 
-            kolorowewebContext.Posts.Attach(entity);
-            kolorowewebContext.Posts.Remove(entity);
-            await kolorowewebContext.SaveChangesAsync();
+            await postRepository.RemoveAsync(entity);
             return HttpStatusCode.OK;
         }
 
@@ -144,14 +128,14 @@ namespace KoloroweWeb.Controllers
         [Authorize]
         public async Task<HttpStatusCode> UpdatePostContent([FromRoute] int id, [FromBody] string content)
         {
-            var existingPost = await kolorowewebContext.Posts.FindAsync(id);
+            var existingPost = await postRepository.GetByIdAsync(id);
             if (existingPost == null)
             {
                 return HttpStatusCode.NotFound;
             }
 
             existingPost.Content = content;
-            await kolorowewebContext.SaveChangesAsync();
+            await postRepository.UpdateAsync(existingPost);
 
             return HttpStatusCode.OK;
         }

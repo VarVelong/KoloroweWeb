@@ -1,7 +1,7 @@
-﻿namespace KoloroweWeb.Data.Entities
+﻿namespace KoloroweWeb.Models
 {
-    public class Offers
-    { 
+    public class OffersDTO<T>
+    {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }

@@ -1,6 +1,6 @@
 const link = "https://localhost:7119/post";
 
-export default {
+class PostService {
 
     getPost(id) {
         return fetch(`${link}/${id}`, { method: "GET" })
@@ -10,7 +10,7 @@ export default {
                 }
                 return response.json();
             });
-    },
+    }
 
     createPost(data) {
         const formData = new FormData();
@@ -35,7 +35,7 @@ export default {
                 }
                 return response.json();
             });
-    },
+    }
 
     fetchPosts(page) {
         let fullLink = page ? `${link}?page=${page}` : link;
@@ -50,7 +50,7 @@ export default {
                 }
                 return response.json();
             });
-    },
+    }
 
     deletePost(id) {
         return fetch(`${link}/${id}`, {
@@ -68,7 +68,7 @@ export default {
                     throw new Error(`Error: ${response.statusText}`);
                 }
             });
-    },
+    }
 
     updatePost(id, content) {
         return fetch(`${link}/${id}`, {
@@ -86,3 +86,4 @@ export default {
     }
 }
 
+export default new PostService();

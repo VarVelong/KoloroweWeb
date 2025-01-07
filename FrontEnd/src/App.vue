@@ -5,7 +5,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
 
-  <!-- <div v-if="this.$isLoggedIn()" class="status">Zalogowano jako Administrator.</div> -->
+  <!-- <div v-if="$isLoggedIn()" class="status">Zalogowano jako Administrator.</div> -->
 
   <header>
     <div class="header-content">
@@ -46,7 +46,7 @@ import { RouterLink, RouterView } from 'vue-router'
       </div>
       <footer class="col-md-6">
         <p>&copy; 2024 Kolorowe Przedszkole.</p>
-        <button v-if="this.$isLoggedIn()" @click="logout">logout</button>
+        <button v-if="$isLoggedIn()" @click="logout">logout</button>
       </footer>
     </div>
     <div class="col-md-3">

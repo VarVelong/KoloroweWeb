@@ -1,37 +1,34 @@
-﻿using KoloroweWeb.Data;
-using KoloroweWeb.Data.Entities;
+﻿using KoloroweWeb.Data.Entities;
+using KoloroweWeb.Data.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace KoloroweWeb.Controllers
 {
-
     [Route("[controller]")]
     [ApiController]
     public class OffersController : ControllerBase
     {
-        private readonly KolorowewebContext kolorowewebContext;
+        private readonly IRepository<Offer> offerRepository;
 
-        public OffersController(KolorowewebContext context)
+        public OffersController(IRepository<Offer> offerRepository)
         {
-            kolorowewebContext = context;
+            this.offerRepository = offerRepository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Offers>>> GetOffers()
+        public async Task<ActionResult<List<Offer>>> GetOffers()
         {
-            return await kolorowewebContext.Offers.ToListAsync();
+            var offers = await offerRepository.GetAllAsync();
+            return Ok(offers);
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<Offers>> PostOffer(Offers offer)
+        public async Task<ActionResult<Offer>> PostOffer(Offer offer)
         {
-            kolorowewebContext.Offers.Add(offer);
-            await kolorowewebContext.SaveChangesAsync();
-
+            await offerRepository.AddAsync(offer);
             return offer;
         }
 
@@ -39,14 +36,12 @@ namespace KoloroweWeb.Controllers
         [Authorize]
         public async Task<HttpStatusCode> DeleteOffer(int Id)
         {
-            var entity = new Offers()
+            Offer entity = new Offer()
             {
                 Id = Id
             };
 
-            kolorowewebContext.Offers.Attach(entity);
-            kolorowewebContext.Offers.Remove(entity);
-            await kolorowewebContext.SaveChangesAsync();
+            await offerRepository.RemoveAsync(entity);
             return HttpStatusCode.OK;
         }
     }

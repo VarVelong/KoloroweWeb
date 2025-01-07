@@ -1,6 +1,6 @@
 const link = "https://localhost:7119/Employees"
 
-export default {
+class EmployeeService {
 
     fetchEmployees() {
         return fetch(link, {
@@ -13,7 +13,7 @@ export default {
                 }
                 return response.json();
             });
-    },
+    }
 
     updateEmployee(groupName, content) {
         return fetch(`${link}/${groupName}`, {
@@ -31,3 +31,4 @@ export default {
     }
 }
 
+export default new EmployeeService();

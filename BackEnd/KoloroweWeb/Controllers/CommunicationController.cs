@@ -1,9 +1,8 @@
-﻿using MailKit.Security;
+﻿using KoloroweWeb.Models;
+using MailKit.Net.Smtp;
+using MailKit.Security;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
-using MailKit.Net.Smtp;
-using KoloroweWeb.Data.Entities;
-
 
 namespace KoloroweWeb.Controllers
 {
@@ -36,4 +35,3 @@ namespace KoloroweWeb.Controllers
         }
     }
 }
-

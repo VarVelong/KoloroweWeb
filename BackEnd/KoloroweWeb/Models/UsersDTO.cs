@@ -1,6 +1,6 @@
-﻿namespace KoloroweWeb.Data.Entities
+﻿namespace KoloroweWeb.Models
 {
-    public class Users
+    public class UsersDTO
     {
         public int Id { get; set; }
         public string Username { get; set; }

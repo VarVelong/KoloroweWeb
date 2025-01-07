@@ -1,4 +1,4 @@
-﻿namespace KoloroweWeb.Data.Entities
+﻿namespace KoloroweWeb.Models
 {
     public class EmailRequest
     {

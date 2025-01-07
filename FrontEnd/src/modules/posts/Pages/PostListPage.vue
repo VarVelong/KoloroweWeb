@@ -11,9 +11,9 @@
                 <p v-html="cleanHtml(post.content)" class="post-text"></p>
 
                 <div class="button-group">
-                    <button class="btn btn-danger fas fa-trash-alt" v-if="this.$isLoggedIn()" @click="deletePost(post.id)" id="btn-left"></button>
+                    <button class="btn btn-danger fas fa-trash-alt" v-if="$isLoggedIn()" @click="deletePost(post.id)" id="btn-left"></button>
                     <button class="button-orange" @click="goToPostDetails(post.id)" id="btn-middle">Czytaj dalej...</button>
-                    <button class="btn btn-warning fas fa-edit" v-if="this.$isLoggedIn()" @click="goToPostEdit(post.id)" id="btn-right"></button>
+                    <button class="btn btn-warning fas fa-edit" v-if="$isLoggedIn()" @click="goToPostEdit(post.id)" id="btn-right"></button>
                 </div>
             </li>
         </ul>

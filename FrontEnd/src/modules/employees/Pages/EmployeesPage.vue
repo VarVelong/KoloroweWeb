@@ -6,11 +6,11 @@
                 <div class="group-container">
                     <h2 class="page-title">Dyrekcja:</h2>
                     <div class="post-text" v-if="!isEditing.principals">{{ employee.principals }}</div>
-                    <button v-if="this.$isLoggedIn() && !isEditing.principals" @click="isEditing.principals = true"
+                    <button v-if="$isLoggedIn() && !isEditing.principals" @click="isEditing.principals = true"
                         class="btn btn-warning fas fa-edit"></button>
                     <input class="modify-group" v-model="employee.principals" v-if="isEditing.principals" />
                     <button v-if="isEditing.principals"
-                        @click="saveEmployee('Principals', employee.principals); isEditing.principals = false"
+                        @click="saveEmployee(employeeGroups.Principals, employee.principals); isEditing.principals = false"
                         class="btn btn-success">Zapisz</button>
                     <button v-if="isEditing.principals" @click="isEditing.principals = false"
                         class="button-orange">cancel</button>
@@ -18,11 +18,11 @@
                 <div class="group-container">
                     <h2 class="page-title">Grupa Czerwona:</h2>
                     <div class="post-text" v-if="!isEditing.groupRed">{{ employee.groupRed }}</div>
-                    <button v-if="this.$isLoggedIn() && !isEditing.groupRed" @click="isEditing.groupRed = true"
+                    <button v-if="$isLoggedIn() && !isEditing.groupRed" @click="isEditing.groupRed = true"
                         class="btn btn-warning fas fa-edit"></button>
                     <input class="modify-group" v-model="employee.groupRed" v-if="isEditing.groupRed" />
                     <button v-if="isEditing.groupRed"
-                        @click="saveEmployee('GroupRed', employee.groupRed); isEditing.groupRed = false"
+                        @click="saveEmployee(employeeGroups.GroupRed, employee.groupRed); isEditing.groupRed = false"
                         class="btn btn-success">Zapisz</button>
                     <button v-if="isEditing.groupRed" @click="isEditing.groupRed = false"
                         class="button-orange">cancel</button>
@@ -30,11 +30,11 @@
                 <div class="group-container">
                     <h2 class="page-title">Grupa Żółta:</h2>
                     <div class="post-text" v-if="!isEditing.groupYellow">{{ employee.groupYellow }}</div>
-                    <button v-if="this.$isLoggedIn() && !isEditing.groupYellow" @click="isEditing.groupYellow = true"
+                    <button v-if="$isLoggedIn() && !isEditing.groupYellow" @click="isEditing.groupYellow = true"
                         class="btn btn-warning fas fa-edit"></button>
                     <input class="modify-group" v-model="employee.groupYellow" v-if="isEditing.groupYellow" />
                     <button v-if="isEditing.groupYellow"
-                        @click="saveEmployee('GroupYellow', employee.groupYellow); isEditing.groupYellow = false"
+                        @click="saveEmployee(employeeGroups.GroupYellow, employee.groupYellow); isEditing.groupYellow = false"
                         class="btn btn-success">Zapisz</button>
                     <button v-if="isEditing.groupYellow" @click="isEditing.groupYellow = false"
                         class="button-orange">cancel</button>
@@ -42,11 +42,11 @@
                 <div class="group-container">
                     <h2 class="page-title">Grupa Niebieska:</h2>
                     <div class="post-text" v-if="!isEditing.groupBlue">{{ employee.groupBlue }}</div>
-                    <button v-if="this.$isLoggedIn() && !isEditing.groupBlue" @click="isEditing.groupBlue = true"
+                    <button v-if="$isLoggedIn() && !isEditing.groupBlue" @click="isEditing.groupBlue = true"
                         class="btn btn-warning fas fa-edit"></button>
                     <input class="modify-group" v-model="employee.groupBlue" v-if="isEditing.groupBlue" />
                     <button v-if="isEditing.groupBlue"
-                        @click="saveEmployee('GroupBlue', employee.groupBlue); isEditing.groupBlue = false"
+                        @click="saveEmployee(employeeGroups.GroupBlue, employee.groupBlue); isEditing.groupBlue = false"
                         class="btn btn-success">Zapisz</button>
                     <button v-if="isEditing.groupBlue" @click="isEditing.groupBlue = false"
                         class="button-orange">cancel</button>
@@ -54,11 +54,11 @@
                 <div class="group-container">
                     <h2 class="page-title">Grupa Zielona:</h2>
                     <div class="post-text" v-if="!isEditing.groupGreen">{{ employee.groupGreen }}</div>
-                    <button v-if="this.$isLoggedIn() && !isEditing.groupGreen" @click="isEditing.groupGreen = true"
+                    <button v-if="$isLoggedIn() && !isEditing.groupGreen" @click="isEditing.groupGreen = true"
                         class="btn btn-warning fas fa-edit"></button>
                     <input class="modify-group" v-model="employee.groupGreen" v-if="isEditing.groupGreen" />
                     <button v-if="isEditing.groupGreen"
-                        @click="saveEmployee('GroupGreen', employee.groupGreen); isEditing.groupGreen = false"
+                        @click="saveEmployee(employeeGroups.GroupGreen, employee.groupGreen); isEditing.groupGreen = false"
                         class="btn btn-success">Zapisz</button>
                     <button v-if="isEditing.groupGreen" @click="isEditing.groupGreen = false"
                         class="button-orange">cancel</button>
@@ -66,11 +66,11 @@
                 <div class="group-container">
                     <h2 class="page-title">Specjaliści:</h2>
                     <div class="post-text" v-if="!isEditing.specialists">{{ employee.specialists }}</div>
-                    <button v-if="this.$isLoggedIn() && !isEditing.specialists" @click="isEditing.specialists = true"
+                    <button v-if="$isLoggedIn() && !isEditing.specialists" @click="isEditing.specialists = true"
                         class="btn btn-warning fas fa-edit"></button>
                     <input class="modify-group" v-model="employee.specialists" v-if="isEditing.specialists" />
                     <button v-if="isEditing.specialists"
-                        @click="saveEmployee('Specialists', employee.specialists); isEditing.specialists = false"
+                        @click="saveEmployee(employeeGroups.Specialists, employee.specialists); isEditing.specialists = false"
                         class="btn btn-success">Zapisz</button>
                     <button v-if="isEditing.specialists" @click="isEditing.specialists = false"
                         class="button-orange">cancel</button>
@@ -82,6 +82,7 @@
 
 <script>
 import EmployeeService from "../EmployeeService";
+import EmployeeGroups from "../Enums/EmployeeGroups"
 
 export default {
     data() {
@@ -98,11 +99,17 @@ export default {
             }
         };
     },
-
     mounted() {
         this.fetchEmployees();
     },
-
+    components: {
+        EmployeeGroups
+    },
+    computed: {
+        employeeGroups() {
+            return EmployeeGroups;
+        }
+    },
     methods: {
         async fetchEmployees() {
             this.loading = true;
@@ -151,7 +158,7 @@ export default {
     min-height: 100%;
 }
 
-.group-container{
+.group-container {
     border: 3px solid black;
     border-radius: 15px;
     background-color: #ddd;

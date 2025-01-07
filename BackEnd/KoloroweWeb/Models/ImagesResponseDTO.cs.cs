@@ -1,4 +1,4 @@
-﻿namespace KoloroweWeb.Entities;
+﻿namespace KoloroweWeb.Models;
 
 public class ImagesResponseDTO
 {
