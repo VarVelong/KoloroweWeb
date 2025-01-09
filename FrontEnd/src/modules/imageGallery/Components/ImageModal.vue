@@ -6,7 +6,7 @@
             <img :src="currentImages[currentIndex].fileName" alt="Image" class="image" />
             <button :disabled="currentIndex >= currentImages.length - 1 && currentPage >= totalPages"
                 @click="currentIndex++; changeImage()"><i class="fas fa-arrow-right"></i></button>
-            <button class="btn btn-danger" @click="deleteImage(currentImages[currentIndex].id)"><i class="fas fa-trash-alt"></i></button>
+            <button v-if="$isLoggedIn()" class="btn btn-danger" @click="deleteImage(currentImages[currentIndex].id)"><i class="fas fa-trash-alt"></i></button>
         </div>
     </b-modal>
 </template>
@@ -120,7 +120,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<!-- <style scoped>
 div {
   background-color: #FFF9C4; 
   border: 3px solid #FFD54F;
@@ -134,5 +134,112 @@ div {
 img {
     width: 500px;
     height: 500px;
+}
+</style> -->
+
+<style scoped>
+/* Modal Container */
+#modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6); /* Dim background for focus */
+}
+
+/* Image Container */
+div {
+    background-color: #ffffff;
+    border: 3px solid #FFAB40;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 30px auto;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 90%; /* Responsive for smaller screens */
+}
+
+/* Image Styling */
+img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+/* Buttons */
+button {
+    background-color: #FF7043;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    transition: all 0.3s ease;
+}
+
+button:disabled {
+    background-color: #FFCCBC;
+    cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+    background-color: #D84315;
+}
+
+/* Icon Styling */
+button i {
+    margin-right: 5px;
+}
+
+/* Danger Button */
+.btn-danger {
+    background-color: #D32F2F;
+}
+
+.btn-danger:hover {
+    background-color: #B71C1C;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    border: 5px solid #FFAB40;
+    border-top: 5px solid #FF7043;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: auto;
+}
+
+/* Spinner Animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    div {
+        padding: 15px;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
 }
 </style>

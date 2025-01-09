@@ -181,4 +181,9 @@ button {
 input{
     color: white;
 }
+
+.image-preview{
+    max-width: 256px;
+    max-height: 256px;
+}
 </style>

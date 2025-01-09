@@ -41,12 +41,14 @@ import { RouterLink, RouterView } from 'vue-router'
     </div>
    
     <div class="col-md-6">
-      <div class="col-sm-12">
+      <div class="col-sm-12" id="content-div">
         <RouterView />
       </div>
       <footer class="col-md-6">
         <p>&copy; 2024 Kolorowe Przedszkole.</p>
         <button v-if="$isLoggedIn()" @click="logout">logout</button>
+        <button @click="$router.push({ name: 'login' })">login</button>
+        <button @click="$router.push({ name: 'adminpage' })">admin page</button>
       </footer>
     </div>
     <div class="col-md-3">
@@ -131,5 +133,9 @@ button.active {
   justify-content: left;
   bottom: 0;
   left: 0;
+}
+
+#content-div{
+  margin-bottom: 75px;
 }
 </style>

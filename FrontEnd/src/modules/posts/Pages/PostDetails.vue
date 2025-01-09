@@ -9,8 +9,8 @@
                 <img v-if="post.image !== null" :src="post.image" alt="Image" class="image" />
                 <p class="post-text">{{ plainPostText }}</p>
                 <button class="button-orange" @click="$router.push('/post-list')">Back to Posts</button>
-                <button class="btn btn-danger fas fa-trash-alt" @click="deletePost"></button>
-                <button class="btn btn-warning fas fa-edit" @click="goToPost(post.id)"></button>
+                <button v-if="$isLoggedIn()" class="btn btn-danger fas fa-trash-alt" @click="deletePost"></button>
+                <button v-if="$isLoggedIn()" class="btn btn-warning fas fa-edit" @click="goToPost(post.id)"></button>
             </div>
         </div>
 </template>

@@ -44,10 +44,7 @@ body {
 }
 
 main {
-  flex: 1; /* Fills the remaining space between header and footer */
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+  flex: 1;
   padding: 0 !important;
   margin: 0 !important;
   margin-top: 95px !important;
@@ -57,11 +54,11 @@ main > div:nth-child(2) {
   padding: 0 !important;
   margin: 0 !important;
   background: linear-gradient(to bottom, #ADD8E6, #90EE90);
-  /* background-color: #63b7e7; */
 }
 
 input, textarea {
   background-color: white;
+  color: black;
 }
 
 #left-background,
@@ -69,8 +66,8 @@ input, textarea {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  position: fixed;  /* Fixed position to make them not scroll */
-  height: 100%;  /* Take up the full height */
+  position: fixed;
+  height: 100%;
   width: inherit;
 }
 
@@ -114,9 +111,6 @@ footer {
   border-top: 5px solid #292929;
   padding: 10px 20px;
   color: white;
-  /* text-align: center;
-  width: 100%;
-  box-sizing: border-box; */
   background: #333;
   color: white;
   text-align: center;
@@ -154,14 +148,6 @@ a:hover {
   color: #535bf2;
 }
 
-/* body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-} */
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -169,18 +155,7 @@ h1 {
 
 
 .button-orange{
-  /* border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #5858bc;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  margin: 4px; */
-
-  background-color: #e67e22; /* Sunset Orange */
+  background-color: #e67e22; 
   color: white;
   border: none;
   padding: 10px 20px;
@@ -191,15 +166,8 @@ h1 {
 }
 
 .button-orange:hover {
-  /* border-color: #646cff; */
-  background-color: #d35400; /* Deeper Orange on Hover */
+  background-color: #d35400; 
 }
-
-/* button {
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-} */
 
 button:focus,
 button:focus-visible {
@@ -209,13 +177,6 @@ button:focus-visible {
 .card {
   padding: 2em;
 }
-
-/* #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-} */
 
 @media (prefers-color-scheme: light) {
   :root {
