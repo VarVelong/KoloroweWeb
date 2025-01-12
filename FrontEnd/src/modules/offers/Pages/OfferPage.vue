@@ -4,7 +4,7 @@
         <ul v-if="offers.length">
             <li v-for="offer in offers" :key="offers.id">
                 <h2>{{ offer.title }}</h2>
-                <p class="post-text">{{ offer.content }}</p>
+                <p v-html="cleanHtml(offer.content)" class="post-text"></p>
                 <button class="btn btn-danger fas fa-trash-alt" v-if="$isLoggedIn()"
                     @click="deleteOffer(offer.id)"></button>
             </li>
@@ -44,16 +44,22 @@ export default {
         },
 
         async deleteOffer(id) {
-            const confirmation = confirm("Are you sure you want to delete this post?");
+            const confirmation = confirm("Are you sure you want to delete this offer?");
             if (confirmation) {
                 OfferService.deleteOffer(id)
                     .then((data) => {
-                        alert("Post deleted successfully.");
+                        alert("Offer deleted successfully.");
                     })
                     .catch((error) => {
-                        alert(`Failed to delete post: ${error.message}`);
+                        alert(`Failed to delete offer: ${error.message}`);
                     })
             }
+        },
+
+        cleanHtml(html) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, "text/html");
+            return doc.body.innerHTML;
         }
     }
 }
@@ -63,22 +69,18 @@ export default {
 <style scoped>
 
 #offer-container{
-    list-style: none;
-    padding: 25px;
-    margin: 0;
-    border: 3px solid black;
-    border-radius: 15px;
     background-color: rgba(0, 0, 0, 0.5);
     width: 80%;
-    max-width: 600px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
+    border: 3px solid black;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 30px auto;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-height: 100%;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
+    display: flex;
 }
 
 ul {

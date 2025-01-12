@@ -1,5 +1,5 @@
 <template>
-        <div id="post-details">
+        <div>
             <h1 class="page-title">Sczegóły postu</h1>
             <div v-if="loading">Wczytywanie postu...</div>
             <div v-if="error" class="error">{{ error }}</div>
@@ -8,7 +8,7 @@
                 <h1 id="title">{{ post.title }}</h1>
                 <img v-if="post.image !== null" :src="post.image" alt="Image" class="image" />
                 <p class="post-text">{{ plainPostText }}</p>
-                <button class="button-orange" @click="$router.push('/post-list')">Back to Posts</button>
+                <button class="button-orange" @click="$router.push('/post-list')">Powrót do aktualności.</button>
                 <button v-if="$isLoggedIn()" class="btn btn-danger fas fa-trash-alt" @click="deletePost"></button>
                 <button v-if="$isLoggedIn()" class="btn btn-warning fas fa-edit" @click="goToPost(post.id)"></button>
             </div>
@@ -50,6 +50,7 @@ export default {
         async fetchPost() {
             this.loading = true;
             this.error = null;
+            debugger;
             PostService.getPost(this.id)
                 .then((data) => {
                     this.post = data;

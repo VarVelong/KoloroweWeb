@@ -36,19 +36,11 @@ export default {
             OfferService.createOffer(this.offer)
                 .then((offer) => {
                     alert("post is added")
+                    this.$router.push({ name: 'offer' })
                 })
                 .catch((error) => {
                     alert(`error, potst not added ${error}`)
                 })
-        },
-
-        logout() {
-            try {
-                localStorage.removeItem('user');
-                console.log('User has been logged out.');
-            } catch (error) {
-                console.error('Error during logout:', error);
-            }
         }
     }
 }

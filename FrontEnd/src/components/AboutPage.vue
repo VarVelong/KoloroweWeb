@@ -2,7 +2,9 @@
   <h1 class="page-title">O nas</h1>
   <div id="map"></div>
   <div id="about">
-    <p>bla bla bla</p>
+    <div id="about-container">
+      <p>Przykładowe informacje o placówce.</p>
+    </div>
   </div>
 </template>
 
@@ -53,7 +55,18 @@ p {
 }
 
 #about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 100px;
+}
+
+#about-container {
+  border: 3px solid black;
+  border-radius: 15px;
+  background-color: #ddd;
+  margin: 15px;
+  padding: 15px;
 }
 
 #map {

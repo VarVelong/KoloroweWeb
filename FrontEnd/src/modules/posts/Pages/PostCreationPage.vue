@@ -5,7 +5,7 @@
             <h1 class="page-title">Stwórz Nowy Post</h1>
             <div id="title-div">
                 <label for="title">Tytuł:</label>
-                <input v-model="post.title"/>
+                <textarea v-model="post.title"></textarea>
             </div>
             <div
                 class="upload-container"
@@ -103,6 +103,7 @@ img {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 100px;
+    margin-top: 50px;
 }
 
 .post-container h2 {

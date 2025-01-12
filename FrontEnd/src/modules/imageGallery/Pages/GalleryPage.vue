@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div v-if="loading">Wczytywanie Obrazów</div>
-        <div v-if="error" class="error">{{ error }}</div>
+        <!-- <div v-if="loading">Wczytywanie Obrazów</div>
+        <div v-if="error" class="error">{{ error }}</div> -->
 
         <div id="absolute">
             <h1 class="page-title">Galeria</h1>
@@ -37,6 +37,7 @@
             </label>
             <input type="file" id="image-upload" class="upload-input" @change="onFileChange" />
             <img v-if="previewImage" :src="previewImage" alt="Preview" class="image-preview" />
+            <button id="post-button" @click="saveImages">Post</button>
         </div>
 
 
@@ -58,7 +59,7 @@ export default {
             loading: false,
             error: null,
             currentPage: 1,
-            pageSize: 3,
+            pageSize: 15,
             totalPages: 0,
             uploadedImage: null,
             imageModal: false,
@@ -179,7 +180,7 @@ export default {
 
 .upload-container {
     width: 100%;
-    max-width: 800px;
+    max-width: 80%;
     margin: 20px auto;
     padding: 20px;
     border: 2px dashed #3498db;
@@ -224,5 +225,10 @@ input {
 .image-preview{
     max-width: 512px;
     max-height: 512px;
+}
+
+#post-button{
+    background-color: #7f8c8d;
+    color: black;
 }
 </style>

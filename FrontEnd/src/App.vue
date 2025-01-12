@@ -12,22 +12,22 @@ import { RouterLink, RouterView } from 'vue-router'
       <img id="logo" src="../src/assets/logo.png" @click="$router.push('/')" />
       <nav>
         <div>
-          <button :class="{ active: $route.name === 'about' }" @click="$router.push({ name: 'about' })">
+          <button class="button-header" :class="{ active: $route.name === 'about' }" @click="$router.push({ name: 'about' })">
             O nas
           </button>
-          <button :class="{ active: $route.name === 'post-list' }" @click="$router.push({ name: 'post-list' })">
+          <button class="button-header" :class="{ active: $route.name === 'post-list' }" @click="$router.push({ name: 'post-list' })">
             Aktualności
           </button>
-          <button :class="{ active: $route.name === 'offer' }" @click="$router.push({ name: 'offer' })">
+          <button class="button-header" :class="{ active: $route.name === 'offer' }" @click="$router.push({ name: 'offer' })">
             Oferta
           </button>
-          <button :class="{ active: $route.name === 'employees' }" @click="$router.push({ name: 'employees' })">
+          <button class="button-header" :class="{ active: $route.name === 'employees' }" @click="$router.push({ name: 'employees' })">
             Kadra
           </button>
-          <button :class="{ active: $route.name === 'contact' }" @click="$router.push({ name: 'contact' })">
+          <button class="button-header" :class="{ active: $route.name === 'contact' }" @click="$router.push({ name: 'contact' })">
             Kontakt
           </button>
-          <button :class="{ active: $route.name === 'gallery' }" @click="$router.push({ name: 'gallery' })">
+          <button class="button-header" :class="{ active: $route.name === 'gallery' }" @click="$router.push({ name: 'gallery' })">
             Galeria
           </button>
         </div>
@@ -46,9 +46,9 @@ import { RouterLink, RouterView } from 'vue-router'
       </div>
       <footer class="col-md-6">
         <p>&copy; 2024 Kolorowe Przedszkole.</p>
-        <button v-if="$isLoggedIn()" @click="logout">logout</button>
-        <button @click="$router.push({ name: 'login' })">login</button>
-        <button @click="$router.push({ name: 'adminpage' })">admin page</button>
+        <button class="admin-buttons" v-if="$isLoggedIn()" @click="logout">logout</button>
+        <button class="admin-buttons" @click="$router.push({ name: 'login' })">login</button>
+        <button class="admin-buttons" v-if="$isLoggedIn()" @click="$router.push({ name: 'adminpage' })">admin page</button>
       </footer>
     </div>
     <div class="col-md-3">
@@ -107,10 +107,20 @@ nav>div {
   margin: 0;
 }
 
-button {
+.button-header {
   background: none;
   border: none;
   color: rgb(0, 0, 0);
+  font-size: 16px;
+  cursor: pointer;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.admin-buttons{
+  background: none;
+  border: none;
+  color: #e67e22; 
   font-size: 16px;
   cursor: pointer;
   padding-bottom: 0;

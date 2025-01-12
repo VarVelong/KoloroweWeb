@@ -38,6 +38,7 @@ class PostService {
     }
 
     fetchPosts(page) {
+        debugger;
         let fullLink = page ? `${link}?page=${page}` : link;
         return fetch(fullLink, {
             method: "GET"

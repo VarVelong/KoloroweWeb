@@ -59,7 +59,7 @@ namespace KoloroweWeb.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<PostsResponseDTO>> Get(int id)
         {
-            var post = await postRepository.GetByIdAsync(id);
+            var post = await postRepository.GetByIdAsync(id, p => p.Images);
             if (post is null)
             {
                 return NotFound();

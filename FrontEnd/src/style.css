@@ -83,12 +83,14 @@ input, textarea {
 
 #logo {
   cursor: pointer;
+  transition: transform 0.3s ease;
+  padding: 5px;
 }
 
 #logo:hover {
   cursor: pointer;
-  border: #4CAF50 3px solid;
-}
+  transform: scale(1.1);
+} 
 
 header {
   background: #ffffff;
@@ -154,11 +156,13 @@ h1 {
 }
 
 
+
 .button-orange{
   background-color: #e67e22; 
   color: white;
   border: none;
   padding: 10px 20px;
+  margin:10px;
   font-size: 1rem;
   border-radius: 5px;
   cursor: pointer;
@@ -191,7 +195,7 @@ button:focus-visible {
   }
 }
 
-.ql-editor, .ql-toolbar{
+#quill-container > div{
   background-color: white;
 }
 

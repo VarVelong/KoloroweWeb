@@ -10,17 +10,16 @@
     <div class="inside-blocks">
       <h2>Opcje aktualności</h2>
       <button class="button-orange" @click="$router.push({ name: 'postcreation' })">Stwórz Post</button>
-      <button class="button-orange" @click="$router.push({ name: 'postcreation' })">Zobacz Posty</button>
+      <button class="button-orange" @click="$router.push({ name: 'post-list' })">Zobacz Posty</button>
       <p>Żeby dodać ofertę, kliknij "Stwórz Post".</p>
       <p>Żeby usunąć ofertę, musisz kliknąć "Zobacz Post", po czym na stronie musisz kliknąć ikonkę śmietnika przy poście, który chcesz usunąć.</p>
       <p>Żeby dokonać edycji posta, musisz kliknąć "Zobacz Post", po czym na stronie musisz kliknąć ikonkę edycji przy poście, który chcesz usunąć.</p>
     </div>
     <div class="inside-blocks">
       <h2>Opcje Galerii</h2>
-      <button class="button-orange" @click="$router.push({ name: 'postcreation' })">Prześlij zdjęcie.</button>
-      <button class="button-orange" @click="$router.push({ name: 'offer' })">Zobacz zdjęcia.</button>
-      <p>Żeby dodać zdjęcie, kliknij "Prześlij zdjęcie", zostaniesz przeniesiony na stronę galerii, na której dole zobaczysz interfejs do przesłania zdjęcia.</p>
-      <p>Żeby usunąć ofertę, musisz kliknąć "Zobacz Post", po czym na stronie musisz kliknąć ikonkę śmietnika przy poście, który chcesz usunąć.</p>
+      <button class="button-orange" @click="$router.push({ name: 'gallery' })">Zobacz galerię.</button>
+      <p>Żeby dodać zdjęcie, kliknij "Zobacz galerię", zostaniesz przeniesiony na stronę galerii, na której dole zobaczysz interfejs do przesłania zdjęcia.</p>
+      <p>Żeby usunąć zdjęcie, musisz kliknąć "Zobacz galerię", po czym kliknij na zdjęcie, które chcesz usunąć i wtedy kliknąć ikonkę śmietnika przy zdjęciu.</p>
     </div>
     <div class="inside-blocks">
       <h2>Opcje kadry</h2>

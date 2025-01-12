@@ -21,14 +21,14 @@ namespace KoloroweWeb.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<PaginatedResponse<ImagesResponseDTO>>> Get(int page = 1, int pageSize = 3)
+        public async Task<ActionResult<PaginatedResponse<ImagesResponseDTO>>> Get(int page = 1, int pageSize = 15)
         {
             if (page < 1 || pageSize < 1)
             {
                 return BadRequest("Page and pageSize must be greater than zero.");
             }
 
-            var paginatedImages = await imageRepository.GetPaginatedAsync(page, pageSize);
+            var paginatedImages = await imageRepository.GetPaginatedAsync(page, pageSize, i => i.PostId == null);
 
             var paginatedImagesList = new PaginatedResponse<ImagesResponseDTO>
             {

@@ -71,15 +71,15 @@ export default {
         },
 
         async deletePost(id) {
-            const confirmation = confirm("Are you sure you want to delete this post?");
+            const confirmation = confirm("Are you sure you want to delete this offer?");
             if (confirmation) {
                 PostService.deletePost(id)
                     .then((data) => {
-                        alert("Post deleted successfully.");
+                        alert("offer deleted successfully.");
                         this.$router.go();
                     })
                     .catch((error) => {
-                        alert(`Failed to delete post: ${error.message}`);
+                        alert(`Failed to delete offer: ${error.message}`);
                     })
             }
         },
