@@ -1,0 +1,4 @@
+W folderach znajdują się pliki do otworzenia projektu.
+Do poprawnej pracy wymaga on programu XAMPP (dla bazy danych), Visual studio code (dla front-endu) oraz Visual studio 2022 (dla back endu).
+
+Solucle front i back endu wystarczy otworzyć wspomnianymi programami, żeby baza danych działała musi ona być zimportowana.
